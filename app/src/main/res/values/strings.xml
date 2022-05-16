@@ -1,3 +1,13 @@
 <resources>
     <string name="app_name">Togu Travel App</string>
+    <string name="string_nama_lokasi">Nama Lokasi</string>
+    <string name="harga_tiket">Harga Tiket :</string>
+    <string name="rp_10_000_00">Rp.10.000,00</string>
+    <string name="kategori">Kategori</string>
+    <string name="wisata_alam">Wisata Alam</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="deskripsi_tempat_wisata">Deskripsi tempat wisata</string>
+    <string name="lorem_ipsum_long">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</string>
+    <string name="lokasi_wisata">Lokasi wisata</string>
 </resources>
