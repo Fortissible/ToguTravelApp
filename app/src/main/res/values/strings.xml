@@ -9,5 +9,55 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="deskripsi_tempat_wisata">Deskripsi tempat wisata</string>
     <string name="lorem_ipsum_long">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</string>
+    <string name="lorem_ipsum_medium">Lorem ipsum dolor sit amet, consectetur adipiscing elit</string>
     <string name="lokasi_wisata">Lokasi wisata</string>
+
+    <string-array name="object_title">
+        <item>Kitab Sutasoma</item>
+        <item>Keris Sakti</item>
+        <item>Meriam Cunny</item>
+    </string-array>
+
+    <string-array name="object_url">
+        <item>https://asset.kompas.com/crops/DLt2cnTGpI9plhUbSfKRq71y_CM=/0x64:1080x784/750x500/data/photo/2021/05/05/60925ae243569.jpg</item>
+        <item>https://www.bali-artshop.de/WebRoot/Store9/Shops/63684478/60BA/9B26/7254/E50C/4D18/0A0C/6D0B/5B39/1.jpg</item>
+        <item>https://asset-a.grid.id/crop/0x0:0x0/700x465/photo/intisarifoto/original/62782_meriam-si-jagur-yang-ada-di-museum-nasional.jpg</item>
+    </string-array>
+
+    <string-array name="object_desc">
+        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</item>
+        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</item>
+        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</item>
+    </string-array>
+
+    <string-array name="recommend_title">
+        <item>Hutan Pinus Cibubur</item>
+        <item>Taman Balaikota</item>
+        <item>Kebun Teh Cikabayan</item>
+    </string-array>
+
+    <string-array name="recommend_url">
+        <item>https://lh3.googleusercontent.com/-bM01PvIm_qg/XygXlSd2UuI/AAAAAAAADdM/9L9pflAt37wIqRrtBL5vh8FLXs8hNElpgCLcBGAsYHQ/s1600/1596462984908326-0.png</item>
+        <item>https://thumb.viva.co.id/media/frontend/thumbs3/2017/06/08/593929244d76f-taman-balai-kota-bandung_665_374.jpg</item>
+        <item>https://i0.wp.com/piknikdong.com/wp-content/uploads/2019/08/Kebun-Teh-Rancabali-Bandung-1.jpg</item>
+    </string-array>
+
+    <string-array name="recommend_desc">
+        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</item>
+        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</item>
+        <item>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</item>
+    </string-array>
+
+    <string-array name="recommend_location">
+        <item>Cibubur</item>
+        <item>Balaikota</item>
+        <item>Cikabayan</item>
+    </string-array>
+
+    <string-array name="recommend_price">
+        <item>Rp.30.000,00</item>
+        <item>Rp.15.000,00</item>
+        <item>Rp.22.500,00</item>
+
+    </string-array>
 </resources>
