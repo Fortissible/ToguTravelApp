@@ -74,4 +74,22 @@
         <item>Rp.15.000,00</item>
         <item>Rp.22.500,00</item>
     </string-array>
+    <string name="title_activity_maps">MapsActivity</string>
+    
+    <string-array name="sort_by_range">
+        <item>Terdekat</item>
+        <item>Terjauh</item>
+        <item>≤ 3km</item>
+        <item>≤ 5km</item>
+        <item>≤ 10km</item>
+    </string-array>
+
+    <string-array name="sort_by_price">
+        <item>Termurah</item>
+        <item>Termahal</item>
+        <item>≤ Rp.15.000</item>
+        <item>≤ Rp.50.000</item>
+        <item>≤ Rp.100.000</item>
+    </string-array>
+
 </resources>

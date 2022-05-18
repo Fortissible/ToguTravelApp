@@ -16,13 +16,15 @@
         <entry key="..\:/Users/Wildan PC/Documents/GitHub/ToguTravelApp/app/src/main/res/drawable/rouded_search_background.xml" value="0.2335" />
         <entry key="..\:/Users/Wildan PC/Documents/GitHub/ToguTravelApp/app/src/main/res/drawable/rounded_list_location_background.xml" value="0.2335" />
         <entry key="..\:/Users/Wildan PC/Documents/GitHub/ToguTravelApp/app/src/main/res/layout/activity_detail_location.xml" value="0.358695652173913" />
-        <entry key="..\:/Users/Wildan PC/Documents/GitHub/ToguTravelApp/app/src/main/res/layout/activity_location_list.xml" value="0.33" />
+        <entry key="..\:/Users/Wildan PC/Documents/GitHub/ToguTravelApp/app/src/main/res/layout/activity_location_list.xml" value="0.1" />
         <entry key="..\:/Users/Wildan PC/Documents/GitHub/ToguTravelApp/app/src/main/res/layout/activity_main.xml" value="0.3854166666666667" />
+        <entry key="..\:/Users/Wildan PC/Documents/GitHub/ToguTravelApp/app/src/main/res/layout/activity_maps.xml" value="0.3854166666666667" />
+        <entry key="..\:/Users/Wildan PC/Documents/GitHub/ToguTravelApp/app/src/main/res/layout/dropdown_item.xml" value="0.3854166666666667" />
         <entry key="..\:/Users/Wildan PC/Documents/GitHub/ToguTravelApp/app/src/main/res/layout/fragment_location_maps.xml" value="0.358695652173913" />
         <entry key="..\:/Users/Wildan PC/Documents/GitHub/ToguTravelApp/app/src/main/res/layout/fragment_object.xml" value="0.358695652173913" />
         <entry key="..\:/Users/Wildan PC/Documents/GitHub/ToguTravelApp/app/src/main/res/layout/fragment_overview.xml" value="0.3854166666666667" />
         <entry key="..\:/Users/Wildan PC/Documents/GitHub/ToguTravelApp/app/src/main/res/layout/location_detail_image_item.xml" value="0.3854166666666667" />
-        <entry key="..\:/Users/Wildan PC/Documents/GitHub/ToguTravelApp/app/src/main/res/layout/location_detail_object_item_card.xml" value="0.358695652173913" />
+        <entry key="..\:/Users/Wildan PC/Documents/GitHub/ToguTravelApp/app/src/main/res/layout/location_detail_object_item_card.xml" value="0.33" />
         <entry key="..\:/Users/Wildan PC/Documents/GitHub/ToguTravelApp/app/src/main/res/layout/location_detail_recom_item_card.xml" value="0.358695652173913" />
       </map>
     </option>

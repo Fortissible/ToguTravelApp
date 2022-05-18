@@ -13,7 +13,7 @@ import com.example.togutravelapp.data.DummyRecommendData
 class ListRecommendationAdapter(private val listRecom : List<DummyRecommendData>):RecyclerView.Adapter<ListRecommendationAdapter.ListViewHolder>() {
     private lateinit var onItemClickCallback: OnItemClickCallback
     interface OnItemClickCallback{
-        fun onItemClicked()
+        fun onItemClicked(data:DummyRecommendData)
     }
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
         this.onItemClickCallback = onItemClickCallback
@@ -49,10 +49,9 @@ class ListRecommendationAdapter(private val listRecom : List<DummyRecommendData>
             .centerCrop()
             .into(recomImg)
 
-        /*
         holder.itemView.setOnClickListener {
-            onItemClickCallback.onItemClicked(listImageLink[holder.adapterPosition])
-        }*/
+            onItemClickCallback.onItemClicked(listRecom[position])
+        }
     }
 
     override fun getItemCount(): Int = listRecom.size

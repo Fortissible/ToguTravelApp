@@ -6,11 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".activity.LocationListActivity">
 
-    <ImageView
-        android:id="@+id/location_maps_container"
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/map_location"
+        android:background="@color/quantum_grey"
+        android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
         android:layout_height="280dp"
-        android:background="@color/quantum_grey"/>
+        tools:context=".activity.LocationListActivity"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -51,6 +53,59 @@
         android:layout_marginTop="273dp"
         android:background="@drawable/rouded_search_background">
 
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense.ExposedDropdownMenu"
+            android:id="@+id/dropdown_button_container1"
+            android:layout_width="175dp"
+            android:layout_height="40dp"
+            android:inputType="none"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/dropdown_button_container2"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <AutoCompleteTextView
+                android:id="@+id/button_dropdown_sort_range"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="1dp"
+                android:paddingBottom="1dp"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/white"
+                android:textAlignment="center"
+                android:textSize="12sp"
+                android:inputType="none"
+                android:text="Harga"
+                android:backgroundTint="#084b83"/>
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense.ExposedDropdownMenu"
+            android:id="@+id/dropdown_button_container2"
+            android:layout_width="175dp"
+            android:layout_height="40dp"
+            android:inputType="none"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/dropdown_button_container1">
+
+            <AutoCompleteTextView
+                android:id="@+id/button_dropdown_sort_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#084b83"
+                android:fontFamily="@font/poppins_bold"
+                android:inputType="none"
+                android:paddingTop="1dp"
+                android:paddingBottom="1dp"
+                android:text="Jarak"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <!--
         <Button
             android:id="@+id/button_dropdown_sort_range"
             android:layout_width="175dp"
@@ -72,6 +127,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@id/button_dropdown_sort_range"/>
+            -->
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/location_list_rv"
@@ -82,7 +138,7 @@
             android:layout_marginEnd="16dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/button_dropdown_sort_range"/>
+            app:layout_constraintTop_toBottomOf="@id/dropdown_button_container1"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
