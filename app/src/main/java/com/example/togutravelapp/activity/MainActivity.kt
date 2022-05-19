@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
 
         buttonToDetail = binding.button
         buttonToDetail.setOnClickListener {
-            val intentToDetail = Intent(this, DetailLocationActivity::class.java)
+            val intentToDetail = Intent(this, DetailObjectActivity::class.java)
             startActivity(intentToDetail)
         }
     }

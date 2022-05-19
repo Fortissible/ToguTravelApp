@@ -11,6 +11,14 @@
     <string name="lorem_ipsum_long">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</string>
     <string name="lorem_ipsum_medium">Lorem ipsum dolor sit amet, consectetur adipiscing elit</string>
     <string name="lokasi_wisata">Lokasi wisata</string>
+    <string name="title">Judul</string>
+    <string name="lokasi">Lokasi</string>
+    <string name="map">map</string>
+    <string name="image_object">Image Object</string>
+    <string name="button_play">Button Play</string>
+    <string name="button_back">Button Back</string>
+    <string name="descriptions">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</string>
+    <string name="alamat">Museum Gatau, Jl. Jendral Sudirman No.52 Jakarta timur</string>
 
     <string-array name="object_title">
         <item>Kitab Sutasoma</item>
