@@ -42,10 +42,10 @@
         android:elevation="10dp"
         android:src="@drawable/test_img"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:shapeAppearanceOverlay="@style/costume_rounded" />
-
 
     <ScrollView
         android:layout_width="match_parent"
