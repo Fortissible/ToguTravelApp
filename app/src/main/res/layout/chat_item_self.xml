@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
         android:background="@drawable/chat_context_background_self"
-        android:fontFamily="@font/poppins_medium"
+        android:fontFamily="@font/poppins_regular"
         android:textColor="@color/white"
         android:textSize="10sp"
         android:paddingStart="16dp"
