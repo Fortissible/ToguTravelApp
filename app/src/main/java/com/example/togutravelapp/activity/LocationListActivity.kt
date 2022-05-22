@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.togutravelapp.R
+import com.example.togutravelapp.activity.fragment.LogoutFragment
 import com.example.togutravelapp.adapter.ListRecommendationAdapter
 import com.example.togutravelapp.data.DummyRecommendData
 import com.example.togutravelapp.databinding.ActivityLocationListBinding
@@ -40,6 +41,17 @@ class LocationListActivity : AppCompatActivity(), OnMapReadyCallback {
             .load("https://gamebrott.com/wp-content/uploads/2021/01/ganyu-wangi.jpg")
             .centerCrop()
             .into(profilePic)
+
+        profilePic.setOnClickListener {
+            val fragment = supportFragmentManager.findFragmentByTag(LogoutFragment::class.java.simpleName)
+            if (fragment !is LogoutFragment) {
+                supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.location_list_activity, LogoutFragment(), LogoutFragment::class.java.simpleName)
+                    .addToBackStack(null)
+                    .commit()
+            }
+        }
 
         setDummyListLocationData()
 
