@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "628388227660",
+    "project_id": "togu-travel-app",
+    "storage_bucket": "togu-travel-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:628388227660:android:496a881811fbfa7bef22e9",
+        "android_client_info": {
+          "package_name": "com.example.togutravelapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "628388227660-jmjdpsm5c6a2nu5jo12qbvlchb4b4lpf.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.togutravelapp",
+            "certificate_hash": "6c0c89466910a2bf342df40fe5ae69133e56deb5"
+          }
+        },
+        {
+          "client_id": "628388227660-f6smkp93dr5bn1ud9bh0neh58nn9n12h.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDLtqfQVgkN6RFWkgnAO687jRH2yqpm-C8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "628388227660-f6smkp93dr5bn1ud9bh0neh58nn9n12h.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

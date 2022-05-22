@@ -2,6 +2,7 @@ package com.example.togutravelapp.activity
 
 import android.os.Bundle
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -9,6 +10,7 @@ import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
 import com.example.togutravelapp.adapter.ListImageAdapter
 import com.example.togutravelapp.adapter.SectionsPagerAdapter
+import com.example.togutravelapp.data.DummyRecommendData
 import com.example.togutravelapp.data.DummyURL
 import com.example.togutravelapp.databinding.ActivityDetailLocationBinding
 import com.google.android.material.tabs.TabLayout
@@ -18,12 +20,17 @@ class DetailLocationActivity : AppCompatActivity() {
     private lateinit var binding : ActivityDetailLocationBinding
     private lateinit var imageRv : RecyclerView
     private lateinit var locationProfile: ImageView
+    private lateinit var locationName : TextView
+    private lateinit var locationPrice : TextView
+    private lateinit var locationLoc : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailLocationBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
+
+        val locationDetail = intent.getParcelableExtra<DummyRecommendData>(EXTRA_LOCATIONDETAIL) as DummyRecommendData
 
         val sectionsPagerAdapter = SectionsPagerAdapter(this)
         val viewPager: ViewPager2 = binding.locationDetailViewpager2
@@ -35,9 +42,18 @@ class DetailLocationActivity : AppCompatActivity() {
 
         locationProfile = binding.locationDetailImage
         Glide.with(this)
-            .load("https://images.bisnis-cdn.com/posts/2022/05/05/1530199/orchid-forest-cikole-lembang-1.jpg")
+            .load(locationDetail.recomUrl.toString())
             .centerCrop()
             .into(locationProfile)
+
+        locationPrice = binding.locationDetailPrice
+        locationPrice.text = locationDetail.recomPrice.toString()
+
+        locationLoc = binding.locationDetailAddr
+        locationLoc.text = locationDetail.recomLoc.toString()
+
+        locationName = binding.locationDetailName
+        locationName.text = locationDetail.recomTitle.toString()
 
         imageRv = binding.locationDetailListImageRv
         imageRv.setHasFixedSize(true)
@@ -73,6 +89,6 @@ class DetailLocationActivity : AppCompatActivity() {
 
     companion object {
         private val TAB_TITLES = listOf("Tinjauan","Objek Wisata","Rekomendasi")
-        private const val EXTRA_USERNAME = "extra_username"
+        const val EXTRA_LOCATIONDETAIL = "location_detail"
     }
 }
