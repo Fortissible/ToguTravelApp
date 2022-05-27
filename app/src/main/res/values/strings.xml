@@ -91,6 +91,7 @@
         <item>Rp.22.500,00</item>
     </string-array>
     <string name="title_activity_maps">MapsActivity</string>
+    <string name="ketik_pesan">Ketik pesan...</string>
 
     <string-array name="sort_by_range">
         <item>Terdekat</item>
