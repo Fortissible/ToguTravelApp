@@ -51,6 +51,7 @@
         android:id="@+id/chat_rv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginBottom="16dp"
         android:layout_above="@id/send_chat_layout"
         android:layout_below="@id/chat_uppercard"
         android:layout_marginTop="16dp" />
@@ -78,7 +79,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
+        <ImageButton
+            android:id="@+id/send_chat_button"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_marginEnd="16dp"
