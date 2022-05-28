@@ -11,6 +11,22 @@
     <string name="lorem_ipsum_long">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</string>
     <string name="lorem_ipsum_medium">Lorem ipsum dolor sit amet, consectetur adipiscing elit</string>
     <string name="lokasi_wisata">Lokasi wisata</string>
+    <string name="title">Judul</string>
+    <string name="lokasi">Lokasi</string>
+    <string name="map">map</string>
+    <string name="image_object">Image Object</string>
+    <string name="button_play">Button Play</string>
+    <string name="button_back">Button Back</string>
+    <string name="descriptions">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</string>
+    <string name="alamat">Museum Gatau, Jl. Jendral Sudirman No.52 Jakarta timur</string>
+    <string name="gender">Gender</string>
+    <string name="Ratting">9999</string>
+    <string name="harga">Harga :</string>
+    <string name="tarif_tourguide">Rp.100.000</string>
+    <string name="tg_name">Nama</string>
+    <string name="rating_star">rating Star</string>
+    <string name="review_terbanyak">Review Terbanyak</string>
+    <string name="termurah">Termurah</string>
 
     <string-array name="object_title">
         <item>Kitab Sutasoma</item>
@@ -91,6 +107,52 @@
         <item>≤ Rp.15.000</item>
         <item>≤ Rp.50.000</item>
         <item>≤ Rp.100.000</item>
+    </string-array>
+
+
+    <string-array name="tgUrl">
+        <item>https://static.bangkokpost.com/media/content/20200619/c1_1937552_200619122619.jpg</item>
+        <item>https://d3itoy3ehuwt5n.cloudfront.net/wp-content/uploads/2014/07/jim-carrey.jpg?w=225</item>
+        <item>https://i.pinimg.com/550x/76/3b/68/763b68021bed696a50b90759ffa63ce7.jpg</item>
+        <item>https://static.fanpage.it/wp-content/uploads/sites/15/2021/11/BeFunky-paulrudd-1200x1200.jpg</item>
+        <item>https://images.cm.archant.co.uk/resource/blob/7218316/1a44c41adf9182bbe32a08cfeb50e902/179635601-data.jpg</item>
+        <item>https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/hbz-celeb-school-dropouts-johnny-depp-gettyimages-1061229344.jpg</item>
+    </string-array>
+
+    <string-array name="tgName">
+        <item>Wanda.G</item>
+        <item>Patrik.S</item>
+        <item>Handy.M</item>
+        <item>Dimas.R</item>
+        <item>Woody.W</item>
+        <item>Buzz.L</item>
+    </string-array>
+
+    <string-array name="tgGender">
+        <item>Wanita</item>
+        <item>Pria</item>
+        <item>Pria</item>
+        <item>Pria</item>
+        <item>Pria</item>
+        <item>Pria</item>
+    </string-array>
+
+    <string-array name="tgRating">
+        <item>2498</item>
+        <item>1024</item>
+        <item>125</item>
+        <item>135</item>
+        <item>16</item>
+        <item>613</item>
+    </string-array>
+
+    <string-array name="tgPrice">
+        <item>Rp.150.000</item>
+        <item>Rp.120.000</item>
+        <item>Rp.80.000</item>
+        <item>Rp.100.000</item>
+        <item>Rp.50.000</item>
+        <item>Rp.80.000</item>
     </string-array>
 
 </resources>
