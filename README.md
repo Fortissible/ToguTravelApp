@@ -6,7 +6,7 @@ Work results are determined according to each Learning Path.
 The expected end result is the Minimum Viable Product of this Travel App.
 
 <p align="center">
-  <img src="https://github.com/wildanfajri1alfarabi/ToguTravelApp/blob/master/TOGU.png" width="360" title="Togu Travel App">
+  <img src="https://github.com/wildanfajri1alfarabi/ToguTravelApp/blob/master/TOGU.png" width="480" title="Togu Travel App">
 </p>
 <p align="center"><b>Togu Travel App</b></p>
 
