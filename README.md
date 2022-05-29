@@ -5,6 +5,11 @@ every 3 days we will discuss and show each other progress and results achieved.
 Work results are determined according to each Learning Path. 
 The expected end result is the Minimum Viable Product of this Travel App.
 
+<p align="center">
+  <img src="https://github.com/wildanfajri1alfarabi/ToguTravelApp/blob/master/TOGU.png" width="360" title="Togu Travel App">
+</p>
+<p align="center"><b>Togu Travel App</b></p>
+
 ## Project Planning
 Google Spreadsheets : https://docs.google.com/spreadsheets/d/1oh9I-tenJ-IwKGooSWSqf8UOSzkjLpe6Aa_RlFKvJUw/edit?usp=sharing
 
