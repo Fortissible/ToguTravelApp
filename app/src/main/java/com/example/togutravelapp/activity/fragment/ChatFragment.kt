@@ -4,9 +4,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.example.togutravelapp.adapter.FbMessageAdapter
 import com.example.togutravelapp.data.MessageData
 import com.example.togutravelapp.databinding.FragmentChatBinding
@@ -16,6 +19,7 @@ import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
+import de.hdodenhof.circleimageview.CircleImageView
 import java.util.*
 
 class ChatFragment : Fragment() {
@@ -23,6 +27,9 @@ class ChatFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var chatdb : FirebaseDatabase
     private lateinit var chatAdapter : FbMessageAdapter
+    private lateinit var personAvatar : CircleImageView
+    private lateinit var personName : TextView
+    private lateinit var messagesRv : RecyclerView
     private lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
@@ -38,13 +45,17 @@ class ChatFragment : Fragment() {
 
         val manager = LinearLayoutManager(requireActivity())
         manager.stackFromEnd = true
-        binding.chatRv.layoutManager = manager
-
+        messagesRv = binding.chatRv
         auth = Firebase.auth
-        val fbUser = auth.currentUser
         chatdb = Firebase.database
+        personAvatar = binding.chatAva
+        personName = binding.chatName
+
+        val fbUser = auth.currentUser
         val bundle = arguments
         val message = bundle!!.getString(MESSAGES_PERSON)!!
+        val name = bundle.getString(MESSAGES_NAME)!!
+        val url = bundle.getString(MESSAGES_URL)!!
         val msgRefUser = chatdb.reference.child(fbUser!!.uid)
             .child(MESSAGES_PERSON)
             .child(message)
@@ -58,9 +69,15 @@ class ChatFragment : Fragment() {
         val options = FirebaseRecyclerOptions.Builder<MessageData>()
             .setQuery(msgRefUser, MessageData::class.java)
             .build()
-        chatAdapter = FbMessageAdapter(options,fbUser.displayName)
-        binding.chatRv.adapter = chatAdapter
 
+        messagesRv.layoutManager = manager
+        chatAdapter = FbMessageAdapter(options,fbUser.displayName)
+        messagesRv.adapter = chatAdapter
+        personName.text = name
+        Glide.with(this)
+            .load(url)
+            .centerCrop()
+            .into(personAvatar)
         binding.sendChatButton.setOnClickListener {
             val msg = MessageData(
                 binding.chatMessageEdittext.text.toString(),
@@ -94,5 +111,7 @@ class ChatFragment : Fragment() {
     companion object {
         const val MESSAGES_CHILD = "messages"
         const val MESSAGES_PERSON = "users"
+        const val MESSAGES_NAME = "name"
+        const val MESSAGES_URL = "url"
     }
 }

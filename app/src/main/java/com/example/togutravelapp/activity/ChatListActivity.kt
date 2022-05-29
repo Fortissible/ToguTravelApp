@@ -18,7 +18,10 @@ import com.example.togutravelapp.databinding.ActivityChatListBinding
 import com.example.togutravelapp.viewmodel.ChatListViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import de.hdodenhof.circleimageview.CircleImageView
@@ -29,7 +32,6 @@ class ChatListActivity : AppCompatActivity() {
     private lateinit var auth : FirebaseAuth
     private lateinit var fbDatabase : FirebaseDatabase
     private lateinit var avatar : CircleImageView
-    private lateinit var chatListViewModel: ChatListViewModel
     private lateinit var progressBar : ProgressBar
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -47,6 +49,15 @@ class ChatListActivity : AppCompatActivity() {
 
         auth = Firebase.auth
         fbDatabase = Firebase.database
+        val ref = fbDatabase.reference
+        ref.addValueEventListener(object : ValueEventListener {
+            override fun onDataChange(snapshot: DataSnapshot) {
+                chatListViewModel.getChatListFromFbDb(auth.currentUser!!.uid, fbDatabase)
+            }
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
 
         chatListRv = binding.chatListRv
         chatListRv.setHasFixedSize(true)
@@ -61,7 +72,6 @@ class ChatListActivity : AppCompatActivity() {
         chatListViewModel.getChatListFromFbDb(auth.currentUser!!.uid, fbDatabase)
         chatListViewModel.chatList.observe(this){
             setRecyclerView(it)
-            Log.d("GAMINGG", "isi $it")
         }
         chatListViewModel.loadingScreen.observe(this){
             if (it == true) progressBar.visibility = View.VISIBLE
@@ -79,6 +89,8 @@ class ChatListActivity : AppCompatActivity() {
                 val fragment = ChatFragment()
                 val mBundle = Bundle()
                 mBundle.putString(ChatFragment.MESSAGES_PERSON,data.uid)
+                mBundle.putString(ChatFragment.MESSAGES_NAME,data.name)
+                mBundle.putString(ChatFragment.MESSAGES_URL,data.profileUrl)
                 fragment.arguments = mBundle
                 val fragmentManager = supportFragmentManager.findFragmentByTag(ChatFragment::class.java.simpleName)
                 if (fragmentManager !is ChatFragment){
