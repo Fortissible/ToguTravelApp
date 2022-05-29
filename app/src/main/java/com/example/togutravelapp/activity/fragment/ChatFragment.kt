@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -44,25 +43,36 @@ class ChatFragment : Fragment() {
         auth = Firebase.auth
         val fbUser = auth.currentUser
         chatdb = Firebase.database
-        val msgRef = chatdb.reference.child(MESSAGES_CHILD)
+        val bundle = arguments
+        val message = bundle!!.getString(MESSAGES_PERSON)!!
+        val msgRefUser = chatdb.reference.child(fbUser!!.uid)
+            .child(MESSAGES_PERSON)
+            .child(message)
+            .child(MESSAGES_CHILD)
+
+        val msgRefPerson = chatdb.reference.child(message)
+            .child(MESSAGES_PERSON)
+            .child(fbUser.uid)
+            .child(MESSAGES_CHILD)
 
         val options = FirebaseRecyclerOptions.Builder<MessageData>()
-            .setQuery(msgRef, MessageData::class.java)
+            .setQuery(msgRefUser, MessageData::class.java)
             .build()
-        chatAdapter = FbMessageAdapter(options,fbUser?.displayName)
+        chatAdapter = FbMessageAdapter(options,fbUser.displayName)
         binding.chatRv.adapter = chatAdapter
 
         binding.sendChatButton.setOnClickListener {
             val msg = MessageData(
                 binding.chatMessageEdittext.text.toString(),
-                fbUser?.displayName.toString(),
-                fbUser?.uid,
-                fbUser?.photoUrl.toString(),
+                fbUser.displayName.toString(),
+                fbUser.uid,
+                fbUser.photoUrl.toString(),
                 Date().time
             )
-            msgRef.push().setValue(msg) { e,_ ->
+            msgRefUser.push().setValue(msg) { e,_ ->
                 if (e != null) Toast.makeText(requireContext(), "error sending message" + e.message, Toast.LENGTH_SHORT).show()
             }
+            msgRefPerson.push().setValue(msg)
             binding.chatMessageEdittext.setText("")
         }
     }
@@ -83,5 +93,6 @@ class ChatFragment : Fragment() {
     }
     companion object {
         const val MESSAGES_CHILD = "messages"
+        const val MESSAGES_PERSON = "users"
     }
 }

@@ -20,12 +20,16 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 class LocationListActivity : AppCompatActivity(), OnMapReadyCallback {
     private lateinit var binding : ActivityLocationListBinding
     private lateinit var locationRv : RecyclerView
     private lateinit var profilePic : ImageView
     private lateinit var mMap: GoogleMap
+    private lateinit var auth : FirebaseAuth
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,14 +37,16 @@ class LocationListActivity : AppCompatActivity(), OnMapReadyCallback {
         setContentView(binding.root)
 
         profilePic = binding.locationListProfilepic
+        auth = Firebase.auth
+
+        Glide.with(this)
+            .load(auth.currentUser!!.photoUrl)
+            .centerCrop()
+            .into(profilePic)
+
         locationRv = binding.locationListRv
         locationRv.setHasFixedSize(true)
         supportActionBar?.hide()
-
-        Glide.with(this)
-            .load("https://gamebrott.com/wp-content/uploads/2021/01/ganyu-wangi.jpg")
-            .centerCrop()
-            .into(profilePic)
 
         profilePic.setOnClickListener {
             val fragment = supportFragmentManager.findFragmentByTag(LogoutFragment::class.java.simpleName)
