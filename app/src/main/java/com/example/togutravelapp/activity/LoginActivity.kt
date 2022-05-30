@@ -27,6 +27,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
+        supportActionBar?.hide()
 
         // Configure Google Sign In
         val gso = GoogleSignInOptions
@@ -42,6 +43,11 @@ class LoginActivity : AppCompatActivity() {
 
         binding.signInButtonGoogle.setOnClickListener {
             signIn()
+        }
+        val btnLogin = binding.btnLogin
+        btnLogin.setOnClickListener {
+            val intent = Intent(this, MainActivity ::class.java)
+            startActivity(intent)
         }
 
     }

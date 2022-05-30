@@ -92,6 +92,8 @@
     </string-array>
     <string name="title_activity_maps">MapsActivity</string>
     <string name="ketik_pesan">Ketik pesan...</string>
+    <string name="kurang_dari_8">Kurang dari 8</string>
+    <string name="scanning">Scanning...</string>
 
     <string-array name="sort_by_range">
         <item>Terdekat</item>

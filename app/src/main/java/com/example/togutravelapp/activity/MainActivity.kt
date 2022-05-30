@@ -20,15 +20,15 @@ class MainActivity : AppCompatActivity() {
 
         buttonToDetail = binding.btnDetailObj
         buttonToDetail.setOnClickListener {
-            val intentToDetail = Intent(this, DetailObjectActivity::class.java)
+            val intentToDetail = Intent(this, QRCodeScannerActivity::class.java)
             startActivity(intentToDetail)
         }
         buttonToTogu = binding.btnTogu
         buttonToTogu.setOnClickListener {
             val intentToDetail = Intent(this, ListTourGuideActivity::class.java)
             startActivity(intentToDetail)
-
-        buttonToListLoc = binding.button
+        }
+        buttonToListLoc = binding.listLocation
         buttonToListLoc.setOnClickListener {
             val intentToListLocation = Intent(this, LocationListActivity::class.java)
             startActivity(intentToListLocation)

@@ -27,7 +27,7 @@ class DetailObjectActivity : AppCompatActivity(), OnMapReadyCallback{
 
         val btnBack = binding.btnBack
         btnBack.setOnClickListener {
-            val intent = Intent(this, MainActivity ::class.java)
+            val intent = Intent(this, QRCodeScannerActivity ::class.java)
             startActivity(intent)
         }
 
