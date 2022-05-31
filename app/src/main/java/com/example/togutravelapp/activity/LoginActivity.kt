@@ -6,9 +6,10 @@ import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
+import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import com.example.togutravelapp.data.UserListData
+import com.example.togutravelapp.data.DummyTourGuideData
 import com.example.togutravelapp.databinding.ActivityLoginBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -91,14 +92,25 @@ class LoginActivity : AppCompatActivity() {
                     // Sign in success, update UI with the signed-in user's information
                     Log.d(TAG, "signInWithCredential:success")
                     val user = auth.currentUser
-                    val usersLogin = UserListData(
-                        name = user!!.displayName
+                    val usersLogin = DummyTourGuideData(
+                        tgName = user!!.displayName,
+                        tgUrl = user.photoUrl.toString()
                     )
                     val addUser = fbDatabase.reference
                         .child("listUsers")
                         .child(user.uid)
-                    addUser.push().setValue(usersLogin).addOnCompleteListener {
-                        updateUI(user)
+
+                    addUser.get().addOnCompleteListener {
+                        if (it.result.childrenCount < 1)
+                            addUser.push().setValue(usersLogin).addOnCompleteListener {
+                                updateUI(user)
+                            }.addOnFailureListener {
+                                Toast.makeText(this,"Gagal Login",Toast.LENGTH_SHORT).show()
+                                loadingBar.visibility = View.INVISIBLE
+                                loginButton.visibility = View.VISIBLE
+                            }
+                        else
+                            updateUI(user)
                     }
                 } else {
                     // If sign in fails, display a message to the user.

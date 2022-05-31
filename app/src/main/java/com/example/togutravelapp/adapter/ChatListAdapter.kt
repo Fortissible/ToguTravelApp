@@ -39,12 +39,13 @@ class ChatListAdapter(private val data : List<MessageData> ): RecyclerView.Adapt
         val userLatestChat = holder.userLatestChat
         val userTimestamp = holder.userTimestamp
 
-        userName.text = data[position].name.toString()
-        userLatestChat.text = data[position].msg.toString()
-        userTimestamp.text = DateUtils.getRelativeTimeSpanString(data[position].timestamp!!.toLong())
+        userName.text = data[position].name ?: "NO NAME"
+        userLatestChat.text = data[position].msg ?: "Lets have a chat!"
+        userTimestamp.text = DateUtils.getRelativeTimeSpanString(data[position].timestamp!!.toLong()) ?: ""
 
         Glide.with(holder.itemView)
             .load(data[position].profileUrl)
+            .placeholder(R.drawable.ic_baseline_person_24)
             .centerCrop()
             .into(userImg)
 

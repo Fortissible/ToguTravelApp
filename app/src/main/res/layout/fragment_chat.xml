@@ -51,7 +51,6 @@
         android:layout_height="match_parent"
         android:layout_above="@id/send_chat_layout"
         android:layout_below="@id/chat_uppercard"
-        android:layout_marginBottom="32dp"
         android:background="@color/white"
         android:backgroundTint="@color/white" />
 

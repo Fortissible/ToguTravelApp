@@ -55,11 +55,14 @@
         android:background="@drawable/rouded_search_background">
 
         <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense.ExposedDropdownMenu"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:id="@+id/dropdown_button_container1"
             android:layout_width="175dp"
-            android:layout_height="40dp"
+            android:layout_height="36dp"
             android:inputType="none"
+            android:layout_marginTop="8dp"
+            app:boxBackgroundMode="filled"
+            app:boxBackgroundColor="#084b83"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@id/dropdown_button_container2"
             app:layout_constraintTop_toTopOf="parent">
@@ -76,16 +79,21 @@
                 android:textSize="12sp"
                 android:inputType="none"
                 android:text="Harga"
+                android:padding="0dp"
+                android:background="#084b83"
                 android:backgroundTint="#084b83"/>
 
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            style="@style/Widget.MaterialComponents.TextInputLayout.FilledBox.Dense.ExposedDropdownMenu"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
             android:id="@+id/dropdown_button_container2"
+            android:layout_marginTop="8dp"
             android:layout_width="175dp"
-            android:layout_height="40dp"
+            android:layout_height="36dp"
             android:inputType="none"
+            app:boxBackgroundMode="filled"
+            app:boxBackgroundColor="#084b83"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toEndOf="@id/dropdown_button_container1">
@@ -95,10 +103,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:backgroundTint="#084b83"
+                android:background="#084b83"
                 android:fontFamily="@font/poppins_bold"
                 android:inputType="none"
-                android:paddingTop="1dp"
-                android:paddingBottom="1dp"
+                android:padding="0dp"
                 android:text="Jarak"
                 android:textAlignment="center"
                 android:textColor="@color/white"
