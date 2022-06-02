@@ -13,7 +13,7 @@ import com.example.togutravelapp.data.DummyObjectData
 class ListObjectAdapter(private val listObject: List<DummyObjectData>): RecyclerView.Adapter<ListObjectAdapter.ListViewHolder>() {
     private lateinit var onItemClickCallback: OnItemClickCallback
     interface OnItemClickCallback{
-        fun onItemClicked()
+        fun onItemClicked(data:DummyObjectData)
     }
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
         this.onItemClickCallback = onItemClickCallback
@@ -40,10 +40,10 @@ class ListObjectAdapter(private val listObject: List<DummyObjectData>): Recycler
             .load(listObject[position].objectUrl)
             .centerCrop()
             .into(objectPic)
-        /*
+
         holder.itemView.setOnClickListener {
-            onItemClickCallback.onItemClicked(listImageLink[holder.adapterPosition])
-        }*/
+            onItemClickCallback.onItemClicked(listObject[position])
+        }
     }
 
     override fun getItemCount(): Int = listObject.size

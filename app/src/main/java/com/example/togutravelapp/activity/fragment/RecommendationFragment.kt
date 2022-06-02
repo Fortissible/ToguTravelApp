@@ -1,5 +1,6 @@
 package com.example.togutravelapp.activity.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -8,6 +9,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.togutravelapp.R
+import com.example.togutravelapp.activity.DetailLocationActivity
 import com.example.togutravelapp.adapter.ListRecommendationAdapter
 import com.example.togutravelapp.data.DummyRecommendData
 import com.example.togutravelapp.databinding.FragmentRecommendationBinding
@@ -41,7 +43,16 @@ class RecommendationFragment : Fragment() {
     private fun setRecommendationData(){
         val dummyListRecommendationData = getDummyRecommendationData()
         recommendarionRv.layoutManager = LinearLayoutManager(requireActivity())
-        recommendarionRv.adapter = ListRecommendationAdapter(dummyListRecommendationData)
+        val adapter = ListRecommendationAdapter(dummyListRecommendationData)
+        recommendarionRv.adapter = adapter
+        adapter.setOnItemClickCallback(object : ListRecommendationAdapter.OnItemClickCallback{
+            override fun onItemClicked(data: DummyRecommendData) {
+                val intentToLocation = Intent(requireActivity(),DetailLocationActivity::class.java)
+                intentToLocation.putExtra(DetailLocationActivity.EXTRA_LOCATIONDETAIL,data)
+                startActivity(intentToLocation)
+            }
+        })
+
     }
 
     private fun getDummyRecommendationData(): List<DummyRecommendData>{
