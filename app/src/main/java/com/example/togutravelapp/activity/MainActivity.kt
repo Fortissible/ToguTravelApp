@@ -7,6 +7,7 @@ import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.example.togutravelapp.R
 import com.example.togutravelapp.activity.fragment.ChatFragment
+import com.example.togutravelapp.data.DummyObjectData
 import com.example.togutravelapp.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
@@ -27,6 +28,7 @@ class MainActivity : AppCompatActivity() {
         buttonToDetail = binding.btnDetailObj
         buttonToDetail.setOnClickListener {
             val intentToDetail = Intent(this, DetailObjectActivity::class.java)
+            intentToDetail.putExtra(DetailObjectActivity.EXTRA_DETAIL_OBJECT,DummyObjectData())
             startActivity(intentToDetail)
         }
         buttonToTogu = binding.btnTogu

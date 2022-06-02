@@ -55,15 +55,15 @@ class ListTourGuideActivity : AppCompatActivity() {
         val priceList = resources.getStringArray(R.array.tgPrice)
         val listTogu = ArrayList<DummyTourGuideData>()
         for (i in nameList.indices){
-        listTogu.add(
-            DummyTourGuideData(
-                tgUrl = imageUrlList[i],
-                tgName = nameList[i],
-                tgGender = genderList[i],
-                tgRating = ratingList[i],
-                tgPrice = priceList[i],
+            listTogu.add(
+                DummyTourGuideData(
+                    tgUrl = imageUrlList[i],
+                    tgName = nameList[i],
+                    tgGender = genderList[i],
+                    tgRating = ratingList[i],
+                    tgPrice = priceList[i],
+                )
             )
-        )
         }
         return listTogu
     }
