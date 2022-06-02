@@ -25,9 +25,6 @@ import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.MarkerOptions
-import java.net.HttpURLConnection
-import java.net.URLConnection
-import java.net.URLDecoder
 
 class DetailObjectActivity : AppCompatActivity(), OnMapReadyCallback{
     private lateinit var mMap : GoogleMap
@@ -35,6 +32,7 @@ class DetailObjectActivity : AppCompatActivity(), OnMapReadyCallback{
     private lateinit var objectTitle: TextView
     private lateinit var objectDesc: TextView
     private lateinit var btnBack : ImageButton
+  
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailObjectBinding.inflate(layoutInflater)
@@ -94,8 +92,7 @@ class DetailObjectActivity : AppCompatActivity(), OnMapReadyCallback{
             }
         }
     }
-
-    companion object {
+  companion object {
         const val EXTRA_DETAIL_OBJECT = "object"
     }
 }

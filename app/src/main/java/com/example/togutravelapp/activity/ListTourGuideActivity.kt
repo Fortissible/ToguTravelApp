@@ -19,7 +19,6 @@ class ListTourGuideActivity : AppCompatActivity() {
     private lateinit var binding: ActivityListTourGuideBinding
     private lateinit var profile : CircleImageView
     private lateinit var auth : FirebaseAuth
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityListTourGuideBinding.inflate(layoutInflater)
@@ -32,7 +31,7 @@ class ListTourGuideActivity : AppCompatActivity() {
             .load(auth.currentUser!!.photoUrl)
             .centerCrop()
             .into(profile)
-
+            
         rvTogu = binding.rvTogu
         rvTogu.setHasFixedSize(true)
         supportActionBar?.hide()

@@ -36,7 +36,6 @@ class MainActivity : AppCompatActivity() {
             val intentToDetail = Intent(this, ListTourGuideActivity::class.java)
             startActivity(intentToDetail)
         }
-
         buttonToListLoc = binding.listPlaceButton
         buttonToListLoc.setOnClickListener {
             val intentToListLocation = Intent(this, LocationListActivity::class.java)
