@@ -41,7 +41,10 @@ class ChatListAdapter(private val data : List<MessageData> ): RecyclerView.Adapt
 
         userName.text = data[position].name ?: "NO NAME"
         userLatestChat.text = data[position].msg ?: "Lets have a chat!"
-        userTimestamp.text = DateUtils.getRelativeTimeSpanString(data[position].timestamp!!.toLong()) ?: ""
+        if (data[position].timestamp != null)
+            userTimestamp.text = DateUtils.getRelativeTimeSpanString(data[position].timestamp!!.toLong())
+        else
+            userTimestamp.text = ""
 
         Glide.with(holder.itemView)
             .load(data[position].profileUrl)

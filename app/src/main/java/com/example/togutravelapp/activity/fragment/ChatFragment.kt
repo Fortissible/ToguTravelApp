@@ -108,6 +108,7 @@ class ChatFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
     companion object {
         const val MESSAGES_CHILD = "messages"
         const val MESSAGES_PERSON = "users"

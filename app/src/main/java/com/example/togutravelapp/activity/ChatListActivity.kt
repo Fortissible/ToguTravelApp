@@ -1,6 +1,7 @@
 package com.example.togutravelapp.activity
 
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import androidx.activity.viewModels
@@ -40,6 +41,9 @@ class ChatListActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
+        auth = Firebase.auth
+        fbDatabase = Firebase.database
+
         val factory : ViewModelFactory = ViewModelFactory.getInstance(this)
         val chatListViewModel: ChatListViewModel by viewModels {
             factory
@@ -49,7 +53,7 @@ class ChatListActivity : AppCompatActivity() {
         searchView = binding.userChatSearch
         searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener{
             override fun onQueryTextSubmit(query: String?): Boolean {
-                chatListViewModel.searchUserFromDbFb(fbDatabase,query)
+                chatListViewModel.searchUserFromDbFb(fbDatabase,query,auth)
                 return true
             }
 
@@ -59,8 +63,6 @@ class ChatListActivity : AppCompatActivity() {
 
         })
 
-        auth = Firebase.auth
-        fbDatabase = Firebase.database
         val ref = fbDatabase.reference
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -90,7 +92,10 @@ class ChatListActivity : AppCompatActivity() {
             else progressBar.visibility = View.INVISIBLE
         }
         chatListViewModel.userData.observe(this){
-            if (it.isNotEmpty()) setRecyclerView(it)
+            if (it.isNotEmpty()) {
+                Log.d("OBSERVERNYAH", "$it")
+                setRecyclerView(it)
+            }
         }
     }
 

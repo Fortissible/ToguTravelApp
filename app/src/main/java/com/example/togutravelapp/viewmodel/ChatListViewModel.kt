@@ -1,11 +1,11 @@
 package com.example.togutravelapp.viewmodel
 
-import android.widget.Toast
+import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.togutravelapp.data.DummyTourGuideData
 import com.example.togutravelapp.data.MessageData
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 
 class ChatListViewModel: ViewModel(){
@@ -49,17 +49,32 @@ class ChatListViewModel: ViewModel(){
         }
     }
 
-    fun searchUserFromDbFb(fbDatabase: FirebaseDatabase, username : String?){
+    fun searchUserFromDbFb(fbDatabase: FirebaseDatabase, username : String?, auth: FirebaseAuth){
         _loadingScreen.value = true
         fbDatabase.reference.child("listUsers").get().addOnCompleteListener { listUid ->
+            val matchingUser = mutableListOf<MessageData>()
             listUid.result.children.forEach { listIdUsername ->
-                listIdUsername.children.forEach { nameData ->
-                    if (username == nameData.value.toString())
-                        _userData.value!!.add(MessageData(
-                            name = nameData.value.toString()
-                        ))
+                val temporary = mutableListOf<MessageData>()
+                listIdUsername.children.forEach { data ->
+                    val name = data.child("tgName").value.toString()
+                    val url = data.child("tgUrl").value.toString()
+                    val uid = data.child("tgUid").value.toString()
+                    Log.d("CEK ISI SEARCHNYA", "${name}")
+                    if (name.lowercase().contains(username?.lowercase()?:"notfounds") && name != auth.currentUser!!.displayName.toString())
+                        temporary.add(MessageData(
+                            name = name,
+                            uid = uid,
+                            profileUrl = url
+                            )
+                        )
+                }
+                for (i in temporary.indices){
+                    if (i == temporary.size-1){
+                        matchingUser.add(temporary[i])
+                    }
                 }
             }
+            _userData.value = matchingUser
             _loadingScreen.value = false
         }.addOnFailureListener {
             _loadingScreen.value = false

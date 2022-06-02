@@ -94,7 +94,8 @@ class LoginActivity : AppCompatActivity() {
                     val user = auth.currentUser
                     val usersLogin = DummyTourGuideData(
                         tgName = user!!.displayName,
-                        tgUrl = user.photoUrl.toString()
+                        tgUrl = user.photoUrl.toString(),
+                        tgUid = user.uid
                     )
                     val addUser = fbDatabase.reference
                         .child("listUsers")
