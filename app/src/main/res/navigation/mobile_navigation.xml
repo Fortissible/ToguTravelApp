@@ -3,23 +3,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_scan_barcode">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.example.togutravelapp.activity.ui.home.HomeFragment"
-        android:label="@string/title_home"
+        android:id="@+id/navigation_scan_barcode"
+        android:name="com.example.togutravelapp.activity.fragment.BlankFragment"
+        android:label="Scan"
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
-        android:name="com.example.togutravelapp.activity.ui.dashboard.DashboardFragment"
-        android:label="@string/title_dashboard"
+        android:id="@+id/navigation_location_list"
+        android:name="com.example.togutravelapp.activity.fragment.LocationListFragment"
+        android:label="Locations"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
-        android:name="com.example.togutravelapp.activity.ui.notifications.NotificationsFragment"
-        android:label="@string/title_notifications"
+        android:id="@+id/navigation_tourguide_list"
+        android:name="com.example.togutravelapp.activity.fragment.ListTourGuideFragment"
+        android:label="Tour Guides"
         tools:layout="@layout/fragment_notifications" />
 </navigation>
