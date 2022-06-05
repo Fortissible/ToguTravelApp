@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import com.example.togutravelapp.R
 import com.example.togutravelapp.databinding.ActivityLoginBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
@@ -47,6 +46,11 @@ class LoginActivity : AppCompatActivity() {
         val btnLogin = binding.btnLogin
         btnLogin.setOnClickListener {
             val intent = Intent(this, MainActivity ::class.java)
+            startActivity(intent)
+        }
+        val btnSignup = binding.signupButton
+        btnSignup.setOnClickListener {
+            val intent = Intent(this, SignUpActivity ::class.java)
             startActivity(intent)
         }
 

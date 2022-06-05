@@ -94,6 +94,17 @@
     <string name="ketik_pesan">Ketik pesan...</string>
     <string name="kurang_dari_8">Kurang dari 8</string>
     <string name="scanning">Scanning...</string>
+    <string name="scanningPros">QR Code tidak dikenali !</string>
+    <string name="isi_data_dirimu_dibawah">Isi Data Dirimu dibawah!</string>
+    <string name="titleSignup">Isi Data Dirimu Dibawah !</string>
+    <string name="name">Nama</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="telp">Nomor Telepon</string>
+    <string name="signup">Signup</string>
+    <string name="sign_up_disini"><u>Sign Up disini!</u></string>
+    <string name="konfirmasi">Konfirmasi Password Mu</string>
+    <string name="cancel">Cancel</string>
 
     <string-array name="sort_by_range">
         <item>Terdekat</item>

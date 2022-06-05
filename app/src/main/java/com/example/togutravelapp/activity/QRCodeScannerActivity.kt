@@ -4,6 +4,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.TextView
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
@@ -12,6 +13,7 @@ import com.budiyev.android.codescanner.CodeScanner
 import com.budiyev.android.codescanner.DecodeCallback
 import com.budiyev.android.codescanner.ErrorCallback
 import com.budiyev.android.codescanner.ScanMode
+import com.example.togutravelapp.R
 import com.example.togutravelapp.databinding.ActivityQrcodeScannerBinding
 
 private const val CAMERA_REQUEST_CODE = 101
@@ -47,6 +49,10 @@ class QRCodeScannerActivity : AppCompatActivity() {
                         val intent = Intent(this@QRCodeScannerActivity, DetailObjectActivity::class.java)
                         Toast.makeText(this@QRCodeScannerActivity, "Scan result : ${it.text}", Toast.LENGTH_SHORT).show()
                         startActivity(intent)
+                        finish()
+                    }else{
+                        val scanningPros : TextView = binding.scanning
+                        scanningPros.text = getString(R.string.scanningPros)
                     }
                 }
             }

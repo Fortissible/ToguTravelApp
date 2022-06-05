@@ -29,6 +29,7 @@ class DetailObjectActivity : AppCompatActivity(), OnMapReadyCallback{
         btnBack.setOnClickListener {
             val intent = Intent(this, QRCodeScannerActivity ::class.java)
             startActivity(intent)
+            finish()
         }
 
         val imgObject : ImageView = binding.imgObject
