@@ -1,5 +1,6 @@
 package com.example.togutravelapp.activity.fragment
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.togutravelapp.R
+import com.example.togutravelapp.activity.DetailObjectActivity
 import com.example.togutravelapp.adapter.ListObjectAdapter
 import com.example.togutravelapp.data.DummyObjectData
 import com.example.togutravelapp.databinding.FragmentObjectBinding
@@ -40,8 +42,16 @@ class ObjectFragment : Fragment() {
 
     private fun setObjectData(){
         val dummyListObjectData = getDummyListObjectData()
+        val adapter = ListObjectAdapter(dummyListObjectData)
         objectRv.layoutManager = LinearLayoutManager(requireActivity())
-        objectRv.adapter = ListObjectAdapter(dummyListObjectData)
+        objectRv.adapter = adapter
+        adapter.setOnItemClickCallback(object : ListObjectAdapter.OnItemClickCallback{
+            override fun onItemClicked(data: DummyObjectData) {
+                val intentToObjectDetail = Intent(requireActivity(),DetailObjectActivity::class.java)
+                intentToObjectDetail.putExtra(DetailObjectActivity.EXTRA_DETAIL_OBJECT,data)
+                startActivity(intentToObjectDetail)
+            }
+        })
     }
 
     private fun getDummyListObjectData():List<DummyObjectData>{

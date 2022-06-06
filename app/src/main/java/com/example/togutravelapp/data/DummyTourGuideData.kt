@@ -10,4 +10,5 @@ data class DummyTourGuideData(
     val tgGender: String? = null,
     val tgRating: String? = null,
     val tgPrice: String? = null,
+    val tgUid: String? = null
 ) :Parcelable

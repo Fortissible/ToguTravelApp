@@ -23,13 +23,11 @@
             android:id="@+id/chat_ava"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:layout_marginTop="8dp"
             android:layout_marginStart="16dp"
-            tools:layout_editor_absoluteX="49dp"
-            tools:layout_editor_absoluteY="35dp"
-            tools:src="@tools:sample/avatars"
+            android:layout_marginTop="8dp"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"/>
+            tools:src="@tools:sample/avatars" />
 
         <TextView
             android:id="@+id/chat_name"
@@ -53,7 +51,8 @@
         android:layout_height="match_parent"
         android:layout_above="@id/send_chat_layout"
         android:layout_below="@id/chat_uppercard"
-        android:layout_marginTop="16dp" />
+        android:background="@color/white"
+        android:backgroundTint="@color/white" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/send_chat_layout"
@@ -78,7 +77,8 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <ImageView
+        <ImageButton
+            android:id="@+id/send_chat_button"
             android:layout_width="32dp"
             android:layout_height="32dp"
             android:layout_marginEnd="16dp"

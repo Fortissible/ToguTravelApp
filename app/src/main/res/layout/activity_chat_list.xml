@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/chat_list_activity"
+    tools:context=".activity.ChatListActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/upper_menu_chat_list"
+        android:layout_width="match_parent"
+        android:layout_height="72dp">
+
+        <androidx.appcompat.widget.SearchView
+            android:id="@+id/user_chat_search"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:background="@drawable/rouded_search_background"
+            android:elevation="8dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginEnd="72dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/user_chat_profile"/>
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/user_chat_profile"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="8dp"
+            android:src="@color/white"
+            app:civ_border_width="1dp"
+            app:civ_border_color="@color/white"
+            android:elevation="8dp"
+            tools:src="@tools:sample/avatars"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/user_chat_search"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ProgressBar
+        android:id="@+id/loading_chat_list"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true"
+        android:visibility="visible"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/chat_list_rv"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/upper_menu_chat_list" />
+
+
+</RelativeLayout>

@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "628388227660",
+    "firebase_url": "https://togu-travel-app-default-rtdb.firebaseio.com",
     "project_id": "togu-travel-app",
     "storage_bucket": "togu-travel-app.appspot.com"
   },
