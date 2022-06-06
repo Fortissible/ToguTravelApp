@@ -27,7 +27,7 @@ class MainActivity : AppCompatActivity() {
 
         buttonToDetail = binding.btnDetailObj
         buttonToDetail.setOnClickListener {
-            val intentToDetail = Intent(this, DetailObjectActivity::class.java)
+            val intentToDetail = Intent(this, QRCodeScannerActivity::class.java)
             intentToDetail.putExtra(DetailObjectActivity.EXTRA_DETAIL_OBJECT,DummyObjectData())
             startActivity(intentToDetail)
         }

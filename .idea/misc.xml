@@ -3,7 +3,14 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/FDA/Documents/GitHub/ToguTravelApp/app/src/main/res/drawable/chat_context_background_person.xml" value="0.2965" />
         <entry key="..\:/Users/FDA/Documents/GitHub/ToguTravelApp/app/src/main/res/drawable/ic_back.xml" value="0.192" />
+        <entry key="..\:/Users/FDA/Documents/GitHub/ToguTravelApp/app/src/main/res/drawable/ic_baseline_call_24.xml" value="0.2965" />
+        <entry key="..\:/Users/FDA/Documents/GitHub/ToguTravelApp/app/src/main/res/drawable/ic_baseline_email_24.xml" value="0.2965" />
+        <entry key="..\:/Users/FDA/Documents/GitHub/ToguTravelApp/app/src/main/res/drawable/ic_baseline_lock_24.xml" value="0.2965" />
+        <entry key="..\:/Users/FDA/Documents/GitHub/ToguTravelApp/app/src/main/res/drawable/ic_baseline_male_24.xml" value="0.2965" />
+        <entry key="..\:/Users/FDA/Documents/GitHub/ToguTravelApp/app/src/main/res/drawable/ic_baseline_person_24.xml" value="0.2965" />
+        <entry key="..\:/Users/FDA/Documents/GitHub/ToguTravelApp/app/src/main/res/drawable/ic_baseline_send_24.xml" value="0.2965" />
         <entry key="..\:/Users/FDA/Documents/GitHub/ToguTravelApp/app/src/main/res/drawable/ic_circle.xml" value="0.226" />
         <entry key="..\:/Users/FDA/Documents/GitHub/ToguTravelApp/app/src/main/res/drawable/ic_ratting.xml" value="0.175" />
         <entry key="..\:/Users/FDA/Documents/GitHub/ToguTravelApp/app/src/main/res/drawable/img_obj.xml" value="0.226" />
@@ -11,9 +18,15 @@
         <entry key="..\:/Users/FDA/Documents/GitHub/ToguTravelApp/app/src/main/res/layout/activity_detail_location.xml" value="0.3713768115942029" />
         <entry key="..\:/Users/FDA/Documents/GitHub/ToguTravelApp/app/src/main/res/layout/activity_detail_object.xml" value="0.33" />
         <entry key="..\:/Users/FDA/Documents/GitHub/ToguTravelApp/app/src/main/res/layout/activity_list_tour_guide.xml" value="0.5" />
+        <entry key="..\:/Users/FDA/Documents/GitHub/ToguTravelApp/app/src/main/res/layout/activity_location_list.xml" value="0.38697916666666665" />
+        <entry key="..\:/Users/FDA/Documents/GitHub/ToguTravelApp/app/src/main/res/layout/activity_login.xml" value="0.33" />
         <entry key="..\:/Users/FDA/Documents/GitHub/ToguTravelApp/app/src/main/res/layout/activity_main.xml" value="0.3713768115942029" />
+        <entry key="..\:/Users/FDA/Documents/GitHub/ToguTravelApp/app/src/main/res/layout/activity_qrcode_scanner.xml" value="0.38697916666666665" />
+        <entry key="..\:/Users/FDA/Documents/GitHub/ToguTravelApp/app/src/main/res/layout/activity_sign_up.xml" value="0.38697916666666665" />
+        <entry key="..\:/Users/FDA/Documents/GitHub/ToguTravelApp/app/src/main/res/layout/fragment_chat.xml" value="0.3713768115942029" />
+        <entry key="..\:/Users/FDA/Documents/GitHub/ToguTravelApp/app/src/main/res/layout/fragment_logout.xml" value="0.3713768115942029" />
         <entry key="..\:/Users/FDA/Documents/GitHub/ToguTravelApp/app/src/main/res/layout/fragment_object.xml" value="0.3713768115942029" />
-        <entry key="..\:/Users/FDA/Documents/GitHub/ToguTravelApp/app/src/main/res/layout/fragment_overview.xml" value="0.3713768115942029" />
+        <entry key="..\:/Users/FDA/Documents/GitHub/ToguTravelApp/app/src/main/res/layout/fragment_overview.xml" value="0.25" />
         <entry key="..\:/Users/FDA/Documents/GitHub/ToguTravelApp/app/src/main/res/layout/fragment_recommendation.xml" value="0.3713768115942029" />
         <entry key="..\:/Users/FDA/Documents/GitHub/ToguTravelApp/app/src/main/res/layout/list_tourguide_item_card.xml" value="0.5" />
         <entry key="..\:/Users/FDA/Documents/GitHub/ToguTravelApp/app/src/main/res/layout/location_detail_image_item.xml" value="0.3713768115942029" />

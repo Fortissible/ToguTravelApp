@@ -38,6 +38,7 @@ android {
     buildFeatures {
         viewBinding true
     }
+
 }
 
 dependencies {
@@ -92,4 +93,7 @@ dependencies {
     androidTestImplementation "com.squareup.okhttp3:okhttp-tls:4.9.3"
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
+
+    implementation 'com.github.yuriy-budiyev:code-scanner:2.3.2'
+
 }

@@ -41,8 +41,9 @@ class DetailObjectActivity : AppCompatActivity(), OnMapReadyCallback{
         val objectDetail = intent.getParcelableExtra<DummyObjectData>(EXTRA_DETAIL_OBJECT) as DummyObjectData
         btnBack = binding.btnBack
         btnBack.setOnClickListener {
-            val intent = Intent(this, MainActivity ::class.java)
+            val intent = Intent(this, QRCodeScannerActivity ::class.java)
             startActivity(intent)
+            finish()
         }
         val imgObject : ImageView = binding.imgObject
         Glide.with(this)
