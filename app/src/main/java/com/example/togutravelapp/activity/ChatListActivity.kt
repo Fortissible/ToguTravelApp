@@ -34,6 +34,9 @@ class ChatListActivity : AppCompatActivity() {
     private lateinit var avatar : CircleImageView
     private lateinit var progressBar : ProgressBar
     private lateinit var searchView: androidx.appcompat.widget.SearchView
+    private val chatListViewModel : ChatListViewModel by viewModels {
+        ViewModelFactory.getInstance(this)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,12 +46,6 @@ class ChatListActivity : AppCompatActivity() {
 
         auth = Firebase.auth
         fbDatabase = Firebase.database
-
-        val factory : ViewModelFactory = ViewModelFactory.getInstance(this)
-        val chatListViewModel: ChatListViewModel by viewModels {
-            factory
-        }
-
         avatar = binding.userChatProfile
         searchView = binding.userChatSearch
         searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener{
@@ -62,7 +59,6 @@ class ChatListActivity : AppCompatActivity() {
             }
 
         })
-
         val ref = fbDatabase.reference
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
@@ -117,6 +113,7 @@ class ChatListActivity : AppCompatActivity() {
                     supportFragmentManager
                         .beginTransaction()
                         .replace(R.id.chat_list_activity, fragment, ChatFragment::class.java.simpleName)
+                        .addToBackStack(null)
                         .commit()
                 }
                 disableAllButton()
@@ -127,5 +124,10 @@ class ChatListActivity : AppCompatActivity() {
     private fun disableAllButton(){
         chatListRv.isClickable = false
         chatListRv.visibility = View.INVISIBLE
+    }
+
+    fun enableAllButton(){
+        chatListRv.isClickable = true
+        chatListRv.visibility = View.VISIBLE
     }
 }
