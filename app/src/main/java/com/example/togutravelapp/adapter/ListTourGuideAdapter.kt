@@ -13,7 +13,7 @@ import de.hdodenhof.circleimageview.CircleImageView
 class ListTourGuideAdapter(private val listTogu: List<DummyTourGuideData>) :RecyclerView.Adapter<ListTourGuideAdapter.ListViewHolder>() {
     private lateinit var onItemClickCallback: OnItemClickCallback
     interface OnItemClickCallback{
-        fun onItemClicked()
+        fun onItemClicked(data:DummyTourGuideData)
     }
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
         this.onItemClickCallback = onItemClickCallback
@@ -26,12 +26,12 @@ class ListTourGuideAdapter(private val listTogu: List<DummyTourGuideData>) :Recy
         val tgRating : TextView = itemView.findViewById(R.id.tg_rat)
         val tgPrice : TextView = itemView.findViewById(R.id.tg_price)
     }
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListTourGuideAdapter.ListViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ListViewHolder {
         val item : View = LayoutInflater.from(parent.context).inflate(R.layout.list_tourguide_item_card,parent,false)
-        return ListTourGuideAdapter.ListViewHolder(item)
+        return ListViewHolder(item)
     }
 
-    override fun onBindViewHolder(holder: ListTourGuideAdapter.ListViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: ListViewHolder, position: Int) {
         val tgImg = holder.tgImg
         val tgName = holder.tgName
         val tgGender = holder.tgGender
@@ -48,12 +48,11 @@ class ListTourGuideAdapter(private val listTogu: List<DummyTourGuideData>) :Recy
             .centerCrop()
             .into(tgImg)
 
-        /*
-        holder.itemView.setOnClickListener {
-            onItemClickCallback.onItemClicked(listImageLink[holder.adapterPosition])
-        }*/
-    }
 
+        holder.itemView.setOnClickListener {
+            onItemClickCallback.onItemClicked(listTogu[position])
+        }
+    }
 
     override fun getItemCount(): Int = listTogu.size
 }

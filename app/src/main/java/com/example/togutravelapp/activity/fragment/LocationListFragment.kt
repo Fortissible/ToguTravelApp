@@ -51,6 +51,7 @@ class LocationListFragment : Fragment(), OnMapReadyCallback {
 
         Glide.with(this)
             .load(auth.currentUser!!.photoUrl)
+            .placeholder(R.drawable.ic_baseline_person_24)
             .centerCrop()
             .into(profilePic)
 
@@ -58,11 +59,11 @@ class LocationListFragment : Fragment(), OnMapReadyCallback {
         locationRv.setHasFixedSize(true)
 
         profilePic.setOnClickListener {
-            val fragment = childFragmentManager.findFragmentByTag(LogoutFragment::class.java.simpleName)
-            if (fragment !is LogoutFragment) {
-                childFragmentManager
+            val fragment = parentFragmentManager.findFragmentByTag(ProfileFragment::class.java.simpleName)
+            if (fragment !is ProfileFragment) {
+                parentFragmentManager
                     .beginTransaction()
-                    .replace(R.id.location_list_fragment, LogoutFragment(), LogoutFragment::class.java.simpleName)
+                    .replace(R.id.nav_host_fragment, ProfileFragment(), ProfileFragment::class.java.simpleName)
                     .addToBackStack(null)
                     .commit()
             }
