@@ -152,6 +152,7 @@
         android:backgroundTint="#084B83"
         android:fontFamily="@font/poppins_regular"
         android:text="login"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signup" />
 
@@ -166,15 +167,5 @@
         android:visibility="invisible"
         tools:visibility="visible"/>
 
-    <ProgressBar
-        android:id="@+id/loadingLogin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        android:visibility="invisible"
-        tools:visibility="visible"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

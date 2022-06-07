@@ -21,12 +21,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ToguTravelApp">
         <activity
+            android:name=".activity.ProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.SignUpActivity"
             android:exported="false" />
         <activity
             android:name=".activity.QRCodeScannerActivity"
             android:exported="false" />
-      
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyD3HluUN3k_fQUPgfwDjS_PBtywcqN2fd4" />
