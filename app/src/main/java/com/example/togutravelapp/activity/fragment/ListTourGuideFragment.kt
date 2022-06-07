@@ -52,6 +52,17 @@ class ListTourGuideFragment : Fragment() {
         rvTogu = binding.rvTogu
         rvTogu.setHasFixedSize(true)
 
+        profile.setOnClickListener {
+            val fragment = parentFragmentManager.findFragmentByTag(ProfileFragment::class.java.simpleName)
+            if (fragment !is ProfileFragment) {
+                parentFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.nav_host_fragment, ProfileFragment(), ProfileFragment::class.java.simpleName)
+                    .addToBackStack(null)
+                    .commit()
+            }
+        }
+
         setToguData()
     }
 

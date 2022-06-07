@@ -166,8 +166,4 @@
         android:visibility="invisible"
         tools:visibility="visible"/>
 
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
 </androidx.constraintlayout.widget.ConstraintLayout>

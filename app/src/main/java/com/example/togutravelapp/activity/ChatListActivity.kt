@@ -12,6 +12,7 @@ import com.bumptech.glide.Glide
 import com.example.androidintermediate_sub1_wildanfajrialfarabi.ui.ViewModelFactory
 import com.example.togutravelapp.R
 import com.example.togutravelapp.activity.fragment.ChatFragment
+import com.example.togutravelapp.activity.fragment.ProfileFragment
 import com.example.togutravelapp.adapter.ChatListAdapter
 import com.example.togutravelapp.data.MessageData
 import com.example.togutravelapp.databinding.ActivityChatListBinding
@@ -91,6 +92,17 @@ class ChatListActivity : AppCompatActivity() {
             if (it.isNotEmpty()) {
                 Log.d("OBSERVERNYAH", "$it")
                 setRecyclerView(it)
+            }
+        }
+
+        avatar.setOnClickListener {
+            val fragment = supportFragmentManager.findFragmentByTag(ProfileFragment::class.java.simpleName)
+            if (fragment !is ProfileFragment) {
+                supportFragmentManager
+                    .beginTransaction()
+                    .replace(R.id.chat_list_activity, ProfileFragment(), ProfileFragment::class.java.simpleName)
+                    .addToBackStack(null)
+                    .commit()
             }
         }
     }
