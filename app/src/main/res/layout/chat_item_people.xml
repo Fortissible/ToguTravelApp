@@ -10,6 +10,7 @@
 
     <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/chat_avatar_people"
+
         android:layout_width="36dp"
         android:layout_height="36dp"
         android:layout_marginTop="8dp"
