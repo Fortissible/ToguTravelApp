@@ -21,6 +21,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ToguTravelApp">
         <activity
+            android:name=".activity.ProfileActivity"
+            android:exported="false" />
+        <activity
             android:name=".activity.SignUpActivity"
             android:exported="false" />
         <activity
