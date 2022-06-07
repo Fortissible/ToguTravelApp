@@ -50,7 +50,7 @@
                 android:fontFamily="@font/poppins_regular"
                 android:text="Gender"
                 android:textColor="@color/white"
-                android:textSize="12"
+                android:textSize="12sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView" />
 
