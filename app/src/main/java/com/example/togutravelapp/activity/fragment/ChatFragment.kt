@@ -24,9 +24,11 @@ import com.google.firebase.ktx.Firebase
 import de.hdodenhof.circleimageview.CircleImageView
 import java.util.*
 
+
 class ChatFragment : Fragment() {
     private var _binding: FragmentChatBinding? = null
     private val binding get() = _binding!!
+
     private lateinit var chatdb : FirebaseDatabase
     private lateinit var chatAdapter : FbMessageAdapter
     private lateinit var personAvatar : CircleImageView
@@ -44,6 +46,7 @@ class ChatFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         val manager = LinearLayoutManager(requireActivity())
         manager.stackFromEnd = true

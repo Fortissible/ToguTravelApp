@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity() {
 
         buttonToDetail = binding.btnDetailObj
         buttonToDetail.setOnClickListener {
-            val intentToDetail = Intent(this, DetailObjectActivity::class.java)
+            val intentToDetail = Intent(this, QRCodeScannerActivity::class.java)
             intentToDetail.putExtra(DetailObjectActivity.EXTRA_DETAIL_OBJECT,DummyObjectData())
             startActivity(intentToDetail)
         }
@@ -78,5 +78,15 @@ class MainActivity : AppCompatActivity() {
         buttonToTogu.visibility = View.INVISIBLE
         buttonToListChat.visibility = View.INVISIBLE
         binding.helloWorld.visibility = View.INVISIBLE
+    }
+
+    private fun disableAllButton(){
+        buttonToDetail.isClickable = false
+        buttonToListLoc.isClickable = false
+        buttonToTogu.isClickable = false
+
+        buttonToDetail.visibility = View.INVISIBLE
+        buttonToListLoc.visibility = View.INVISIBLE
+        buttonToTogu.visibility = View.INVISIBLE
     }
 }

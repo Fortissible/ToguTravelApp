@@ -46,7 +46,6 @@ class ChatListActivity : AppCompatActivity() {
 
         auth = Firebase.auth
         fbDatabase = Firebase.database
-
         avatar = binding.userChatProfile
         searchView = binding.userChatSearch
         searchView.setOnQueryTextListener(object : androidx.appcompat.widget.SearchView.OnQueryTextListener{
@@ -60,9 +59,6 @@ class ChatListActivity : AppCompatActivity() {
             }
 
         })
-
-        Log.d("WEEEEEEEEEEEEEE", "WEWEWE")
-
         val ref = fbDatabase.reference
         ref.addValueEventListener(object : ValueEventListener {
             override fun onDataChange(snapshot: DataSnapshot) {
