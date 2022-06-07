@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.togutravelapp.activity.ChatListActivity
+import com.example.togutravelapp.activity.ListTourGuideActivity
 import com.example.togutravelapp.adapter.FbMessageAdapter
 import com.example.togutravelapp.data.MessageData
 import com.example.togutravelapp.databinding.FragmentChatBinding
@@ -35,6 +36,7 @@ class ChatFragment : Fragment() {
     private lateinit var personName : TextView
     private lateinit var messagesRv : RecyclerView
     private lateinit var auth: FirebaseAuth
+    private lateinit var type: String
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,6 +63,7 @@ class ChatFragment : Fragment() {
         val message = bundle!!.getString(MESSAGES_PERSON)!!
         val name = bundle.getString(MESSAGES_NAME)!!
         val url = bundle.getString(MESSAGES_URL)!!
+        type = bundle.getString(MESSAGES_TYPE)!!
         val msgRefUser = chatdb.reference.child(fbUser!!.uid)
             .child(MESSAGES_PERSON)
             .child(message)
@@ -125,7 +128,8 @@ class ChatFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-        (activity as ChatListActivity).enableAllButton()
+        if (type.equals("chatlist"))
+            (activity as ChatListActivity).enableAllButton()
     }
 
     companion object {
@@ -133,5 +137,6 @@ class ChatFragment : Fragment() {
         const val MESSAGES_PERSON = "users"
         const val MESSAGES_NAME = "name"
         const val MESSAGES_URL = "url"
+        const val MESSAGES_TYPE = "type"
     }
 }

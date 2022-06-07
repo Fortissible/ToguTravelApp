@@ -107,6 +107,7 @@ class ChatListActivity : AppCompatActivity() {
                 mBundle.putString(ChatFragment.MESSAGES_PERSON,data.uid)
                 mBundle.putString(ChatFragment.MESSAGES_NAME,data.name)
                 mBundle.putString(ChatFragment.MESSAGES_URL,data.profileUrl)
+                mBundle.putString(ChatFragment.MESSAGES_TYPE,"chatlist")
                 fragment.arguments = mBundle
                 val fragmentManager = supportFragmentManager.findFragmentByTag(ChatFragment::class.java.simpleName)
                 if (fragmentManager !is ChatFragment){

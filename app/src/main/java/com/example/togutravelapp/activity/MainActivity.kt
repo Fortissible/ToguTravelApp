@@ -79,14 +79,4 @@ class MainActivity : AppCompatActivity() {
         buttonToListChat.visibility = View.INVISIBLE
         binding.helloWorld.visibility = View.INVISIBLE
     }
-
-    private fun disableAllButton(){
-        buttonToDetail.isClickable = false
-        buttonToListLoc.isClickable = false
-        buttonToTogu.isClickable = false
-
-        buttonToDetail.visibility = View.INVISIBLE
-        buttonToListLoc.visibility = View.INVISIBLE
-        buttonToTogu.visibility = View.INVISIBLE
-    }
 }

@@ -51,6 +51,7 @@ class LocationListFragment : Fragment(), OnMapReadyCallback {
 
         Glide.with(this)
             .load(auth.currentUser!!.photoUrl)
+            .placeholder(R.drawable.ic_baseline_person_24)
             .centerCrop()
             .into(profilePic)
 

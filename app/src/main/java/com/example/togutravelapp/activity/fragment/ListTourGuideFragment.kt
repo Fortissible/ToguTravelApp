@@ -62,12 +62,31 @@ class ListTourGuideFragment : Fragment() {
 
     private fun setToguData(){
         val dummyListTogu = getDummyToguData()
+        val adapter = ListTourGuideAdapter(dummyListTogu)
         rvTogu.layoutManager = GridLayoutManager(requireContext(),2)
-        rvTogu.adapter = ListTourGuideAdapter(dummyListTogu)
+        rvTogu.adapter = adapter
+        adapter.setOnItemClickCallback(object : ListTourGuideAdapter.OnItemClickCallback{
+            override fun onItemClicked(data: DummyTourGuideData) {
+                val fragment = ChatFragment()
+                val mBundle = Bundle()
+                mBundle.putString(ChatFragment.MESSAGES_PERSON,"4mLpFIu1pUf07BubkaVg1czWg6F3")
+                mBundle.putString(ChatFragment.MESSAGES_NAME,"Wildan Fajri Alfarabi A2001F0016")
+                mBundle.putString(ChatFragment.MESSAGES_URL,"https://lh3.googleusercontent.com/a-/AOh14GiCsrcPihgrO7BbYMNYC2YSNcqeGufLywA8FL6v=s96-c")
+                mBundle.putString(ChatFragment.MESSAGES_TYPE,"tourguide")
+                fragment.arguments = mBundle
+                val fragmentManager = childFragmentManager.findFragmentByTag(ChatFragment::class.java.simpleName)
+                if (fragmentManager !is ChatFragment){
+                    childFragmentManager
+                        .beginTransaction()
+                        .replace(R.id.list_tour_guide_fragment, fragment, ChatFragment::class.java.simpleName)
+                        .addToBackStack(null)
+                        .commit()
+                }
+            }
+        })
     }
 
     private fun getDummyToguData():List<DummyTourGuideData>{
-
         val imageUrlList = resources.getStringArray(R.array.tgUrl)
         val nameList = resources.getStringArray(R.array.tgName)
         val genderList = resources.getStringArray(R.array.tgGender)
