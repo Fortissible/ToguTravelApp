@@ -167,5 +167,9 @@
         <item>Rp.50.000</item>
         <item>Rp.80.000</item>
     </string-array>
+    <string name="title_activity_buttom_nav">ButtomNavActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
 
 </resources>

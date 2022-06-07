@@ -6,10 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.togutravelapp.activity.ChatListActivity
 import com.example.togutravelapp.adapter.FbMessageAdapter
 import com.example.togutravelapp.data.MessageData
 import com.example.togutravelapp.databinding.FragmentChatBinding
@@ -76,6 +78,19 @@ class ChatFragment : Fragment() {
         messagesRv.layoutManager = manager
         chatAdapter = FbMessageAdapter(options,fbUser.displayName)
         messagesRv.adapter = chatAdapter
+
+        chatAdapter.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver(){
+            override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
+                super.onItemRangeInserted(positionStart, itemCount)
+                val msgCount = chatAdapter.getItemCount()
+                val lastPos = manager.findLastCompletelyVisibleItemPosition()
+                if (lastPos == -1 ||
+                    (positionStart >= (msgCount - 1) && lastPos == (positionStart - 1))){
+                    messagesRv.scrollToPosition(positionStart)
+                }
+            }
+        })
+
         personName.text = name
         Glide.with(this)
             .load(url)
@@ -110,7 +125,9 @@ class ChatFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+        (activity as ChatListActivity).enableAllButton()
     }
+
     companion object {
         const val MESSAGES_CHILD = "messages"
         const val MESSAGES_PERSON = "users"

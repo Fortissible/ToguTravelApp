@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_scan_barcode"
+        android:icon="@drawable/ic_baseline_qr_code_scanner_24"
+        android:title="Scan" />
+
+    <item
+        android:id="@+id/navigation_location_list"
+        android:icon="@drawable/ic_baseline_location_on_24"
+        android:title="Locations" />
+
+    <item
+        android:id="@+id/navigation_tourguide_list"
+        android:icon="@drawable/ic_baseline_person_pin_24"
+        android:title="Tour Guides" />
+
+</menu>

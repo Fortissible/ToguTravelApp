@@ -26,7 +26,7 @@
         <activity
             android:name=".activity.QRCodeScannerActivity"
             android:exported="false" />
-
+      
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyD3HluUN3k_fQUPgfwDjS_PBtywcqN2fd4" />
@@ -45,12 +45,6 @@
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyD3HluUN3k_fQUPgfwDjS_PBtywcqN2fd4" />
 
-        <activity
-            android:name=".activity.ListTourGuideActivity"
-            android:exported="false" />
-        <activity
-            android:name=".activity.DetailObjectActivity"
-            android:exported="false" />
         <activity
             android:name=".activity.LoginActivity"
             android:exported="true">
