@@ -59,7 +59,7 @@ class ChatListViewModel: ViewModel(){
                     val name = data.child("tgName").value.toString()
                     val url = data.child("tgUrl").value.toString()
                     val uid = data.child("tgUid").value.toString()
-                    Log.d("CEK ISI SEARCHNYA", "${name}")
+                    Log.d("CEK ISI SEARCHNYA", name)
                     if (name.lowercase().contains(username?.lowercase()?:"notfounds") && name != auth.currentUser!!.displayName.toString())
                         temporary.add(MessageData(
                             name = name,

@@ -6,15 +6,12 @@
     <string name="kategori">Kategori</string>
     <string name="wisata_alam">Wisata Alam</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="deskripsi_tempat_wisata">Deskripsi tempat wisata</string>
     <string name="lorem_ipsum_long">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</string>
     <string name="lorem_ipsum_medium">Lorem ipsum dolor sit amet, consectetur adipiscing elit</string>
     <string name="lokasi_wisata">Lokasi wisata</string>
     <string name="title">Judul</string>
     <string name="lokasi">Lokasi</string>
-    <string name="map">map</string>
-    <string name="image_object">Image Object</string>
     <string name="button_play">Button Play</string>
     <string name="button_back">Button Back</string>
     <string name="descriptions">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.</string>
@@ -25,8 +22,6 @@
     <string name="tarif_tourguide">Rp.100.000</string>
     <string name="tg_name">Nama</string>
     <string name="rating_star">rating Star</string>
-    <string name="review_terbanyak">Review Terbanyak</string>
-    <string name="termurah">Termurah</string>
 
     <string-array name="object_title">
         <item>Kitab Sutasoma</item>
@@ -90,12 +85,10 @@
         <item>Rp.15.000,00</item>
         <item>Rp.22.500,00</item>
     </string-array>
-    <string name="title_activity_maps">MapsActivity</string>
     <string name="ketik_pesan">Ketik pesan...</string>
     <string name="kurang_dari_8">Kurang dari 8</string>
     <string name="scanning">Scanning...</string>
     <string name="scanningPros">QR Code tidak dikenali !</string>
-    <string name="isi_data_dirimu_dibawah">Isi Data Dirimu dibawah!</string>
     <string name="titleSignup">Isi Data Dirimu Dibawah !</string>
     <string name="name">Nama</string>
     <string name="email">Email</string>
@@ -167,9 +160,5 @@
         <item>Rp.50.000</item>
         <item>Rp.80.000</item>
     </string-array>
-    <string name="title_activity_buttom_nav">ButtomNavActivity</string>
-    <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
 
 </resources>

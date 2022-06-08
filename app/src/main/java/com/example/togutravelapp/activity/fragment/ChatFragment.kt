@@ -6,13 +6,11 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.togutravelapp.activity.ChatListActivity
-import com.example.togutravelapp.activity.ListTourGuideActivity
 import com.example.togutravelapp.adapter.FbMessageAdapter
 import com.example.togutravelapp.data.MessageData
 import com.example.togutravelapp.databinding.FragmentChatBinding
@@ -85,7 +83,7 @@ class ChatFragment : Fragment() {
         chatAdapter.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver(){
             override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
                 super.onItemRangeInserted(positionStart, itemCount)
-                val msgCount = chatAdapter.getItemCount()
+                val msgCount = chatAdapter.itemCount
                 val lastPos = manager.findLastCompletelyVisibleItemPosition()
                 if (lastPos == -1 ||
                     (positionStart >= (msgCount - 1) && lastPos == (positionStart - 1))){
@@ -128,7 +126,7 @@ class ChatFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
-        if (type.equals("chatlist"))
+        if (type == "chatlist")
             (activity as ChatListActivity).enableAllButton()
     }
 

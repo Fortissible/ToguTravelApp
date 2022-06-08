@@ -1,7 +1,6 @@
 package com.example.togutravelapp.activity
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
 import android.view.MotionEvent
 import android.widget.ImageButton
@@ -40,9 +39,7 @@ class DetailObjectActivity : AppCompatActivity(), OnMapReadyCallback{
         val objectDetail = intent.getParcelableExtra<DummyObjectData>(EXTRA_DETAIL_OBJECT) as DummyObjectData
         btnBack = binding.btnBack
         btnBack.setOnClickListener {
-            val intent = Intent(this, QRCodeScannerActivity ::class.java)
-            startActivity(intent)
-            finish()
+            onBackPressed()
         }
         scrollView = binding.objectActivityScrollview
         transparentImageView = binding.transparentImage

@@ -16,6 +16,7 @@ import com.example.togutravelapp.R
 import com.example.togutravelapp.activity.DetailObjectActivity
 import com.example.togutravelapp.databinding.FragmentQrScanBinding
 
+@Suppress("DEPRECATION")
 class QrScanFragment : Fragment() {
     private var _binding : FragmentQrScanBinding? = null
     private val binding get() = _binding!!
@@ -100,7 +101,6 @@ class QrScanFragment : Fragment() {
         )
     }
 
-    @Deprecated("Deprecated in Java")
     override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         when(requestCode){

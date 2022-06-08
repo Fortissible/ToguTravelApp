@@ -2,14 +2,13 @@ package com.example.togutravelapp.activity.fragment
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.togutravelapp.R
 import com.example.togutravelapp.activity.LoginActivity
-import com.example.togutravelapp.databinding.FragmentLogoutBinding
 import com.example.togutravelapp.databinding.FragmentProfileBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
