@@ -19,7 +19,6 @@ class FbMessageAdapter( options : FirebaseRecyclerOptions<MessageData>,
     inner class MessageViewHolder(private val binding: ChatItemPeopleBinding) : RecyclerView.ViewHolder(binding.root) {
         fun bind(item: MessageData) {
             binding.chatContextPeople.text = item.msg
-            setTextColor(item.name, binding)
             Glide.with(itemView.context)
                 .load(item.profileUrl)
                 .circleCrop()
@@ -27,6 +26,7 @@ class FbMessageAdapter( options : FirebaseRecyclerOptions<MessageData>,
             if (item.timestamp != null) {
                 binding.chatTimestampPeople.text = DateUtils.getRelativeTimeSpanString(item.timestamp)
             }
+            setTextColor(item.name, binding)
         }
     }
 
@@ -43,8 +43,9 @@ class FbMessageAdapter( options : FirebaseRecyclerOptions<MessageData>,
 
     private fun setTextColor(userName: String?, binding: ChatItemPeopleBinding) {
         val set = ConstraintSet()
-        if (currentUser== userName && userName != null) {
+        if (currentUser == userName && userName != null) {
             set.clone(binding.chatItemConstraintLayout)
+
             set.setMargin(binding.chatAvatarPeople.id,ConstraintSet.START,0)
             set.setMargin(binding.chatAvatarPeople.id,ConstraintSet.END,24)
             set.clear(binding.chatAvatarPeople.id,ConstraintSet.START)
@@ -65,6 +66,26 @@ class FbMessageAdapter( options : FirebaseRecyclerOptions<MessageData>,
 
             binding.chatContextPeople.setBackgroundResource(R.drawable.chat_context_background_self)
         } else {
+            set.clone(binding.chatItemConstraintLayout)
+
+            set.setMargin(binding.chatAvatarPeople.id,ConstraintSet.START,24)
+            set.setMargin(binding.chatAvatarPeople.id,ConstraintSet.END,0)
+            set.clear(binding.chatAvatarPeople.id,ConstraintSet.END)
+            set.connect(binding.chatAvatarPeople.id,ConstraintSet.START,
+                binding.chatItemConstraintLayout.id, ConstraintSet.START)
+
+            set.setMargin(binding.chatContextPeople.id,ConstraintSet.START,8)
+            set.setMargin(binding.chatContextPeople.id,ConstraintSet.END,0)
+            set.clear(binding.chatContextPeople.id,ConstraintSet.END)
+            set.connect(binding.chatContextPeople.id,ConstraintSet.START,
+                binding.chatAvatarPeople.id, ConstraintSet.END)
+
+            set.clear(binding.chatTimestampPeople.id,ConstraintSet.END)
+            set.connect(binding.chatTimestampPeople.id,ConstraintSet.START,
+                binding.chatContextPeople.id, ConstraintSet.START)
+
+            set.applyTo(binding.chatItemConstraintLayout)
+
             binding.chatContextPeople.setBackgroundResource(R.drawable.chat_context_background_person)
         }
     }

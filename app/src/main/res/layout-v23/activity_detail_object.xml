@@ -48,6 +48,7 @@
         app:shapeAppearanceOverlay="@style/costume_rounded" />
 
     <ScrollView
+        android:id="@+id/object_activity_scrollview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="228dp"
@@ -135,6 +136,20 @@
                 app:shapeAppearanceOverlay="@style/full_rounded"
                 tools:context=".activity.LocationListActivity" />
 
+            <ImageView
+                android:id="@+id/transparent_image"
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="#00B89292"
+                android:elevation="10dp"
+                app:layout_constraintBottom_toBottomOf="@id/obj_location"
+                app:layout_constraintEnd_toEndOf="@id/obj_location"
+                app:layout_constraintStart_toStartOf="@id/obj_location"
+                app:layout_constraintTop_toTopOf="@id/obj_location" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
