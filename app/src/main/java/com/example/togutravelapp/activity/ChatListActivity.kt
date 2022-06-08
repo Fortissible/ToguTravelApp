@@ -36,7 +36,7 @@ class ChatListActivity : AppCompatActivity() {
     private lateinit var progressBar : ProgressBar
     private lateinit var searchView: androidx.appcompat.widget.SearchView
     private val chatListViewModel : ChatListViewModel by viewModels {
-        ViewModelFactory.getInstance(this)
+        ViewModelFactory.getInstance()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

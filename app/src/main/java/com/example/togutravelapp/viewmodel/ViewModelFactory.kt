@@ -1,6 +1,5 @@
 package com.example.androidintermediate_sub1_wildanfajrialfarabi.ui
 
-import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.togutravelapp.viewmodel.ChatListViewModel
@@ -18,7 +17,7 @@ class ViewModelFactory private constructor(): ViewModelProvider.NewInstanceFacto
     companion object {
         @Volatile
         private var instance : ViewModelFactory ?= null
-        fun getInstance(context: Context) : ViewModelFactory=
+        fun getInstance(): ViewModelFactory=
             instance?: synchronized(this){
                 instance?: ViewModelFactory()
             }.also { instance = it}

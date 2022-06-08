@@ -4,12 +4,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.ListView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.togutravelapp.R
 import com.example.togutravelapp.data.DummyURL
-import java.net.URL
 
 class ListImageAdapter(private val listImageLink: List<DummyURL>):RecyclerView.Adapter<ListImageAdapter.ListViewHolder>() {
 

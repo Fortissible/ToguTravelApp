@@ -7,6 +7,7 @@ import android.view.MotionEvent
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.ScrollView
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
 import com.example.togutravelapp.R
@@ -25,6 +26,8 @@ import com.google.android.gms.maps.model.MarkerOptions
 class DetailObjectActivity : AppCompatActivity(), OnMapReadyCallback{
     private lateinit var mMap : GoogleMap
     private lateinit var binding: ActivityDetailObjectBinding
+    private lateinit var objectTitle: TextView
+    private lateinit var objectDesc: TextView
     private lateinit var scrollView : ScrollView
     private lateinit var transparentImageView : ImageView
     private lateinit var btnBack : ImageButton
@@ -40,9 +43,64 @@ class DetailObjectActivity : AppCompatActivity(), OnMapReadyCallback{
         val objectDetail = intent.getParcelableExtra<DummyObjectData>(EXTRA_DETAIL_OBJECT) as DummyObjectData
         btnBack = binding.btnBack
         btnBack.setOnClickListener {
-            val intent = Intent(this, QRCodeScannerActivity ::class.java)
-            startActivity(intent)
-            finish()
+            onBackPressed()
+        }
+        scrollView = binding.objectActivityScrollview
+        transparentImageView = binding.transparentImage
+        transparentImageView.setOnTouchListener { _, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    scrollView.requestDisallowInterceptTouchEvent(true)
+                    false
+                }
+                MotionEvent.ACTION_UP -> {
+                    scrollView.requestDisallowInterceptTouchEvent(true)
+                    false
+                }
+                MotionEvent.ACTION_MOVE -> {
+                    scrollView.requestDisallowInterceptTouchEvent(true)
+                    false
+                }
+                else -> true
+            }
+        }
+        scrollView = binding.objectActivityScrollview
+        transparentImageView = binding.transparentImage
+        transparentImageView.setOnTouchListener { _, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    scrollView.requestDisallowInterceptTouchEvent(true)
+                    false
+                }
+                MotionEvent.ACTION_UP -> {
+                    scrollView.requestDisallowInterceptTouchEvent(true)
+                    false
+                }
+                MotionEvent.ACTION_MOVE -> {
+                    scrollView.requestDisallowInterceptTouchEvent(true)
+                    false
+                }
+                else -> true
+            }
+        }
+        scrollView = binding.objectActivityScrollview
+        transparentImageView = binding.transparentImage
+        transparentImageView.setOnTouchListener { _, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    scrollView.requestDisallowInterceptTouchEvent(true)
+                    false
+                }
+                MotionEvent.ACTION_UP -> {
+                    scrollView.requestDisallowInterceptTouchEvent(true)
+                    false
+                }
+                MotionEvent.ACTION_MOVE -> {
+                    scrollView.requestDisallowInterceptTouchEvent(true)
+                    false
+                }
+                else -> true
+            }
         }
         scrollView = binding.objectActivityScrollview
         transparentImageView = binding.transparentImage
@@ -74,7 +132,7 @@ class DetailObjectActivity : AppCompatActivity(), OnMapReadyCallback{
         val mMapsFragment = mFragmentManager.findFragmentById(R.id.obj_location) as SupportMapFragment
         mMapsFragment.getMapAsync(this)
         
-        setupData()
+        setupData(objectDetail)
     }
     override fun onMapReady(googleMap: GoogleMap) {
         val result = intent.getParcelableExtra<ObjectWisataResponseItem>("result")
