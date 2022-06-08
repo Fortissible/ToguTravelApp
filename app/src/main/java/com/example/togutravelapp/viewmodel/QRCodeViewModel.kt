@@ -2,6 +2,7 @@ package com.example.togutravelapp.viewmodel
 
 import android.content.ContentValues.TAG
 import android.util.Log
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.togutravelapp.activity.api.ApiConfig
@@ -14,9 +15,10 @@ import retrofit2.Response
 class QRCodeViewModel:ViewModel() {
 
     private val _objectWisata = MutableLiveData<List<ObjectWisataResponseItem>>()
+    val objectWisata: LiveData<List<ObjectWisataResponseItem>> = _objectWisata
 
-    fun getObjetWisata(nama:String, lokasi:String, id:String, deskripsi:String){
-        val client = ApiConfig.getApiService().getObjek(nama, lokasi, id, deskripsi)
+    fun getObjetWisata(search: String){
+        val client = ApiConfig.getApiService().getObjek(search)
         client.enqueue(object : Callback<ObjectWisataResponse>{
             override fun onResponse(
                 call: Call<ObjectWisataResponse>,

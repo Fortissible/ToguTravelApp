@@ -15,6 +15,7 @@ import com.budiyev.android.codescanner.ErrorCallback
 import com.budiyev.android.codescanner.ScanMode
 import com.example.togutravelapp.R
 import com.example.togutravelapp.databinding.ActivityQrcodeScannerBinding
+import com.example.togutravelapp.viewmodel.QRCodeViewModel
 
 private const val CAMERA_REQUEST_CODE = 101
 class QRCodeScannerActivity : AppCompatActivity() {
@@ -29,7 +30,6 @@ class QRCodeScannerActivity : AppCompatActivity() {
         codeScanner()
     }
     private fun codeScanner(){
-
         val scannerView = binding.scannerView
         codeScanner = CodeScanner(this, scannerView)
 

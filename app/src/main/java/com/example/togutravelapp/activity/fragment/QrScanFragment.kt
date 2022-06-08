@@ -11,10 +11,13 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.budiyev.android.codescanner.*
 import com.example.togutravelapp.R
 import com.example.togutravelapp.activity.DetailObjectActivity
 import com.example.togutravelapp.databinding.FragmentQrScanBinding
+import com.example.togutravelapp.viewmodel.QRCodeViewModel
+
 
 
 class QrScanFragment : Fragment() {
@@ -61,15 +64,28 @@ class QrScanFragment : Fragment() {
 
             decodeCallback = DecodeCallback {
                 activity?.runOnUiThread{
-                    if(it.text == "kris"){
-                        val intent = Intent(requireActivity(), DetailObjectActivity::class.java)
-                        Toast.makeText(requireContext(), "Scan result : ${it.text}", Toast.LENGTH_SHORT).show()
-                        startActivity(intent)
-                        requireActivity().finish()
-                    }else{
-                        val scanningPros : TextView = binding.scanning
-                        scanningPros.text = getString(R.string.scanningPros)
+                    val delimiter = "-"
+                    val text = it.text.split(delimiter)
+                    val lokasi = text[0]
+                    val id = text[1]
+                    val nama = text[2]
+                    Toast.makeText(requireContext(), "Scan result : ${nama}", Toast.LENGTH_SHORT).show()
+                    val QRViewModel = ViewModelProvider(this@QrScanFragment,ViewModelProvider.NewInstanceFactory())[QRCodeViewModel::class.java]
+                    QRViewModel.getObjetWisata(lokasi)
+                    QRViewModel.objectWisata.observe(requireActivity()){ item ->
+                        item.forEach{
+                            if(id == it.id.toString()){
+                                val intent = Intent(requireActivity(), DetailObjectActivity::class.java)
+                                intent.putExtra("result",it)
+                                startActivity(intent)
+                                requireActivity().finish()
+                            }else{
+                                val scanningPros : TextView = binding.scanning
+                                scanningPros.text = getString(R.string.scanningPros)
+                            }
+                        }
                     }
+
                 }
             }
             codeScanner.errorCallback = ErrorCallback { // or ErrorCallback.SUPPRESS
