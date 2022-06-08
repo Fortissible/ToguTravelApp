@@ -16,8 +16,7 @@ import com.budiyev.android.codescanner.*
 import com.example.togutravelapp.R
 import com.example.togutravelapp.activity.DetailObjectActivity
 import com.example.togutravelapp.databinding.FragmentQrScanBinding
-import com.example.togutravelapp.viewmodel.QRCodeViewModel
-import kotlinx.coroutines.coroutineScope
+
 
 class QrScanFragment : Fragment() {
     private var _binding : FragmentQrScanBinding? = null
