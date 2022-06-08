@@ -1,13 +1,14 @@
 package com.example.togutravelapp.data
 
+import android.os.Parcelable
 import com.google.gson.annotations.SerializedName
-
+import kotlinx.parcelize.Parcelize
 data class ObjectWisataResponse(
 
 	@field:SerializedName("ObjectWisataResponse")
 	val objectWisataResponse: List<ObjectWisataResponseItem>
 )
-
+@Parcelize
 data class ObjectWisataResponseItem(
 
 	@field:SerializedName("nama")
@@ -21,4 +22,4 @@ data class ObjectWisataResponseItem(
 
 	@field:SerializedName("deskripsi")
 	val deskripsi: String
-)
+):Parcelable
