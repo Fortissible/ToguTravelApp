@@ -16,6 +16,7 @@ import com.example.togutravelapp.R
 import com.example.togutravelapp.activity.DetailObjectActivity
 import com.example.togutravelapp.databinding.FragmentQrScanBinding
 
+
 class QrScanFragment : Fragment() {
     private var _binding : FragmentQrScanBinding? = null
     private val binding get() = _binding!!
