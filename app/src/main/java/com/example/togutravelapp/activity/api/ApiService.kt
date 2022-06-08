@@ -8,7 +8,7 @@ import retrofit2.http.Query
 
 interface ApiService {
     @GET("getobjek")
-    suspend fun getObjek(
+    fun getObjek(
         @Header("nama") nama: String,
         @Query("lokasi") lokasi: String,
         @Query("id") id: String,
