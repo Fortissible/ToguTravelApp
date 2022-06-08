@@ -1,22 +1,18 @@
 package com.example.togutravelapp.activity
 
+import android.annotation.SuppressLint
 import android.content.Intent
-import android.graphics.BitmapFactory
-import android.graphics.drawable.Drawable
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.Button
+import android.view.MotionEvent
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.ScrollView
 import android.widget.TextView
+import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
-import com.bumptech.glide.RequestBuilder
-import com.bumptech.glide.load.model.UriLoader
-import com.bumptech.glide.request.RequestListener
 import com.example.togutravelapp.R
 import com.example.togutravelapp.data.DetailObjModel
 import com.example.togutravelapp.data.DummyObjectData
-import com.example.togutravelapp.data.DummyRecommendData
 import com.example.togutravelapp.data.RemoteDataResource
 import com.example.togutravelapp.databinding.ActivityDetailObjectBinding
 import com.google.android.gms.maps.CameraUpdateFactory
@@ -31,8 +27,11 @@ class DetailObjectActivity : AppCompatActivity(), OnMapReadyCallback{
     private lateinit var binding: ActivityDetailObjectBinding
     private lateinit var objectTitle: TextView
     private lateinit var objectDesc: TextView
+    private lateinit var scrollView : ScrollView
+    private lateinit var transparentImageView : ImageView
     private lateinit var btnBack : ImageButton
-  
+
+    @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityDetailObjectBinding.inflate(layoutInflater)
@@ -45,6 +44,25 @@ class DetailObjectActivity : AppCompatActivity(), OnMapReadyCallback{
             startActivity(intent)
             finish()
         }
+        scrollView = binding.objectActivityScrollview
+        transparentImageView = binding.transparentImage
+        transparentImageView.setOnTouchListener { _, event ->
+            when (event.action) {
+                MotionEvent.ACTION_DOWN -> {
+                    scrollView.requestDisallowInterceptTouchEvent(true)
+                    false
+                }
+                MotionEvent.ACTION_UP -> {
+                    scrollView.requestDisallowInterceptTouchEvent(true)
+                    false
+                }
+                MotionEvent.ACTION_MOVE -> {
+                    scrollView.requestDisallowInterceptTouchEvent(true)
+                    false
+                }
+                else -> true
+            }
+        }
         val imgObject : ImageView = binding.imgObject
         Glide.with(this)
             .load(objectDetail.objectUrl.toString())
@@ -55,7 +73,7 @@ class DetailObjectActivity : AppCompatActivity(), OnMapReadyCallback{
         val mFragmentManager = supportFragmentManager
         val mMapsFragment = mFragmentManager.findFragmentById(R.id.obj_location) as SupportMapFragment
         mMapsFragment.getMapAsync(this)
-
+        
         setupData(objectDetail)
     }
     override fun onMapReady(googleMap: GoogleMap) {

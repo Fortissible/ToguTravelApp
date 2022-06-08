@@ -42,68 +42,100 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/drowdown_layout_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="8dp"
         android:layout_below="@id/upper_constraint_list_togu">
 
-        <Button
-            android:id="@+id/button4"
-            android:layout_width="168dp"
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:id="@+id/dropdown_button_container1"
+            android:layout_width="175dp"
             android:layout_height="36dp"
-            android:layout_marginStart="32dp"
-            android:layout_marginTop="12dp"
-            android:backgroundTint="#084B83"
-            android:elevation="5dp"
-            android:fontFamily="@font/poppins_bold"
-            android:text="@string/termurah"
-            android:textSize="11sp"
-            app:layout_constraintStart_toEndOf="@+id/button3"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="TouchTargetSizeCheck" />
-
-        <Button
-            android:id="@+id/button3"
-            android:layout_width="168dp"
-            android:layout_height="36sp"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="12dp"
-            android:backgroundTint="#084B83"
-            android:elevation="5dp"
-            android:fontFamily="@font/poppins_bold"
-            android:text="@string/review_terbanyak"
-            android:textSize="11sp"
+            android:layout_marginTop="8dp"
+            android:inputType="none"
+            app:boxStrokeColor="#084b83"
+            app:endIconTint="@color/white"
+            app:boxBackgroundMode="filled"
+            app:boxBackgroundColor="#084b83"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:ignore="TouchTargetSizeCheck" />
+            app:layout_constraintEnd_toStartOf="@id/dropdown_button_container2"
+            app:layout_constraintTop_toTopOf="parent">
 
-        <ScrollView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button3">
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvTogu"
+            <AutoCompleteTextView
+                android:id="@+id/button_dropdown_sort_review"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-        </ScrollView>
+                android:paddingTop="1dp"
+                android:paddingBottom="1dp"
+                android:fontFamily="@font/poppins_bold"
+                android:textColor="@color/white"
+                android:textAlignment="center"
+                android:textSize="12sp"
+                android:inputType="none"
+                android:text="Review"
+                android:padding="0dp"
+                android:background="#084b83"
+                android:backgroundTint="#084b83"/>
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/chat_list_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="24dp"
-            android:src="@drawable/ic_baseline_message_24"
-            android:backgroundTint="#084b83"
-            app:tint="#ffffff"
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+            android:id="@+id/dropdown_button_container2"
+            android:layout_marginTop="8dp"
+            android:layout_width="175dp"
+            android:layout_height="36dp"
+            android:inputType="none"
+            app:boxStrokeColor="#084b83"
+            app:endIconTint="@color/white"
+            app:boxBackgroundMode="filled"
+            app:boxBackgroundColor="#084b83"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/dropdown_button_container1">
+
+            <AutoCompleteTextView
+                android:id="@+id/button_dropdown_sort_price"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:backgroundTint="#084b83"
+                android:background="#084b83"
+                android:fontFamily="@font/poppins_bold"
+                android:inputType="none"
+                android:padding="0dp"
+                android:text="Harga"
+                android:textAlignment="center"
+                android:textColor="@color/white"
+                android:textSize="12sp" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/drowdown_layout_container">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvTogu"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+    </ScrollView>
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/chat_list_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="24dp"
+        android:src="@drawable/ic_baseline_message_24"
+        android:backgroundTint="#084b83"
+        app:tint="#ffffff"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true"/>
+
 
 </RelativeLayout>
