@@ -9,6 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ImageView
+import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -16,7 +17,11 @@ import com.example.togutravelapp.R
 import com.example.togutravelapp.activity.DetailLocationActivity
 import com.example.togutravelapp.adapter.ListRecommendationAdapter
 import com.example.togutravelapp.data.DummyRecommendData
+import com.example.togutravelapp.data.ListWisataResponse
+import com.example.togutravelapp.data.ListWisataResponseItem
 import com.example.togutravelapp.databinding.FragmentLocationListBinding
+import com.example.togutravelapp.viewmodel.LocationListViewModel
+import com.example.togutravelapp.viewmodel.QRCodeViewModel
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
@@ -95,13 +100,13 @@ class LocationListFragment : Fragment(), OnMapReadyCallback {
     }
 
     private fun setDummyListLocationData(){
-        val dummyListLocation = getDummyListLocationData()
+        val ListLocation = getListLocationData()
         locationRv.layoutManager = LinearLayoutManager(requireContext())
-        val adapter = ListRecommendationAdapter(dummyListLocation)
+        val adapter = ListRecommendationAdapter(ListLocation)
         locationRv.adapter = adapter
 
         adapter.setOnItemClickCallback(object: ListRecommendationAdapter.OnItemClickCallback{
-            override fun onItemClicked(data: DummyRecommendData) {
+            override fun onItemClicked(data: ListWisataResponseItem) {
                 Log.d("Clicked Item", "$data")
                 val intentToDetail = Intent(activity, DetailLocationActivity::class.java)
                 intentToDetail.putExtra(DetailLocationActivity.EXTRA_LOCATIONDETAIL, data)
@@ -110,25 +115,28 @@ class LocationListFragment : Fragment(), OnMapReadyCallback {
         })
     }
 
-    private fun getDummyListLocationData(): List<DummyRecommendData> {
-        val recomTitle = resources.getStringArray(R.array.recommend_title)
-        val recomDesc = resources.getStringArray(R.array.recommend_desc)
-        val recomPrice = resources.getStringArray(R.array.recommend_price)
-        val recomUrl  = resources.getStringArray(R.array.recommend_url)
-        val recomLoc = resources.getStringArray(R.array.recommend_location)
-        val listDummyRecomData = ArrayList<DummyRecommendData>()
-        for (i in recomTitle.indices){
-            listDummyRecomData.add(
-                DummyRecommendData(
-                    recomDesc = recomDesc[i],
-                    recomLoc = recomLoc[i],
-                    recomPrice = recomPrice[i],
-                    recomTitle = recomTitle[i],
-                    recomUrl = recomUrl[i]
+    private fun getListLocationData(): List<ListWisataResponseItem> {
+        val listWisata = mutableListOf<ListWisataResponseItem>()
+        val listLocation = ViewModelProvider(this,ViewModelProvider.NewInstanceFactory())[LocationListViewModel::class.java]
+        listLocation.getlistWisata()
+        listLocation.listWisata.observe(requireActivity()){ item ->
+            item.forEach{
+                val listWisataTemp = ListWisataResponseItem(
+                    nama= it.nama,
+                    keterangan = it.keterangan,
+                    harga = it.harga,
+                    urlImage = it.urlImage,
+                    lokasi = it.lokasi,
+                    id = it.id,
+                    jenis = it.jenis,
+                    latitude = it.latitude,
+                    longitude = it.longitude,
+                    rating = it.rating,
                 )
-            )
+                listWisata.add(listWisataTemp)
+            }
         }
-        return listDummyRecomData
+        return listWisata
     }
 
     private fun setDropDown(){
