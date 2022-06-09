@@ -9,3 +9,12 @@ data class RegisterForm(
 	val notelp: String,
 	val role: String
 )
+
+data class LoginForm(
+	val email: String,
+	val password: String
+)
+
+data class Token(
+	val token: String
+)

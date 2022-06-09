@@ -2,10 +2,10 @@ package com.example.togutravelapp.activity.fragment
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -13,6 +13,7 @@ import com.example.togutravelapp.R
 import com.example.togutravelapp.activity.ChatListActivity
 import com.example.togutravelapp.adapter.ListTourGuideAdapter
 import com.example.togutravelapp.data.DummyTourGuideData
+import com.example.togutravelapp.data.repository.UserRepository
 import com.example.togutravelapp.databinding.FragmentListTourGuideBinding
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.firebase.auth.FirebaseAuth
@@ -40,11 +41,15 @@ class ListTourGuideFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         profile = binding.listToguProfile
         auth = Firebase.auth
+        val repo = UserRepository(requireContext())
+        if (auth.currentUser != null){
+            val imageUri = auth.currentUser!!.photoUrl.toString()
+            setUserProfileImage(imageUri)
+        } else {
+            val imageUri = repo.getUserProfileImage().toString()
+            setUserProfileImage(imageUri)
+        }
 
-        Glide.with(this)
-            .load(auth.currentUser!!.photoUrl)
-            .centerCrop()
-            .into(profile)
         msgButton = binding.chatListButton
         msgButton.setOnClickListener {
             intentToMessageActivity()
@@ -80,7 +85,7 @@ class ListTourGuideFragment : Fragment() {
             override fun onItemClicked(data: DummyTourGuideData) {
                 val fragment = ChatFragment()
                 val mBundle = Bundle()
-                mBundle.putString(ChatFragment.MESSAGES_PERSON,"4mLpFIu1pUf07BubkaVg1czWg6F3")
+                mBundle.putString(ChatFragment.MESSAGES_PERSON,"a2001f0016@bangkitdotacademy-2")
                 mBundle.putString(ChatFragment.MESSAGES_NAME,"Wildan Fajri Alfarabi A2001F0016")
                 mBundle.putString(ChatFragment.MESSAGES_URL,"https://lh3.googleusercontent.com/a-/AOh14GiCsrcPihgrO7BbYMNYC2YSNcqeGufLywA8FL6v=s96-c")
                 mBundle.putString(ChatFragment.MESSAGES_TYPE,"tourguide")
@@ -121,5 +126,12 @@ class ListTourGuideFragment : Fragment() {
     private fun intentToMessageActivity(){
         val intent = Intent(activity,ChatListActivity::class.java)
         startActivity(intent)
+    }
+
+    private fun setUserProfileImage(url : String){
+        Glide.with(this)
+            .load(url)
+            .centerCrop()
+            .into(profile)
     }
 }

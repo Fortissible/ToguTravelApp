@@ -16,20 +16,20 @@ class ChatListViewModel: ViewModel(){
     val loadingScreen : LiveData<Boolean> = _loadingScreen
     val userData : LiveData<MutableList<MessageData>> = _userData
 
-    fun getChatListFromFbDb(userUid : String, fbDatabase: FirebaseDatabase){
+    fun getChatListFromFbDb(email : String, fbDatabase: FirebaseDatabase){
         _loadingScreen.value = true
-        fbDatabase.reference.child(userUid).child("users").get().addOnCompleteListener {
+        fbDatabase.reference.child(email).child("users").get().addOnCompleteListener {
             val latestChat = mutableListOf<MessageData>()
             it.result.children.forEach { listUsers ->
                 val temporary = mutableListOf<MessageData>()
                 val count = listUsers.child("messages").childrenCount.toInt()
                 listUsers.child("messages").children.forEach { msgData ->
-                    if (count != 0 && userUid != msgData.child("uid").value.toString()) {
+                    if (count != 0 && email != msgData.child("email").value.toString()) {
                         temporary.add(
                             MessageData(
                                 msg = msgData.child("msg").value.toString(),
                                 name = msgData.child("name").value.toString(),
-                                uid = msgData.child("uid").value.toString(),
+                                email = msgData.child("email").value.toString(),
                                 profileUrl = msgData.child("profileUrl").value.toString(),
                                 timestamp = msgData.child("timestamp").value as Long
                             )
@@ -49,21 +49,21 @@ class ChatListViewModel: ViewModel(){
         }
     }
 
-    fun searchUserFromDbFb(fbDatabase: FirebaseDatabase, username : String?, auth: FirebaseAuth){
+    fun searchUserFromDbFb(fbDatabase: FirebaseDatabase, username : String?, currentUser: String){
         _loadingScreen.value = true
-        fbDatabase.reference.child("listUsers").get().addOnCompleteListener { listUid ->
+        fbDatabase.reference.child("listUsers").get().addOnCompleteListener { listEmail ->
             val matchingUser = mutableListOf<MessageData>()
-            listUid.result.children.forEach { listIdUsername ->
+            listEmail.result.children.forEach { listIdUsername ->
                 val temporary = mutableListOf<MessageData>()
                 listIdUsername.children.forEach { data ->
                     val name = data.child("tgName").value.toString()
                     val url = data.child("tgUrl").value.toString()
-                    val uid = data.child("tgUid").value.toString()
+                    val email = data.child("tgEmail").value.toString()
                     Log.d("CEK ISI SEARCHNYA", name)
-                    if (name.lowercase().contains(username?.lowercase()?:"notfounds") && name != auth.currentUser!!.displayName.toString())
+                    if (name.lowercase().contains(username?.lowercase()?:"notfounds") && name != currentUser)
                         temporary.add(MessageData(
                             name = name,
-                            uid = uid,
+                            email = email,
                             profileUrl = url
                             )
                         )

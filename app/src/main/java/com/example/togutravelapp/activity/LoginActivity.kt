@@ -5,17 +5,25 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.ProgressBar
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.example.togutravelapp.data.CustomPassword
 import com.example.togutravelapp.data.DummyTourGuideData
+import com.example.togutravelapp.data.LoginForm
+import com.example.togutravelapp.data.repository.UserRepository
 import com.example.togutravelapp.databinding.ActivityLoginBinding
+import com.example.togutravelapp.viewmodel.LoginRegisterViewModel
+import com.example.togutravelapp.viewmodel.ViewModelFactory
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInClient
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
 import com.google.android.gms.common.SignInButton
 import com.google.android.gms.common.api.ApiException
+import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
@@ -28,9 +36,15 @@ class LoginActivity : AppCompatActivity() {
     private lateinit var binding: ActivityLoginBinding
     private lateinit var googleSignInClient: GoogleSignInClient
     private lateinit var auth: FirebaseAuth
+    private lateinit var emailEditText: TextInputEditText
+    private lateinit var passwordEditText : CustomPassword
     private lateinit var fbDatabase : FirebaseDatabase
     private lateinit var loadingBar : ProgressBar
-    private lateinit var loginButton : SignInButton
+    private lateinit var gmailLoginButton : SignInButton
+    private lateinit var loginButton : Button
+    private val loginViewModel : LoginRegisterViewModel by viewModels {
+        ViewModelFactory.getInstance(this@LoginActivity)
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -52,25 +66,53 @@ class LoginActivity : AppCompatActivity() {
         fbDatabase = Firebase.database
 
         loadingBar = binding.loadingLogin
-        loginButton = binding.signInButtonGoogle
+        gmailLoginButton = binding.signInButtonGoogle
+        loginButton = binding.btnLogin
+        emailEditText = binding.emailEditText
+        passwordEditText = binding.passwordEditText
+
+        gmailLoginButton.setOnClickListener {
+            signInWithGoogle()
+        }
 
         loginButton.setOnClickListener {
             signIn()
         }
-        val btnLogin = binding.btnLogin
-        btnLogin.setOnClickListener {
-            val intent = Intent(this, MainActivity ::class.java)
-            startActivity(intent)
-        }
+
         val btnSignup = binding.signupButton
         btnSignup.setOnClickListener {
             val intent = Intent(this, SignUpActivity ::class.java)
             startActivity(intent)
         }
 
+        loginViewModel.isLoginInProgress.observe(this){ isLoading ->
+            if (isLoading) loadingBar.visibility = View.VISIBLE
+            else loadingBar.visibility = View.GONE
+        }
+
+        loginViewModel.tokenSession.observe(this){
+            Log.d(TAG, "UPDATE UI FROM API ACCOUNT OBSERVED")
+            updateUIWithAPIAccount(it)
+            val repo = UserRepository(this)
+            val usersLogin = DummyTourGuideData(
+                tgName = repo.getUserLoginInfoSession().nama,
+                tgUrl = repo.getUserProfileImage().toString(),
+                tgEmail = repo.getUserLoginInfoSession().email
+            )
+            if (!it.isNullOrEmpty() && it != "")
+                pushToFirebaseRealtimeDatabase(null, usersLogin, pushType = 1)
+        }
     }
 
-    private fun signIn() {
+    private fun signIn(){
+        val loginForm = LoginForm(
+            email = emailEditText.text.toString(),
+            password = passwordEditText.text.toString()
+        )
+        loginViewModel.loginUser(loginForm)
+    }
+
+    private fun signInWithGoogle() {
         val signInIntent = googleSignInClient.signInIntent
         resultLauncher.launch(signInIntent)
     }
@@ -86,7 +128,7 @@ class LoginActivity : AppCompatActivity() {
                 Log.d(TAG, "firebaseAuthWithGoogle:" + account.id)
                 firebaseAuthWithGoogle(account.idToken!!)
                 loadingBar.visibility = View.VISIBLE
-                loginButton.visibility = View.INVISIBLE
+                gmailLoginButton.visibility = View.INVISIBLE
             } catch (e: ApiException) {
                 // Google Sign In failed, update UI appropriately
                 Log.w(TAG, "Google sign in failed", e)
@@ -105,41 +147,77 @@ class LoginActivity : AppCompatActivity() {
                     val usersLogin = DummyTourGuideData(
                         tgName = user!!.displayName,
                         tgUrl = user.photoUrl.toString(),
-                        tgUid = user.uid
+                        tgEmail = user.email.toString()
                     )
-                    val addUser = fbDatabase.reference
-                        .child("listUsers")
-                        .child(user.uid)
-
-                    addUser.get().addOnCompleteListener {
-                        if (it.result.childrenCount < 1)
-                            addUser.push().setValue(usersLogin).addOnCompleteListener {
-                                updateUI(user)
-                            }.addOnFailureListener {
-                                Toast.makeText(this,"Gagal Login",Toast.LENGTH_SHORT).show()
-                                loadingBar.visibility = View.INVISIBLE
-                                loginButton.visibility = View.VISIBLE
-                            }
-                        else
-                            updateUI(user)
-                    }
+                    pushToFirebaseRealtimeDatabase(user, usersLogin, pushType = 2)
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "signInWithCredential:failure", task.exception)
-                    updateUI(null)
+                    updateUIWithGoogleAuth(null)
                 }
             }
     }
 
-    private fun updateUI(currentUser: FirebaseUser?) {
+    private fun updateUIWithGoogleAuth(currentUser: FirebaseUser?) {
         if (currentUser != null){
             loadingBar.visibility = View.INVISIBLE
-            loginButton.visibility = View.VISIBLE
-            startActivity(Intent(this@LoginActivity, MainActivity::class.java))
-            Log.d(TAG, "HALOOOOO")
+            gmailLoginButton.visibility = View.VISIBLE
+            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+            intent.putExtra(TYPE,2)
+            startActivity(intent)
             finish()
         } else {
-            Log.d(TAG, "USER IS NULLLLL")
+            Log.d(TAG, "USER IS NULL")
+        }
+    }
+
+    private fun updateUIWithAPIAccount(token : String?) {
+        if (!token.isNullOrEmpty()){
+            loadingBar.visibility = View.INVISIBLE
+            gmailLoginButton.visibility = View.VISIBLE
+            val intent = Intent(this@LoginActivity, MainActivity::class.java)
+            intent.putExtra(TYPE,1)
+            startActivity(intent)
+            finish()
+        } else {
+            Log.d(TAG, "TOKEN IS NULL")
+        }
+    }
+
+    private fun pushToFirebaseRealtimeDatabase(userGoogle : FirebaseUser?, usersLogin: DummyTourGuideData, pushType : Int){
+        var validEmail = ""
+        validEmail = if (pushType == 1) {
+            val invalidEmail = usersLogin.tgEmail.toString()+"-1"
+            invalidEmail.replace(".","dot")
+        } else {
+            val invalidEmail = usersLogin.tgEmail.toString()+"-2"
+            invalidEmail.replace(".","dot")
+        }
+
+        val addUser = fbDatabase.reference
+            .child("listUsers")
+            .child(validEmail)
+        val newUserLoginData = DummyTourGuideData(
+            tgName = usersLogin.tgName.toString(),
+            tgEmail = validEmail,
+            tgUrl = usersLogin.tgUrl
+        )
+        addUser.get().addOnCompleteListener {
+            if (it.result.childrenCount < 1){
+                Log.d("WEH GAK KETEMUUUU", "pushToFirebaseRealtimeDatabase: ")
+                addUser.push().setValue(newUserLoginData).addOnCompleteListener {
+                    updateUIWithGoogleAuth(userGoogle)
+                }.addOnFailureListener {
+                    Toast.makeText(this,"Gagal Login",Toast.LENGTH_SHORT).show()
+                    loadingBar.visibility = View.INVISIBLE
+                    gmailLoginButton.visibility = View.VISIBLE
+                }
+
+            }
+            else{
+                Log.d("WEH KETEMUUUU", "pushToFirebaseRealtimeDatabase: ")
+                updateUIWithGoogleAuth(userGoogle)
+            }
         }
     }
 
@@ -147,10 +225,15 @@ class LoginActivity : AppCompatActivity() {
         super.onStart()
         // Check if user is signed in (non-null) and update UI accordingly.
         val currentUser = auth.currentUser
-        updateUI(currentUser)
+        if (currentUser != null) updateUIWithGoogleAuth(currentUser)
+        else {
+            loginViewModel.getUserTokenSession()
+        }
+
     }
 
     companion object {
         private const val TAG = "LoginActivity"
+        const val TYPE = "LoginType"
     }
 }

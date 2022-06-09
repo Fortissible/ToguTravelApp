@@ -1,5 +1,6 @@
 package com.example.togutravelapp.activity
 
+import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -39,7 +40,7 @@ class SignUpActivity : AppCompatActivity() {
     private lateinit var auth: FirebaseAuth
     private var imageUri : Uri? = null
     private val signupViewModel : LoginRegisterViewModel by viewModels {
-        ViewModelFactory.getInstance()
+        ViewModelFactory.getInstance(this@SignUpActivity)
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {

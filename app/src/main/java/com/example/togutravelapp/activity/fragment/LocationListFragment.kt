@@ -1,21 +1,25 @@
 package com.example.togutravelapp.activity.fragment
 
 import android.content.Intent
+import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ImageView
+import androidx.annotation.RequiresApi
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.togutravelapp.R
 import com.example.togutravelapp.activity.DetailLocationActivity
+import com.example.togutravelapp.activity.LoginActivity
 import com.example.togutravelapp.adapter.ListRecommendationAdapter
 import com.example.togutravelapp.data.DummyRecommendData
+import com.example.togutravelapp.data.repository.UserRepository
 import com.example.togutravelapp.databinding.FragmentLocationListBinding
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -43,17 +47,31 @@ class LocationListFragment : Fragment(), OnMapReadyCallback {
         return binding.root
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        val type = requireActivity().intent.getIntExtra(LoginActivity.TYPE,1) //1 -> api ; 2 -> google
         profilePic = binding.locationListProfilepic
-        auth = Firebase.auth
 
-        Glide.with(this)
-            .load(auth.currentUser!!.photoUrl)
-            .placeholder(R.drawable.ic_baseline_person_24)
-            .centerCrop()
-            .into(profilePic)
+        val repo = UserRepository(requireContext())
+        val imageUri = repo.getUserProfileImage()
+
+        if (type == 1) {
+            Glide.with(this)
+                .load(imageUri)
+                .placeholder(R.drawable.propict)
+                .centerCrop()
+                .into(profilePic)
+
+        } else {
+            auth = Firebase.auth
+
+            Glide.with(this)
+                .load(auth.currentUser!!.photoUrl)
+                .placeholder(R.drawable.propict)
+                .centerCrop()
+                .into(profilePic)
+        }
 
         locationRv = binding.locationListRv
         locationRv.setHasFixedSize(true)

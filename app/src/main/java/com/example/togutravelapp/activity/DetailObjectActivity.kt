@@ -62,63 +62,7 @@ class DetailObjectActivity : AppCompatActivity(), OnMapReadyCallback{
                 else -> true
             }
         }
-        scrollView = binding.objectActivityScrollview
-        transparentImageView = binding.transparentImage
-        transparentImageView.setOnTouchListener { _, event ->
-            when (event.action) {
-                MotionEvent.ACTION_DOWN -> {
-                    scrollView.requestDisallowInterceptTouchEvent(true)
-                    false
-                }
-                MotionEvent.ACTION_UP -> {
-                    scrollView.requestDisallowInterceptTouchEvent(true)
-                    false
-                }
-                MotionEvent.ACTION_MOVE -> {
-                    scrollView.requestDisallowInterceptTouchEvent(true)
-                    false
-                }
-                else -> true
-            }
-        }
-        scrollView = binding.objectActivityScrollview
-        transparentImageView = binding.transparentImage
-        transparentImageView.setOnTouchListener { _, event ->
-            when (event.action) {
-                MotionEvent.ACTION_DOWN -> {
-                    scrollView.requestDisallowInterceptTouchEvent(true)
-                    false
-                }
-                MotionEvent.ACTION_UP -> {
-                    scrollView.requestDisallowInterceptTouchEvent(true)
-                    false
-                }
-                MotionEvent.ACTION_MOVE -> {
-                    scrollView.requestDisallowInterceptTouchEvent(true)
-                    false
-                }
-                else -> true
-            }
-        }
-        scrollView = binding.objectActivityScrollview
-        transparentImageView = binding.transparentImage
-        transparentImageView.setOnTouchListener { _, event ->
-            when (event.action) {
-                MotionEvent.ACTION_DOWN -> {
-                    scrollView.requestDisallowInterceptTouchEvent(true)
-                    false
-                }
-                MotionEvent.ACTION_UP -> {
-                    scrollView.requestDisallowInterceptTouchEvent(true)
-                    false
-                }
-                MotionEvent.ACTION_MOVE -> {
-                    scrollView.requestDisallowInterceptTouchEvent(true)
-                    false
-                }
-                else -> true
-            }
-        }
+
         val imgObject : ImageView = binding.imgObject
         Glide.with(this)
             .load(objectDetail.objectUrl.toString())
