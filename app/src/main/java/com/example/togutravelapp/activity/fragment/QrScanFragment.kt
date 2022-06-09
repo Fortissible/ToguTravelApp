@@ -18,10 +18,6 @@ import com.example.togutravelapp.activity.DetailObjectActivity
 import com.example.togutravelapp.databinding.FragmentQrScanBinding
 import com.example.togutravelapp.viewmodel.QRCodeViewModel
 
-
-
-
-
 @Suppress("DEPRECATION")
 class QrScanFragment : Fragment() {
     private var _binding : FragmentQrScanBinding? = null

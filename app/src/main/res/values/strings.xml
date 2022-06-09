@@ -98,6 +98,7 @@
     <string name="sign_up_disini"><u>Sign Up disini!</u></string>
     <string name="konfirmasi">Konfirmasi Password Mu</string>
     <string name="cancel">Cancel</string>
+    <string name="username">Username</string>
 
     <string-array name="sort_by_range">
         <item>Terdekat</item>
@@ -113,6 +114,11 @@
         <item>≤ Rp.15.000</item>
         <item>≤ Rp.50.000</item>
         <item>≤ Rp.100.000</item>
+    </string-array>
+
+    <string-array name="gender_select">
+        <item>Wanita</item>
+        <item>Pria</item>
     </string-array>
 
 

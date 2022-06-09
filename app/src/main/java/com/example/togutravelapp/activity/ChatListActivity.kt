@@ -9,7 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
-import com.example.androidintermediate_sub1_wildanfajrialfarabi.ui.ViewModelFactory
+import com.example.togutravelapp.viewmodel.ViewModelFactory
 import com.example.togutravelapp.R
 import com.example.togutravelapp.activity.fragment.ChatFragment
 import com.example.togutravelapp.activity.fragment.ProfileFragment

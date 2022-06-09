@@ -43,6 +43,7 @@
         <entry key="..\:/Users/Wildan PC/AndroidStudioProjects/ToguTravelApp/app/src/main/res/layout/location_detail_image_item.xml" value="0.22" />
         <entry key="..\:/Users/Wildan PC/AndroidStudioProjects/ToguTravelApp/app/src/main/res/layout/location_detail_object_item_card.xml" value="0.33" />
         <entry key="..\:/Users/Wildan PC/AndroidStudioProjects/ToguTravelApp/app/src/main/res/layout/location_detail_recom_item_card.xml" value="0.33" />
+        <entry key="..\:/Users/Wildan PC/Documents/GitHub/ToguTravelApp/app/src/main/res/drawable/background_shape_circle.xml" value="0.253" />
         <entry key="..\:/Users/Wildan PC/Documents/GitHub/ToguTravelApp/app/src/main/res/drawable/chat_context_background_person.xml" value="0.247" />
         <entry key="..\:/Users/Wildan PC/Documents/GitHub/ToguTravelApp/app/src/main/res/drawable/chat_context_background_self.xml" value="0.247" />
         <entry key="..\:/Users/Wildan PC/Documents/GitHub/ToguTravelApp/app/src/main/res/drawable/chat_layout_background.xml" value="0.247" />
@@ -62,13 +63,14 @@
         <entry key="..\:/Users/Wildan PC/Documents/GitHub/ToguTravelApp/app/src/main/res/layout/activity_logout.xml" value="0.3703125" />
         <entry key="..\:/Users/Wildan PC/Documents/GitHub/ToguTravelApp/app/src/main/res/layout/activity_main.xml" value="0.33" />
         <entry key="..\:/Users/Wildan PC/Documents/GitHub/ToguTravelApp/app/src/main/res/layout/activity_maps.xml" value="0.3854166666666667" />
-        <entry key="..\:/Users/Wildan PC/Documents/GitHub/ToguTravelApp/app/src/main/res/layout/activity_profile.xml" value="0.2" />
+        <entry key="..\:/Users/Wildan PC/Documents/GitHub/ToguTravelApp/app/src/main/res/layout/activity_profile.xml" value="0.33" />
         <entry key="..\:/Users/Wildan PC/Documents/GitHub/ToguTravelApp/app/src/main/res/layout/activity_qrcode_scanner.xml" value="0.3854166666666667" />
-        <entry key="..\:/Users/Wildan PC/Documents/GitHub/ToguTravelApp/app/src/main/res/layout/activity_sign_up.xml" value="0.3736413043478261" />
+        <entry key="..\:/Users/Wildan PC/Documents/GitHub/ToguTravelApp/app/src/main/res/layout/activity_sign_up.xml" value="0.25" />
         <entry key="..\:/Users/Wildan PC/Documents/GitHub/ToguTravelApp/app/src/main/res/layout/chat_item_people.xml" value="0.3854166666666667" />
         <entry key="..\:/Users/Wildan PC/Documents/GitHub/ToguTravelApp/app/src/main/res/layout/chat_item_self.xml" value="0.25" />
         <entry key="..\:/Users/Wildan PC/Documents/GitHub/ToguTravelApp/app/src/main/res/layout/chat_person_item.xml" value="0.3854166666666667" />
         <entry key="..\:/Users/Wildan PC/Documents/GitHub/ToguTravelApp/app/src/main/res/layout/dropdown_item.xml" value="0.3854166666666667" />
+        <entry key="..\:/Users/Wildan PC/Documents/GitHub/ToguTravelApp/app/src/main/res/layout/dropdown_item_gender.xml" value="0.384375" />
         <entry key="..\:/Users/Wildan PC/Documents/GitHub/ToguTravelApp/app/src/main/res/layout/fragment_blank.xml" value="0.3854166666666667" />
         <entry key="..\:/Users/Wildan PC/Documents/GitHub/ToguTravelApp/app/src/main/res/layout/fragment_chat.xml" value="0.33" />
         <entry key="..\:/Users/Wildan PC/Documents/GitHub/ToguTravelApp/app/src/main/res/layout/fragment_list_tour_guide.xml" value="0.3703125" />

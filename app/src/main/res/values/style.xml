@@ -3,4 +3,7 @@
     <style name="dropdown_style" parent="ThemeOverlay.AppCompat.Light">
         <item name="android:padding">8dp</item>
     </style>
+    <style name="TextLabel" parent="TextAppearance.Design.Hint">
+        <item name="android:textSize">10sp</item>
+    </style>
 </resources>

@@ -1,7 +1,6 @@
 package com.example.togutravelapp.activity
 
 import android.annotation.SuppressLint
-import android.content.Intent
 import android.os.Bundle
 import android.view.MotionEvent
 import android.widget.ImageButton
@@ -14,7 +13,6 @@ import com.example.togutravelapp.R
 import com.example.togutravelapp.data.DetailObjModel
 import com.example.togutravelapp.data.DummyObjectData
 import com.example.togutravelapp.data.ObjectWisataResponseItem
-import com.example.togutravelapp.data.RemoteDataResource
 import com.example.togutravelapp.databinding.ActivityDetailObjectBinding
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -132,7 +130,7 @@ class DetailObjectActivity : AppCompatActivity(), OnMapReadyCallback{
         val mMapsFragment = mFragmentManager.findFragmentById(R.id.obj_location) as SupportMapFragment
         mMapsFragment.getMapAsync(this)
         
-        setupData(objectDetail)
+        setupData()
     }
     override fun onMapReady(googleMap: GoogleMap) {
         val result = intent.getParcelableExtra<ObjectWisataResponseItem>("result")
