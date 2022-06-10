@@ -27,4 +27,7 @@ interface ApiService {
     fun getInfoUser(
         @Body requestBody: Token
     ): Call<List<ResponseGetUserInfoItem>>
+
+    @GET("getwisata")
+    fun getWisata():Call<ListWisataResponse>
 }
