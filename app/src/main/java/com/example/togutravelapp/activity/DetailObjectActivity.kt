@@ -57,47 +57,52 @@ class DetailObjectActivity : AppCompatActivity(), OnMapReadyCallback{
                 else -> true
             }
         }
+        val mFragmentManager = supportFragmentManager
+        val mMapsFragment = mFragmentManager.findFragmentById(R.id.obj_location) as SupportMapFragment
+        mMapsFragment.getMapAsync(this)
+        
+        setupData(objectDetail)
+    }
+    override fun onMapReady(googleMap: GoogleMap) {
+        val result = intent.getParcelableExtra<ObjectWisataResponseItem>(EXTRA_DETAIL_OBJECT)
+        mMap = googleMap
+        mMap.uiSettings.isZoomControlsEnabled = true
+        mMap.uiSettings.isIndoorLevelPickerEnabled = true
+        mMap.uiSettings.isCompassEnabled = true
+        mMap.uiSettings.isMapToolbarEnabled = true
+        setMaplocation(result!!)
+    }
+    private fun setMaplocation(objectDetail: ObjectWisataResponseItem){
+        val sydney = LatLng(objectDetail.latitude!!.toDouble(), objectDetail.longtitude!!.toDouble())
+        mMap.addMarker(MarkerOptions().position(sydney).title(objectDetail.nama).snippet(objectDetail.lokasi))
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney,15f))
+    }
+    private fun setupData(objectDetail : ObjectWisataResponseItem){
+        val result = intent.getParcelableExtra<ObjectWisataResponseItem>(EXTRA_DETAIL_OBJECT)
+        binding.apply {
+            tvTitle.text = result?.nama
+            tvDesc.text = result?.deskripsi
+            locationTitle.text = resources.getString(R.string.lokasi)
+            tvLocation.text = result?.lokasi
 
-        val imgObject : ImageView = binding.imgObject
+        }
         if (objectDetail.urlFotoObjek.isNullOrEmpty() || objectDetail.urlFotoObjek == "")
             Glide.with(this)
                 .load(R.drawable.ios_android_free)
                 .placeholder(R.drawable.ic_baseline_error_24)
                 .centerCrop()
-                .into(imgObject)
+                .into(binding.imgObject)
         else
             Glide.with(this)
                 .load(objectDetail.urlFotoObjek)
                 .placeholder(R.drawable.ic_baseline_error_24)
                 .centerCrop()
-                .into(imgObject)
+                .into(binding.imgObject)
 
-        val mFragmentManager = supportFragmentManager
-        val mMapsFragment = mFragmentManager.findFragmentById(R.id.obj_location) as SupportMapFragment
-        mMapsFragment.getMapAsync(this)
-        
-        setupData()
-    }
-    override fun onMapReady(googleMap: GoogleMap) {
-        val result = intent.getParcelableExtra<ObjectWisataResponseItem>("result")
-        mMap = googleMap
 
-        val sydney = LatLng(-34.0, 151.0)
-        mMap.addMarker(MarkerOptions().position(sydney).title(result?.nama).snippet(result?.lokasi))
-        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(sydney,15f))
 
-        mMap.uiSettings.isZoomControlsEnabled = true
-        mMap.uiSettings.isIndoorLevelPickerEnabled = true
-        mMap.uiSettings.isCompassEnabled = true
-        mMap.uiSettings.isMapToolbarEnabled = true
     }
-    private fun setupData(objectDetail : ObjectWisataResponseItem){
-        binding.apply {
-                tvTitle.text = objectDetail.nama ?: "Not Found"
-                tvDesc.text = objectDetail.deskripsi ?: "Not Found"
-                tvLocation.text = objectDetail.lokasi ?: "Not Found"
-        }
-    }
+
 
   companion object {
         const val EXTRA_DETAIL_OBJECT = "object"

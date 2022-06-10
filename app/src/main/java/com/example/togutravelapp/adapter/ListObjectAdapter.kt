@@ -9,11 +9,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.togutravelapp.R
 import com.example.togutravelapp.data.DummyObjectData
+import com.example.togutravelapp.data.ObjectWisataResponseItem
 
-class ListObjectAdapter(private val listObject: List<DummyObjectData>): RecyclerView.Adapter<ListObjectAdapter.ListViewHolder>() {
+class ListObjectAdapter(private val listObject: List<ObjectWisataResponseItem>): RecyclerView.Adapter<ListObjectAdapter.ListViewHolder>() {
     private lateinit var onItemClickCallback: OnItemClickCallback
     interface OnItemClickCallback{
-        fun onItemClicked(data:DummyObjectData)
+        fun onItemClicked(data:ObjectWisataResponseItem)
     }
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
         this.onItemClickCallback = onItemClickCallback
@@ -34,10 +35,10 @@ class ListObjectAdapter(private val listObject: List<DummyObjectData>): Recycler
         val objectDesc = holder.objectDesc
         val objectTitle = holder.objectTitle
         val objectPic = holder.objectPic
-        objectDesc.text =  listObject[position].objectDesc
-        objectTitle.text = listObject[position].objectTitle
+        objectDesc.text =  listObject[position].deskripsi
+        objectTitle.text = listObject[position].nama
         Glide.with(holder.itemView)
-            .load(listObject[position].objectUrl)
+            .load(listObject[position].urlFotoObjek)
             .centerCrop()
             .into(objectPic)
 

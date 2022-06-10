@@ -10,7 +10,7 @@ interface ApiService {
     @GET("getobjek")
     fun getObjek(
         @Query("search") search: String,
-    ): Call<List<ObjectWisataResponseItem?>?>
+    ): Call<List<ObjectWisataResponseItem>>
 
     @Headers("Content-Type: application/json")
     @POST("register")
