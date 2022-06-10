@@ -18,21 +18,21 @@ class LocationListViewModel:ViewModel() {
     private val _listWisata = MutableLiveData<List<ListWisataResponseItem>>()
     val listWisata: LiveData<List<ListWisataResponseItem>> = _listWisata
 
-    fun getlistWisata(){
-        val client = ApiConfig.getApiService().getWisata()
-        client.enqueue(object : Callback<ListWisataResponse> {
+    fun getlistWisata(query : String? = null){
+        val client = ApiConfig.getApiService().getWisata(query)
+        client.enqueue(object : Callback<List<ListWisataResponseItem>> {
             override fun onResponse(
-                call: Call<ListWisataResponse>,
-                response: Response<ListWisataResponse>
+                call: Call<List<ListWisataResponseItem>>,
+                response: Response<List<ListWisataResponseItem>>
             ) {
                 if (response.isSuccessful){
-                    _listWisata.value = response.body()?.listWisataResponse
+                    _listWisata.value = response.body()
                 }else{
                     Log.d(ContentValues.TAG,"Error: ${response.message()}")
                 }
             }
 
-            override fun onFailure(call: Call<ListWisataResponse>, t: Throwable) {
+            override fun onFailure(call: Call<List<ListWisataResponseItem>>, t: Throwable) {
                 Log.d(ContentValues.TAG,"onFailure: ${t.message.toString()}")
             }
         })

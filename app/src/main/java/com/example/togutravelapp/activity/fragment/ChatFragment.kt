@@ -152,6 +152,9 @@ class ChatFragment : Fragment() {
         _binding = null
         if (type == "chatlist")
             (activity as ChatListActivity).enableAllButton()
+        else{
+            (parentFragment as ListTourGuideFragment).isMessageButtonActive(true)
+        }
     }
 
     companion object {

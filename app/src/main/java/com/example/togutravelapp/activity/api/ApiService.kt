@@ -29,5 +29,7 @@ interface ApiService {
     ): Call<List<ResponseGetUserInfoItem>>
 
     @GET("getwisata")
-    fun getWisata():Call<ListWisataResponse>
+    fun getWisata(
+        @Query("search") search: String? = null,
+    ):Call<List<ListWisataResponseItem>>
 }

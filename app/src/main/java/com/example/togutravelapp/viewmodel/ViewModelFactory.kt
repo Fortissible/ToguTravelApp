@@ -14,6 +14,7 @@ class ViewModelFactory private constructor(
     override fun <T : ViewModel> create(modelClass: Class<T>): T = when (modelClass){
             ChatListViewModel::class.java -> ChatListViewModel()
             LoginRegisterViewModel::class.java -> LoginRegisterViewModel(userRepository)
+            LocationListViewModel::class.java -> LocationListViewModel()
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         } as T
 

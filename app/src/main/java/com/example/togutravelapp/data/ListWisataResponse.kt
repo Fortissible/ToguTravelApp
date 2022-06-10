@@ -7,39 +7,39 @@ import kotlinx.parcelize.Parcelize
 data class ListWisataResponse(
 
 	@field:SerializedName("ListWisataResponse")
-	val listWisataResponse: List<ListWisataResponseItem>
+	val listWisataResponse: List<ListWisataResponseItem?>? = null
 )
 
 @Parcelize
 data class ListWisataResponseItem(
 
 	@field:SerializedName("keterangan")
-	val keterangan: String,
+	val keterangan: String?=null,
 
 	@field:SerializedName("nama")
-	val nama: String,
+	val nama: String?=null,
 
 	@field:SerializedName("harga")
-	val harga: Int,
+	val harga: Int?=null,
 
 	@field:SerializedName("lokasi")
-	val lokasi: String,
+	val lokasi: String?=null,
 
 	@field:SerializedName("latitude")
-	val latitude: String,
+	val latitude: String?=null,
 
 	@field:SerializedName("jenis")
-	val jenis: String,
+	val jenis: String?=null,
 
 	@field:SerializedName("rating")
-	val rating: Double,
+	val rating: Double?=null,
 
 	@field:SerializedName("id")
-	val id: Int,
+	val id: Int?=null,
 
 	@field:SerializedName("longitude")
-	val longitude: String,
+	val longitude: String?=null,
 
 	@field:SerializedName("url_image")
-	val urlImage: String
+	val urlImage: String?=null
 ):Parcelable

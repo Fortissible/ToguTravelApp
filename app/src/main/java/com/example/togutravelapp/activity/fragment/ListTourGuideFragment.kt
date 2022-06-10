@@ -67,7 +67,6 @@ class ListTourGuideFragment : Fragment() {
                     .commit()
             }
         }
-
         setToguData()
     }
 
@@ -83,6 +82,7 @@ class ListTourGuideFragment : Fragment() {
         rvTogu.adapter = adapter
         adapter.setOnItemClickCallback(object : ListTourGuideAdapter.OnItemClickCallback{
             override fun onItemClicked(data: DummyTourGuideData) {
+                isMessageButtonActive(false)
                 val fragment = ChatFragment()
                 val mBundle = Bundle()
                 mBundle.putString(ChatFragment.MESSAGES_PERSON,"a2001f0016@bangkitdotacademy-2")
@@ -133,5 +133,17 @@ class ListTourGuideFragment : Fragment() {
             .load(url)
             .centerCrop()
             .into(profile)
+    }
+
+    fun isMessageButtonActive(value : Boolean){
+        if (value)
+            msgButton.apply {
+                visibility = View.VISIBLE
+                isClickable = value
+            }
+        else msgButton.apply {
+            visibility = View.GONE
+            isClickable = value
+        }
     }
 }

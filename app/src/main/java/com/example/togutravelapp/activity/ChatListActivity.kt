@@ -118,14 +118,16 @@ class ChatListActivity : AppCompatActivity() {
         }
 
         avatar.setOnClickListener {
-            val fragment = supportFragmentManager.findFragmentByTag(ProfileFragment::class.java.simpleName)
-            if (fragment !is ProfileFragment) {
-                supportFragmentManager
-                    .beginTransaction()
-                    .replace(R.id.chat_list_activity, ProfileFragment(), ProfileFragment::class.java.simpleName)
-                    .addToBackStack(null)
-                    .commit()
-            }
+            disableAllButton()
+            val fragment = ProfileFragment()
+            val mBundle = Bundle()
+            mBundle.putString(ChatFragment.MESSAGES_TYPE,"chatlist")
+            fragment.arguments = mBundle
+            supportFragmentManager
+                .beginTransaction()
+                .replace(R.id.chat_list_activity, fragment, ProfileFragment::class.java.simpleName)
+                .addToBackStack(null)
+                .commit()
         }
     }
 
