@@ -2,17 +2,15 @@ package com.example.togutravelapp.activity.fragment
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.togutravelapp.R
 import com.example.togutravelapp.activity.DetailLocationActivity
 import com.example.togutravelapp.adapter.ListRecommendationAdapter
-import com.example.togutravelapp.data.DummyRecommendData
 import com.example.togutravelapp.data.ListWisataResponseItem
 import com.example.togutravelapp.databinding.FragmentRecommendationBinding
 import com.example.togutravelapp.viewmodel.LocationListViewModel
@@ -44,9 +42,10 @@ class RecommendationFragment : Fragment() {
     }
 
     private fun setRecommendationData(){
-        val ListRecommendationData = getRecommendationData()
+
+        val listRecommendationData = getRecommendationData()
         recommendarionRv.layoutManager = LinearLayoutManager(requireActivity())
-        val adapter = ListRecommendationAdapter(ListRecommendationData)
+        val adapter = ListRecommendationAdapter(listRecommendationData)
         recommendarionRv.adapter = adapter
         adapter.setOnItemClickCallback(object : ListRecommendationAdapter.OnItemClickCallback{
             override fun onItemClicked(data: ListWisataResponseItem) {
@@ -55,7 +54,6 @@ class RecommendationFragment : Fragment() {
                 startActivity(intentToLocation)
             }
         })
-
     }
 
     private fun getRecommendationData(): List<ListWisataResponseItem> {
@@ -65,19 +63,7 @@ class RecommendationFragment : Fragment() {
         listLocation.getlistWisata()
         listLocation.listWisata.observe(requireActivity()) { item ->
             item.forEach {
-                val listWisataTemp = ListWisataResponseItem(
-                    nama= it.nama,
-                    keterangan = it.keterangan,
-                    harga = it.harga,
-                    urlImage = it.urlImage,
-                    lokasi = it.lokasi,
-                    id = it.id,
-                    jenis = it.jenis,
-                    latitude = it.latitude,
-                    longitude = it.longitude,
-                    rating = it.rating,
-                )
-                listWisata.add(listWisataTemp)
+                listWisata.add(it)
             }
         }
         return listWisata

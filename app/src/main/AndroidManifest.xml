@@ -19,22 +19,15 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.ToguTravelApp">
+        android:theme="@style/Theme.ToguTravelApp"
+        android:largeHeap="true">
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyD3HluUN3k_fQUPgfwDjS_PBtywcqN2fd4" />
-
-        <activity
-            android:name=".activity.ProfileActivity"
-            android:exported="false" />
+            android:value="${GMAPS_API_KEY}"/>
 
         <activity
             android:name=".activity.SignUpActivity"
-            android:exported="false" />
-
-        <activity
-            android:name=".activity.QRCodeScannerActivity"
             android:exported="false" />
 
         <activity

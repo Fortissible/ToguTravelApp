@@ -12,7 +12,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.togutravelapp.activity.ChatListActivity
 import com.example.togutravelapp.adapter.FbMessageAdapter
+import com.example.togutravelapp.data.DummyTourGuideData
 import com.example.togutravelapp.data.MessageData
+import com.example.togutravelapp.data.repository.UserRepository
 import com.example.togutravelapp.databinding.FragmentChatBinding
 import com.firebase.ui.database.FirebaseRecyclerOptions
 import com.google.firebase.auth.FirebaseAuth
@@ -47,29 +49,50 @@ class ChatFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         val manager = LinearLayoutManager(requireActivity())
         manager.stackFromEnd = true
         messagesRv = binding.chatRv
         auth = Firebase.auth
+        val repo = UserRepository(requireContext())
+
         chatdb = Firebase.database
         personAvatar = binding.chatAva
         personName = binding.chatName
 
-        val fbUser = auth.currentUser
         val bundle = arguments
-        val message = bundle!!.getString(MESSAGES_PERSON)!!
+        val emailPerson = bundle!!.getString(MESSAGES_PERSON)!!
         val name = bundle.getString(MESSAGES_NAME)!!
         val url = bundle.getString(MESSAGES_URL)!!
         type = bundle.getString(MESSAGES_TYPE)!!
-        val msgRefUser = chatdb.reference.child(fbUser!!.uid)
+
+        val userData : DummyTourGuideData = if (auth.currentUser != null){
+            DummyTourGuideData(
+                tgEmail = auth.currentUser!!.email.toString(),
+                tgUrl = auth.currentUser!!.photoUrl.toString(),
+                tgName = auth.currentUser!!.displayName.toString()
+            )
+        } else {
+            DummyTourGuideData(
+                tgEmail = repo.getUserLoginInfoSession().email,
+                tgUrl = repo.getUserProfileImage().toString(),
+                tgName = repo.getUserLoginInfoSession().nama
+            )
+        }
+
+        val invalidEmailUser = userData.tgEmail.toString()+"-2"
+        val validEmailUser = invalidEmailUser.replace(".","dot")
+
+        //val invalidEmailPerson = usersLogin.tgEmail.toString()+"-1"
+        //val validEmailPerson = invalidEmail.replace(".","dot")
+
+        val msgRefUser = chatdb.reference.child(validEmailUser)
             .child(MESSAGES_PERSON)
-            .child(message)
+            .child(emailPerson)
             .child(MESSAGES_CHILD)
 
-        val msgRefPerson = chatdb.reference.child(message)
+        val msgRefPerson = chatdb.reference.child(emailPerson)
             .child(MESSAGES_PERSON)
-            .child(fbUser.uid)
+            .child(validEmailUser)
             .child(MESSAGES_CHILD)
 
         val options = FirebaseRecyclerOptions.Builder<MessageData>()
@@ -77,7 +100,7 @@ class ChatFragment : Fragment() {
             .build()
 
         messagesRv.layoutManager = manager
-        chatAdapter = FbMessageAdapter(options,fbUser.displayName)
+        chatAdapter = FbMessageAdapter(options,userData.tgName)
         messagesRv.adapter = chatAdapter
 
         chatAdapter.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver(){
@@ -97,12 +120,13 @@ class ChatFragment : Fragment() {
             .load(url)
             .centerCrop()
             .into(personAvatar)
+
         binding.sendChatButton.setOnClickListener {
             val msg = MessageData(
                 binding.chatMessageEdittext.text.toString(),
-                fbUser.displayName.toString(),
-                fbUser.uid,
-                fbUser.photoUrl.toString(),
+                userData.tgName.toString(),
+                validEmailUser,
+                userData.tgUrl.toString(),
                 Date().time
             )
             msgRefUser.push().setValue(msg) { e,_ ->
@@ -128,6 +152,9 @@ class ChatFragment : Fragment() {
         _binding = null
         if (type == "chatlist")
             (activity as ChatListActivity).enableAllButton()
+        else{
+            (parentFragment as ListTourGuideFragment).isMessageButtonActive(true)
+        }
     }
 
     companion object {
