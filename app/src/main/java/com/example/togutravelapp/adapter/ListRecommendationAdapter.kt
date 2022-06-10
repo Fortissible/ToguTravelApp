@@ -41,6 +41,7 @@ class ListRecommendationAdapter(private val listRecom : List<ListWisataResponseI
         val recomLoc = holder.recomLoc
 
         recomDesc.text = listRecom[position].keterangan
+
         val format = DecimalFormat("#,###")
         val priceFormated = StringBuilder().append("Rp.").append(format.format(listRecom[position].harga))
         recomPrice.text = priceFormated.toString()

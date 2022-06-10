@@ -42,6 +42,7 @@ class RecommendationFragment : Fragment() {
     }
 
     private fun setRecommendationData(){
+
         val listRecommendationData = getRecommendationData()
         recommendarionRv.layoutManager = LinearLayoutManager(requireActivity())
         val adapter = ListRecommendationAdapter(listRecommendationData)

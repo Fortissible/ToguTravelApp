@@ -1,8 +1,10 @@
 package com.example.togutravelapp.activity.api
 
+
 import com.example.togutravelapp.data.*
 import retrofit2.Call
 import retrofit2.http.*
+
 
 interface ApiService {
     @GET("getobjek")
@@ -32,4 +34,5 @@ interface ApiService {
     fun getWisata(
         @Query("search") search: String? = null,
     ):Call<List<ListWisataResponseItem>>
+
 }
