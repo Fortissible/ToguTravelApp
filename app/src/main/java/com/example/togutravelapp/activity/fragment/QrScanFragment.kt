@@ -3,6 +3,7 @@ package com.example.togutravelapp.activity.fragment
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -51,7 +52,9 @@ class QrScanFragment : Fragment() {
     private fun codeScanner(){
         val scannerView = binding.scannerView
         codeScanner = CodeScanner(requireContext(), scannerView)
-
+        scannerView.setOnClickListener {
+            codeScanner.startPreview()
+        }
         codeScanner.apply {
             camera = CodeScanner.CAMERA_BACK
             formats = CodeScanner.ALL_FORMATS
@@ -60,7 +63,7 @@ class QrScanFragment : Fragment() {
             scanMode = ScanMode.CONTINUOUS
             isAutoFocusEnabled = true
             isFlashEnabled = false
-
+            var singleEvent = 0
             decodeCallback = DecodeCallback {
                 activity?.runOnUiThread{
                     val delimiter = "-"
@@ -68,14 +71,16 @@ class QrScanFragment : Fragment() {
                     val lokasi = text[0]
                     val id = text[1]
                     val nama = text[2]
-                    Toast.makeText(requireContext(), "Scan result : ${nama}", Toast.LENGTH_SHORT).show()
-                    val QRViewModel = ViewModelProvider(this@QrScanFragment,ViewModelProvider.NewInstanceFactory())[QRCodeViewModel::class.java]
-                    QRViewModel.getObjetWisata(lokasi)
-                    QRViewModel.objectWisata.observe(requireActivity()){ item ->
-                        item.forEach{
-                            if(id == it.id.toString()){
+                    if (singleEvent < 1 && lokasi.isNotEmpty() && lokasi != ""){
+                        Toast.makeText(requireContext(), "Object scan result : $nama", Toast.LENGTH_SHORT).show()
+                        singleEvent+=1
+                        val qrViewModel = ViewModelProvider(this@QrScanFragment,ViewModelProvider.NewInstanceFactory())[QRCodeViewModel::class.java]
+                        qrViewModel.getObjetWisata(lokasi,id)
+                        qrViewModel.objectWisata.observe(requireActivity()){ item ->
+                            if(!item.nama.isNullOrEmpty() || item.nama != ""){
                                 val intent = Intent(requireActivity(), DetailObjectActivity::class.java)
-                                intent.putExtra("result",it)
+                                Log.d("ITEM OBJEKK", "codeScanner: $item")
+                                intent.putExtra(DetailObjectActivity.EXTRA_DETAIL_OBJECT,item)
                                 startActivity(intent)
                                 requireActivity().finish()
                             }else{
@@ -84,21 +89,18 @@ class QrScanFragment : Fragment() {
                             }
                         }
                     }
-
-                }
-            }
-            codeScanner.errorCallback = ErrorCallback { // or ErrorCallback.SUPPRESS
-                activity?.runOnUiThread {
-                    Toast.makeText(requireContext(),
-                        "Camera initialization error: ${it.message}",
-                        Toast.LENGTH_LONG).show()
                 }
             }
         }
-        scannerView.setOnClickListener {
-            codeScanner.startPreview()
+        codeScanner.errorCallback = ErrorCallback { // or ErrorCallback.SUPPRESS
+            activity?.runOnUiThread {
+                Toast.makeText(requireContext(),
+                    "Camera initialization error: ${it.message}",
+                    Toast.LENGTH_LONG).show()
+            }
         }
     }
+
 
     private fun setupPermissionn(){
         val permission = ContextCompat.checkSelfPermission(requireContext(),

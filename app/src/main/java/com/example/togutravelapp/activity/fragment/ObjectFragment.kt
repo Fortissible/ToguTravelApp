@@ -12,6 +12,7 @@ import com.example.togutravelapp.R
 import com.example.togutravelapp.activity.DetailObjectActivity
 import com.example.togutravelapp.adapter.ListObjectAdapter
 import com.example.togutravelapp.data.DummyObjectData
+import com.example.togutravelapp.data.ObjectWisataResponseItem
 import com.example.togutravelapp.databinding.FragmentObjectBinding
 
 class ObjectFragment : Fragment() {
@@ -48,7 +49,12 @@ class ObjectFragment : Fragment() {
         adapter.setOnItemClickCallback(object : ListObjectAdapter.OnItemClickCallback{
             override fun onItemClicked(data: DummyObjectData) {
                 val intentToObjectDetail = Intent(requireActivity(),DetailObjectActivity::class.java)
-                intentToObjectDetail.putExtra(DetailObjectActivity.EXTRA_DETAIL_OBJECT,data)
+                val item = ObjectWisataResponseItem(
+                    urlFotoObjek = data.objectUrl,
+                    nama = data.objectTitle,
+                    deskripsi = data.objectDesc,
+                )
+                intentToObjectDetail.putExtra(DetailObjectActivity.EXTRA_DETAIL_OBJECT,item)
                 startActivity(intentToObjectDetail)
             }
         })

@@ -185,8 +185,7 @@ class LoginActivity : AppCompatActivity() {
     }
 
     private fun pushToFirebaseRealtimeDatabase(userGoogle : FirebaseUser?, usersLogin: DummyTourGuideData, pushType : Int){
-        var validEmail = ""
-        validEmail = if (pushType == 1) {
+        val validEmail: String = if (pushType == 1) {
             val invalidEmail = usersLogin.tgEmail.toString()+"-1"
             invalidEmail.replace(".","dot")
         } else {
