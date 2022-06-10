@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.togutravelapp.R
+import com.example.togutravelapp.activity.ChatListActivity
 import com.example.togutravelapp.activity.LoginActivity
 import com.example.togutravelapp.data.repository.UserRepository
 import com.example.togutravelapp.databinding.FragmentProfileBinding
@@ -22,6 +23,7 @@ class ProfileFragment : Fragment() {
     private var _binding: FragmentProfileBinding? = null
     private val binding get() = _binding!!
     private lateinit var auth : FirebaseAuth
+    private var type : String? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,6 +38,9 @@ class ProfileFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val repo = UserRepository(requireContext())
         auth = Firebase.auth
+        val bundle = arguments
+        if (bundle != null)
+            type = arguments?.getString(ChatFragment.MESSAGES_TYPE)!!
 
         if (auth.currentUser != null) {
             val name = auth.currentUser!!.displayName.toString()
@@ -64,6 +69,8 @@ class ProfileFragment : Fragment() {
 
     override fun onDestroyView() {
         super.onDestroyView()
+        if (type == "chatlist")
+            (activity as ChatListActivity).enableAllButton()
         _binding = null
     }
 

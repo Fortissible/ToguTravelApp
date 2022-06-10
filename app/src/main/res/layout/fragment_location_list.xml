@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
@@ -11,11 +11,13 @@
         android:id="@+id/map_location"
         android:background="@color/quantum_grey"
         android:name="com.google.android.gms.maps.SupportMapFragment"
+        android:layout_alignParentTop="true"
         android:layout_width="match_parent"
         android:layout_height="280dp"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:layout_alignParentTop="true"
         android:layout_height="72dp">
 
         <androidx.appcompat.widget.SearchView
@@ -50,7 +52,9 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="273dp"
+        android:layout_marginTop="-8dp"
+        android:layout_marginBottom="-8dp"
+        android:layout_below="@id/map_location"
         android:background="@drawable/rouded_search_background">
 
         <com.google.android.material.textfield.TextInputLayout
@@ -80,6 +84,7 @@
                 android:textSize="12sp"
                 android:inputType="none"
                 android:text="Harga"
+                android:gravity="center"
                 android:padding="0dp"
                 android:background="#084b83"
                 android:backgroundTint="#084b83"/>
@@ -111,6 +116,7 @@
                 android:inputType="none"
                 android:padding="0dp"
                 android:text="Jarak"
+                android:gravity="center"
                 android:textAlignment="center"
                 android:textColor="@color/white"
                 android:textSize="12sp" />
@@ -148,11 +154,12 @@
             android:layout_marginTop="8dp"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="16dp"
-            android:paddingBottom="48dp"
+            android:paddingBottom="36dp"
+            android:elevation="10dp"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/dropdown_button_container1"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
-</FrameLayout>
+</RelativeLayout>

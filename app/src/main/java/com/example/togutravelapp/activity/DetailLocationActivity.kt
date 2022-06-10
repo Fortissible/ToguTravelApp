@@ -2,29 +2,25 @@ package com.example.togutravelapp.activity
 
 import android.os.Bundle
 import android.widget.ImageView
-import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
 import com.bumptech.glide.Glide
+import com.example.togutravelapp.R
 import com.example.togutravelapp.adapter.ListImageAdapter
 import com.example.togutravelapp.adapter.SectionsPagerAdapter
-import com.example.togutravelapp.data.DummyRecommendData
 import com.example.togutravelapp.data.DummyURL
-import com.example.togutravelapp.data.ListWisataResponse
 import com.example.togutravelapp.data.ListWisataResponseItem
 import com.example.togutravelapp.databinding.ActivityDetailLocationBinding
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
+import java.text.DecimalFormat
 
 class DetailLocationActivity : AppCompatActivity() {
     private lateinit var binding : ActivityDetailLocationBinding
     private lateinit var imageRv : RecyclerView
     private lateinit var locationProfile: ImageView
-    private lateinit var locationName : TextView
-    private lateinit var locationPrice : TextView
-    private lateinit var locationLoc : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -33,8 +29,12 @@ class DetailLocationActivity : AppCompatActivity() {
         supportActionBar?.hide()
 
         val locationDetail = intent.getParcelableExtra<ListWisataResponseItem>(EXTRA_LOCATIONDETAIL) as ListWisataResponseItem
+        val locationGeodecode = intent.getStringExtra(EXTRA_GEODECODE_LOC)
+        val format = DecimalFormat("#,###")
+        val priceFormated = StringBuilder().append("Rp.").append(format.format(locationDetail.harga))
 
         val sectionsPagerAdapter = SectionsPagerAdapter(this)
+        sectionsPagerAdapter.setDataLocation(locationDetail,locationGeodecode!!)
         val viewPager: ViewPager2 = binding.locationDetailViewpager2
         viewPager.adapter = sectionsPagerAdapter
         val tabs: TabLayout = binding.locationDetailTabs
@@ -45,17 +45,16 @@ class DetailLocationActivity : AppCompatActivity() {
         locationProfile = binding.locationDetailImage
         Glide.with(this)
             .load(locationDetail.urlImage)
+            .placeholder(R.drawable.ios_android_free)
             .centerCrop()
             .into(locationProfile)
 
-        locationPrice = binding.locationDetailPrice
-        locationPrice.text = locationDetail.harga.toString()
-
-        locationLoc = binding.locationDetailAddr
-        locationLoc.text = locationDetail.lokasi
-
-        locationName = binding.locationDetailName
-        locationName.text = locationDetail.nama
+        binding.apply {
+            locationDetailName.text = locationDetail.nama ?: "Not Found"
+            locationDetailAddr.text = locationDetail.lokasi ?: "Bandung"
+            locationDetailPrice.text = priceFormated.toString()
+            locationDetailCategory.text = locationDetail.jenis
+        }
 
         imageRv = binding.locationDetailListImageRv
         imageRv.setHasFixedSize(true)
@@ -92,5 +91,6 @@ class DetailLocationActivity : AppCompatActivity() {
     companion object {
         private val TAB_TITLES = listOf("Tinjauan","Objek Wisata","Rekomendasi")
         const val EXTRA_LOCATIONDETAIL = "location_detail"
+        const val EXTRA_GEODECODE_LOC = "location_geodecode"
     }
 }
