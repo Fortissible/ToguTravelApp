@@ -9,11 +9,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.togutravelapp.R
 import com.example.togutravelapp.data.DummyRecommendData
+import com.example.togutravelapp.data.ListWisataResponse
+import com.example.togutravelapp.data.ListWisataResponseItem
 
-class ListRecommendationAdapter(private val listRecom : List<DummyRecommendData>):RecyclerView.Adapter<ListRecommendationAdapter.ListViewHolder>() {
+class ListRecommendationAdapter(private val listRecom : List<ListWisataResponseItem>):RecyclerView.Adapter<ListRecommendationAdapter.ListViewHolder>() {
     private lateinit var onItemClickCallback: OnItemClickCallback
     interface OnItemClickCallback{
-        fun onItemClicked(data:DummyRecommendData)
+        fun onItemClicked(data:ListWisataResponseItem)
     }
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
         this.onItemClickCallback = onItemClickCallback
@@ -39,13 +41,13 @@ class ListRecommendationAdapter(private val listRecom : List<DummyRecommendData>
         val recomPrice = holder.recomPrice
         val recomLoc = holder.recomLoc
 
-        recomDesc.text = listRecom[position].recomDesc
-        recomPrice.text = listRecom[position].recomPrice
-        recomTitle.text = listRecom[position].recomTitle
-        recomLoc.text = listRecom[position].recomLoc
+        recomDesc.text = listRecom[position].keterangan
+        recomPrice.text = listRecom[position].harga.toString()
+        recomTitle.text = listRecom[position].nama
+        recomLoc.text = listRecom[position].lokasi
 
         Glide.with(holder.itemView)
-            .load(listRecom[position].recomUrl)
+            .load(listRecom[position].urlImage)
             .centerCrop()
             .into(recomImg)
 

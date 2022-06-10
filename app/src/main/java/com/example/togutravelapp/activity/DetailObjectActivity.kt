@@ -132,7 +132,7 @@ class DetailObjectActivity : AppCompatActivity(), OnMapReadyCallback{
         val mMapsFragment = mFragmentManager.findFragmentById(R.id.obj_location) as SupportMapFragment
         mMapsFragment.getMapAsync(this)
         
-        setupData(objectDetail)
+        setupData()
     }
     override fun onMapReady(googleMap: GoogleMap) {
         val result = intent.getParcelableExtra<ObjectWisataResponseItem>("result")

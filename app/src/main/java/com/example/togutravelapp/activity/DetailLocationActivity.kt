@@ -12,6 +12,8 @@ import com.example.togutravelapp.adapter.ListImageAdapter
 import com.example.togutravelapp.adapter.SectionsPagerAdapter
 import com.example.togutravelapp.data.DummyRecommendData
 import com.example.togutravelapp.data.DummyURL
+import com.example.togutravelapp.data.ListWisataResponse
+import com.example.togutravelapp.data.ListWisataResponseItem
 import com.example.togutravelapp.databinding.ActivityDetailLocationBinding
 import com.google.android.material.tabs.TabLayout
 import com.google.android.material.tabs.TabLayoutMediator
@@ -30,7 +32,7 @@ class DetailLocationActivity : AppCompatActivity() {
         setContentView(binding.root)
         supportActionBar?.hide()
 
-        val locationDetail = intent.getParcelableExtra<DummyRecommendData>(EXTRA_LOCATIONDETAIL) as DummyRecommendData
+        val locationDetail = intent.getParcelableExtra<ListWisataResponseItem>(EXTRA_LOCATIONDETAIL) as ListWisataResponseItem
 
         val sectionsPagerAdapter = SectionsPagerAdapter(this)
         val viewPager: ViewPager2 = binding.locationDetailViewpager2
@@ -42,18 +44,18 @@ class DetailLocationActivity : AppCompatActivity() {
 
         locationProfile = binding.locationDetailImage
         Glide.with(this)
-            .load(locationDetail.recomUrl.toString())
+            .load(locationDetail.urlImage)
             .centerCrop()
             .into(locationProfile)
 
         locationPrice = binding.locationDetailPrice
-        locationPrice.text = locationDetail.recomPrice.toString()
+        locationPrice.text = locationDetail.harga.toString()
 
         locationLoc = binding.locationDetailAddr
-        locationLoc.text = locationDetail.recomLoc.toString()
+        locationLoc.text = locationDetail.lokasi
 
         locationName = binding.locationDetailName
-        locationName.text = locationDetail.recomTitle.toString()
+        locationName.text = locationDetail.nama
 
         imageRv = binding.locationDetailListImageRv
         imageRv.setHasFixedSize(true)
