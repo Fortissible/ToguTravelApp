@@ -20,6 +20,17 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
+            <ProgressBar
+                android:id="@+id/progress_bar_register"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:visibility="gone"
+                tools:visibility="visible"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"/>
+
             <TextView
                 android:id="@+id/titleTextView"
                 android:layout_width="0dp"
@@ -37,6 +48,25 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/add_photo_profile"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="16dp"
+                android:src="@drawable/propict"
+                app:layout_constraintStart_toStartOf="@id/titleTextView"
+                app:layout_constraintTop_toBottomOf="@id/titleTextView"
+                tools:src="@drawable/propict"/>
+
+            <ImageView
+                android:layout_width="25dp"
+                android:layout_height="25dp"
+                android:src="@drawable/ic_baseline_camera_alt_24"
+                android:padding="4dp"
+                android:background="@drawable/background_shape_circle"
+                app:layout_constraintEnd_toEndOf="@id/add_photo_profile"
+                app:layout_constraintBottom_toBottomOf="@id/add_photo_profile"/>
+
             <TextView
                 android:id="@+id/nameTextView"
                 android:layout_width="wrap_content"
@@ -46,8 +76,8 @@
                 android:fontFamily="@font/poppins_regular"
                 android:text="@string/name"
                 android:textColor="@color/black"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/titleTextView" />
+                app:layout_constraintStart_toEndOf="@id/add_photo_profile"
+                app:layout_constraintTop_toTopOf="@+id/add_photo_profile" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/nameEditTextLayout"
@@ -56,19 +86,58 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginEnd="32dp"
+                app:boxStrokeColor="#084B83"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toEndOf="@id/add_photo_profile"
                 app:layout_constraintTop_toBottomOf="@+id/nameTextView"
                 app:startIconDrawable="@drawable/ic_baseline_person_24">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/nameEditText"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:ems="10"
+                    android:textColor="#084b83"
                     android:inputType="text"
                     app:passwordToggleEnabled="true"
                     tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView
+                android:id="@+id/usernameTextView"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="@string/username"
+                android:textColor="@color/black"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/add_photo_profile" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/usernameEditTextLayout"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="32dp"
+                android:layout_marginEnd="32dp"
+                app:boxStrokeColor="#084B83"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/usernameTextView"
+                app:startIconDrawable="@drawable/ic_baseline_person_24">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/usernameEditText"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:ems="10"
+                    android:textColor="#084b83"
+                    android:inputType="textEmailAddress"
+                    tools:ignore="SpeakableTextPresentCheck" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -81,7 +150,7 @@
                 android:text="@string/email"
                 android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/nameEditTextLayout" />
+                app:layout_constraintTop_toBottomOf="@+id/usernameEditTextLayout" />
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/emailEditTextLayout"
@@ -90,6 +159,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginEnd="32dp"
+                app:boxStrokeColor="#084B83"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/emailTextView"
@@ -98,10 +168,12 @@
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/emailEditText"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:ems="10"
+                    android:textColor="#084b83"
                     android:inputType="textEmailAddress"
                     tools:ignore="SpeakableTextPresentCheck" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -123,6 +195,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginEnd="32dp"
+                app:boxStrokeColor="#084B83"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/passwordTextView"
@@ -130,10 +203,11 @@
                 app:startIconDrawable="@drawable/ic_baseline_lock_24">
 
                 <com.example.togutravelapp.data.CustomPassword
-                    android:id="@+id/PasswordEditText"
+                    android:id="@+id/passwordEditText"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:ems="10"
+                    android:textColor="#084b83"
                     android:inputType="textPassword" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -145,6 +219,7 @@
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
                 android:text="@string/konfirmasi"
+                android:fontFamily="@font/poppins_regular"
                 android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/passwordEditTextLayout" />
@@ -156,6 +231,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginEnd="32dp"
+                app:boxStrokeColor="#084B83"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/confirmPassword"
@@ -167,6 +243,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:ems="10"
+                    android:textColor="#084b83"
                     android:inputType="textPassword" />
 
             </com.google.android.material.textfield.TextInputLayout>
@@ -185,24 +262,31 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/genderEditTextLayout"
-                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
+                style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense.ExposedDropdownMenu"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_marginStart="32dp"
                 android:layout_marginEnd="32dp"
-                app:layout_constraintEnd_toEndOf="parent"
+                android:textColorHint="#084B83"
+                android:backgroundTint="@color/white"
+                app:endIconTint="@color/white"
+                app:boxBackgroundColor="@color/white"
+                app:boxStrokeColor="#084B83"
+                app:hintTextColor="#084B83"
+                app:placeholderTextColor="#084B83"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/genderTextView"
                 app:startIconDrawable="@drawable/ic_baseline_male_24">
 
-                <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/genderEditText"
+                <AutoCompleteTextView
+                    android:id="@+id/genderSelect"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:ems="10"
-                    android:inputType="text"
-                    app:passwordToggleEnabled="true"
-                    tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
+                    android:inputType="none"
+                    android:padding="0dp"
+                    android:textAlignment="center"
+                    android:textColor="#084b83" />
+
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -211,6 +295,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginTop="8dp"
+                android:fontFamily="@font/poppins_regular"
                 android:text="@string/telp"
                 android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="parent"
@@ -223,6 +308,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="32dp"
                 android:layout_marginEnd="32dp"
+                app:boxStrokeColor="#084B83"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/telpTextView"
@@ -233,11 +319,11 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:ems="10"
-                    android:inputType="text"
+                    android:inputType="phone"
+                    android:textColor="#084b83"
                     app:passwordToggleEnabled="true"
                     tools:ignore="SpeakableTextPresentCheck,SpeakableTextPresentCheck" />
             </com.google.android.material.textfield.TextInputLayout>
-
 
             <Button
                 android:id="@+id/signupButton"

@@ -48,6 +48,7 @@
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/poppins_regular"
                 android:textSize="12sp"
+                android:maxLines="3"
                 android:textColor="@color/black"
                 android:text="@string/lorem_ipsum_medium"
                 android:layout_marginStart="116dp"
