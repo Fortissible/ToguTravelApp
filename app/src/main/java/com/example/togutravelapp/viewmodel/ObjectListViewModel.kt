@@ -1,6 +1,6 @@
 package com.example.togutravelapp.viewmodel
 
-import android.content.ContentValues.TAG
+import android.content.ContentValues
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
@@ -11,29 +11,27 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class QRCodeViewModel:ViewModel() {
+class ObjectListViewModel:ViewModel() {
+    private val _objectWisata = MutableLiveData<List<ObjectWisataResponseItem>>()
+    val objectWisata: LiveData<List<ObjectWisataResponseItem>> = _objectWisata
 
-    private val _objectWisata = MutableLiveData<ObjectWisataResponseItem>()
-    val objectWisata: LiveData<ObjectWisataResponseItem> = _objectWisata
-
-    fun getObjetWisata(search: String, id: String){
-        val client = ApiConfig.getApiService().getObjek(search)
-        client.enqueue(object : Callback<List<ObjectWisataResponseItem>>{
+    fun getObjetWisata(){
+        val client = ApiConfig.getApiService().getObjek("museum")
+        client.enqueue(object : Callback<List<ObjectWisataResponseItem>> {
             override fun onResponse(
                 call: Call<List<ObjectWisataResponseItem>>,
                 response: Response<List<ObjectWisataResponseItem>>
             ) {
                 if (response.isSuccessful){
-                    _objectWisata.value = response.body()!![id.toInt()-1]
+                    _objectWisata.value = response.body()
                 }else{
-                    Log.d(TAG,"Error: ${response.message()}")
+                    Log.d(ContentValues.TAG,"Error: ${response.message()}")
                 }
             }
 
             override fun onFailure(call: Call<List<ObjectWisataResponseItem>>, t: Throwable) {
-                Log.d(TAG,"onFailure: ${t.message.toString()}")
+                Log.d(ContentValues.TAG,"onFailure: ${t.message.toString()}")
             }
         })
     }
-
 }

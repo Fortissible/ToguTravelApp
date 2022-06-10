@@ -33,6 +33,7 @@ class DetailLocationActivity : AppCompatActivity() {
         val format = DecimalFormat("#,###")
         val priceFormated = StringBuilder().append("Rp.").append(format.format(locationDetail.harga))
 
+
         val sectionsPagerAdapter = SectionsPagerAdapter(this)
         sectionsPagerAdapter.setDataLocation(locationDetail,locationGeodecode!!)
         val viewPager: ViewPager2 = binding.locationDetailViewpager2
@@ -45,6 +46,7 @@ class DetailLocationActivity : AppCompatActivity() {
         locationProfile = binding.locationDetailImage
         Glide.with(this)
             .load(locationDetail.urlImage)
+
             .placeholder(R.drawable.ios_android_free)
             .centerCrop()
             .into(locationProfile)

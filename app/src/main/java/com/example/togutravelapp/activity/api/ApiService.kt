@@ -1,14 +1,16 @@
 package com.example.togutravelapp.activity.api
 
+
 import com.example.togutravelapp.data.*
 import retrofit2.Call
 import retrofit2.http.*
+
 
 interface ApiService {
     @GET("getobjek")
     fun getObjek(
         @Query("search") search: String,
-    ): Call<List<ObjectWisataResponseItem?>?>
+    ): Call<List<ObjectWisataResponseItem>>
 
     @Headers("Content-Type: application/json")
     @POST("register")
@@ -32,4 +34,5 @@ interface ApiService {
     fun getWisata(
         @Query("search") search: String? = null,
     ):Call<List<ListWisataResponseItem>>
+
 }
