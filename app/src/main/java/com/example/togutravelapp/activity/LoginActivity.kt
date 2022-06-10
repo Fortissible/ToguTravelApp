@@ -51,7 +51,6 @@ class LoginActivity : AppCompatActivity() {
         binding = ActivityLoginBinding.inflate(layoutInflater)
         setContentView(binding.root)
         supportActionBar?.hide()
-
         // Configure Google Sign In
         val gso = GoogleSignInOptions
             .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -228,7 +227,6 @@ class LoginActivity : AppCompatActivity() {
         else {
             loginViewModel.getUserTokenSession()
         }
-
     }
 
     companion object {
