@@ -1,25 +1,31 @@
-package com.example.androidintermediate_sub1_wildanfajrialfarabi.ui
+package com.example.togutravelapp.viewmodel
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.togutravelapp.viewmodel.ChatListViewModel
+import com.example.togutravelapp.data.repository.UserRepository
+import com.example.togutravelapp.di.Injection
 
 @Suppress("UNCHECKED_CAST")
-class ViewModelFactory private constructor(): ViewModelProvider.NewInstanceFactory() {
+class ViewModelFactory private constructor(
+    private val userRepository: UserRepository
+): ViewModelProvider.NewInstanceFactory() {
 
-    override fun <T : ViewModel> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(ChatListViewModel::class.java)){
-            return ChatListViewModel() as T
-        }
-        throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
-    }
+    override fun <T : ViewModel> create(modelClass: Class<T>): T = when (modelClass){
+            ChatListViewModel::class.java -> ChatListViewModel()
+            LoginRegisterViewModel::class.java -> LoginRegisterViewModel(userRepository)
+            else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
+        } as T
+
 
     companion object {
         @Volatile
-        private var instance : ViewModelFactory ?= null
-        fun getInstance(): ViewModelFactory=
-            instance?: synchronized(this){
-                instance?: ViewModelFactory()
+        private var instance : ViewModelFactory?= null
+        fun getInstance(context: Context): ViewModelFactory =
+            instance ?: synchronized(this){
+                instance ?: ViewModelFactory(
+                    Injection.provideUserRepository(context = context)
+                )
             }.also { instance = it}
     }
 }

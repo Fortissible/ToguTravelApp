@@ -1,6 +1,7 @@
 package com.example.togutravelapp.activity.fragment
 
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.example.togutravelapp.R
 import com.example.togutravelapp.activity.LoginActivity
+import com.example.togutravelapp.data.repository.UserRepository
 import com.example.togutravelapp.databinding.FragmentProfileBinding
 import com.google.android.gms.auth.api.signin.GoogleSignIn
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions
@@ -32,31 +34,31 @@ class ProfileFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-
+        val repo = UserRepository(requireContext())
         auth = Firebase.auth
 
-        val name = auth.currentUser!!.displayName.toString()
-        val urlProfile = auth.currentUser!!.photoUrl
-        val email = auth.currentUser!!.email
-
-        binding.nameProfile.text = name
-        binding.emailProfile.text = email
-
-        Glide.with(this)
-            .load(urlProfile)
-            .placeholder(R.drawable.ic_baseline_person_24)
-            .centerCrop()
-            .into(binding.chatAva)
+        if (auth.currentUser != null) {
+            val name = auth.currentUser!!.displayName.toString()
+            val urlProfile = auth.currentUser!!.photoUrl
+            val email = auth.currentUser!!.email
+            setView(name, urlProfile!! , email!!)
+        } else {
+            val infoSession = repo.getUserLoginInfoSession()
+            val name = infoSession.nama.toString()
+            val urlProfile = repo.getUserProfileImage()
+            val email = infoSession.email.toString()
+            setView(name, urlProfile , email)
+        }
 
         val firebaseUser = auth.currentUser
-        if (firebaseUser == null) {
+        if (firebaseUser == null && repo.getUserTokenSession() == "") {
             // Not signed in, launch the Login activity
             startActivity(Intent(requireContext(), LoginActivity::class.java))
             return
         }
 
         binding.buttonLogout.setOnClickListener {
-            signOut()
+            signOut(repo)
         }
     }
 
@@ -65,15 +67,29 @@ class ProfileFragment : Fragment() {
         _binding = null
     }
 
-    private fun signOut(){
-        auth.signOut()
-        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-            .requestIdToken("628388227660-f6smkp93dr5bn1ud9bh0neh58nn9n12h.apps.googleusercontent.com")
-            .requestEmail()
-            .build()
+    private fun signOut(repo : UserRepository){
+        if (auth.currentUser != null) {
+            auth.signOut()
+            val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+                .requestIdToken("628388227660-f6smkp93dr5bn1ud9bh0neh58nn9n12h.apps.googleusercontent.com")
+                .requestEmail()
+                .build()
 
-        val googleSignInClient = GoogleSignIn.getClient(requireContext(), gso)
-        googleSignInClient.signOut()
+            val googleSignInClient = GoogleSignIn.getClient(requireContext(), gso)
+            googleSignInClient.signOut()
+        } else {
+            repo.clearInfoSession()
+        }
         startActivity(Intent(requireContext(), LoginActivity::class.java))
+    }
+
+    private fun setView(name : String, photoUrl: Uri, email: String){
+        binding.nameProfile.text = name
+        binding.emailProfile.text = email
+        Glide.with(this)
+            .load(photoUrl)
+            .placeholder(R.drawable.ic_baseline_person_24)
+            .centerCrop()
+            .into(binding.chatAva)
     }
 }

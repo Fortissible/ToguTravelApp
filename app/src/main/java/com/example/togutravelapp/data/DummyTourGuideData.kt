@@ -7,6 +7,7 @@ import kotlinx.parcelize.Parcelize
 data class DummyTourGuideData(
     val tgUrl: String? = null,
     val tgName: String? = null,
+    val tgEmail: String? = null,
     val tgGender: String? = null,
     val tgRating: String? = null,
     val tgPrice: String? = null,
