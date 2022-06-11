@@ -46,13 +46,15 @@ class ProfileFragment : Fragment() {
             val name = auth.currentUser!!.displayName.toString()
             val urlProfile = auth.currentUser!!.photoUrl
             val email = auth.currentUser!!.email
-            setView(name, urlProfile!! , email!!)
+            val tlp = ""
+            setView(name, urlProfile!! , email!!, tlp)
         } else {
             val infoSession = repo.getUserLoginInfoSession()
             val name = infoSession.nama.toString()
             val urlProfile = repo.getUserProfileImage()
             val email = infoSession.email.toString()
-            setView(name, urlProfile , email)
+            val tlp = infoSession.notelp
+            setView(name, urlProfile , email, tlp)
         }
 
         val firebaseUser = auth.currentUser
@@ -86,9 +88,10 @@ class ProfileFragment : Fragment() {
         startActivity(Intent(requireContext(), LoginActivity::class.java))
     }
 
-    private fun setView(name : String, photoUrl: Uri, email: String){
+    private fun setView(name : String, photoUrl: Uri, email: String,tlp : String?){
         binding.nameProfile.text = name
         binding.emailProfile.text = email
+        binding.tvTlp.text = tlp
         Glide.with(this)
             .load(photoUrl)
             .placeholder(R.drawable.propict)
