@@ -24,6 +24,7 @@ class QrScanFragment : Fragment() {
     private var _binding : FragmentQrScanBinding? = null
     private val binding get() = _binding!!
     private lateinit var codeScanner: CodeScanner
+    private var singleEvent = 0
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,6 +47,7 @@ class QrScanFragment : Fragment() {
 
     override fun onResume() {
         super.onResume()
+        singleEvent = 0
         codeScanner.startPreview()
     }
 
@@ -63,7 +65,6 @@ class QrScanFragment : Fragment() {
             scanMode = ScanMode.CONTINUOUS
             isAutoFocusEnabled = true
             isFlashEnabled = false
-            var singleEvent = 0
             decodeCallback = DecodeCallback {
                 activity?.runOnUiThread{
                     val delimiter = "-"
@@ -81,8 +82,8 @@ class QrScanFragment : Fragment() {
                                 val intent = Intent(requireActivity(), DetailObjectActivity::class.java)
                                 Log.d("ITEM OBJEKK", "codeScanner: $item")
                                 intent.putExtra(DetailObjectActivity.EXTRA_DETAIL_OBJECT,item)
+                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
                                 startActivity(intent)
-                                requireActivity().finish()
                             }else{
                                 val scanningPros : TextView = binding.scanning
                                 scanningPros.text = getString(R.string.scanningPros)
@@ -129,6 +130,11 @@ class QrScanFragment : Fragment() {
                 }
             }
         }
+    }
+
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
     }
 
     companion object {
