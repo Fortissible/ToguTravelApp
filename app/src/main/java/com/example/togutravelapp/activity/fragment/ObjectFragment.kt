@@ -58,12 +58,7 @@ class ObjectFragment : Fragment() {
         adapter.setOnItemClickCallback(object : ListObjectAdapter.OnItemClickCallback{
             override fun onItemClicked(data: ObjectWisataResponseItem) {
                 val intentToObjectDetail = Intent(requireActivity(),DetailObjectActivity::class.java)
-                val item = ObjectWisataResponseItem(
-                    urlFotoObjek = data.objectUrl,
-                    nama = data.objectTitle,
-                    deskripsi = data.objectDesc,
-                )
-                intentToObjectDetail.putExtra(DetailObjectActivity.EXTRA_DETAIL_OBJECT,item)
+                intentToObjectDetail.putExtra(DetailObjectActivity.EXTRA_DETAIL_OBJECT,data)
                 startActivity(intentToObjectDetail)
             }
         })

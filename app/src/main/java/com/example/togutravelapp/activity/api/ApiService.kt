@@ -35,4 +35,8 @@ interface ApiService {
         @Query("search") search: String? = null,
     ):Call<List<ListWisataResponseItem>>
 
+    @GET("findtourguide")
+    fun findTourGuide(
+        @Query("search") search: String? = null,
+    ):Call<List<TourguideItem>?>
 }

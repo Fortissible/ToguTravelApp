@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.example.togutravelapp.R
 import com.example.togutravelapp.activity.ChatListActivity
 import com.example.togutravelapp.adapter.FbMessageAdapter
 import com.example.togutravelapp.data.DummyTourGuideData
@@ -59,40 +60,44 @@ class ChatFragment : Fragment() {
         personAvatar = binding.chatAva
         personName = binding.chatName
 
+        // DATA TOUR GUIDE
         val bundle = arguments
         val emailPerson = bundle!!.getString(MESSAGES_PERSON)!!
-        val name = bundle.getString(MESSAGES_NAME)!!
-        val url = bundle.getString(MESSAGES_URL)!!
+        val namePerson = bundle.getString(MESSAGES_NAME)!!
+        val urlImagePerson = bundle.getString(MESSAGES_URL)!!
         type = bundle.getString(MESSAGES_TYPE)!!
 
+        // DATA USER
+        val validEmailUser: String
         val userData : DummyTourGuideData = if (auth.currentUser != null){
+            validEmailUser = (auth.currentUser!!.email.toString()+"-2").replace(".","dot")
             DummyTourGuideData(
-                tgEmail = auth.currentUser!!.email.toString(),
+                tgEmail = validEmailUser,
                 tgUrl = auth.currentUser!!.photoUrl.toString(),
                 tgName = auth.currentUser!!.displayName.toString()
             )
         } else {
+            validEmailUser = (repo.getUserLoginInfoSession().email.toString()+"-1").replace(".","dot")
             DummyTourGuideData(
-                tgEmail = repo.getUserLoginInfoSession().email,
+                tgEmail = validEmailUser,
                 tgUrl = repo.getUserProfileImage().toString(),
                 tgName = repo.getUserLoginInfoSession().nama
             )
         }
 
-        val invalidEmailUser = userData.tgEmail.toString()+"-2"
-        val validEmailUser = invalidEmailUser.replace(".","dot")
-
         //val invalidEmailPerson = usersLogin.tgEmail.toString()+"-1"
         //val validEmailPerson = invalidEmail.replace(".","dot")
 
-        val msgRefUser = chatdb.reference.child(validEmailUser)
+        // msg Reference User -> input msg ke db si user
+        val msgRefUser = chatdb.reference.child(userData.tgEmail.toString())
             .child(MESSAGES_PERSON)
             .child(emailPerson)
             .child(MESSAGES_CHILD)
 
+        // msg Reference TG -> input ke db si TG
         val msgRefPerson = chatdb.reference.child(emailPerson)
             .child(MESSAGES_PERSON)
-            .child(validEmailUser)
+            .child(userData.tgEmail.toString())
             .child(MESSAGES_CHILD)
 
         val options = FirebaseRecyclerOptions.Builder<MessageData>()
@@ -115,9 +120,10 @@ class ChatFragment : Fragment() {
             }
         })
 
-        personName.text = name
+        personName.text = namePerson
         Glide.with(this)
-            .load(url)
+            .load(urlImagePerson)
+            .placeholder(R.drawable.propict)
             .centerCrop()
             .into(personAvatar)
 
@@ -125,14 +131,16 @@ class ChatFragment : Fragment() {
             val msg = MessageData(
                 binding.chatMessageEdittext.text.toString(),
                 userData.tgName.toString(),
-                validEmailUser,
+                userData.tgEmail.toString(),
                 userData.tgUrl.toString(),
                 Date().time
             )
-            msgRefUser.push().setValue(msg) { e,_ ->
-                if (e != null) Toast.makeText(requireContext(), "error sending message" + e.message, Toast.LENGTH_SHORT).show()
+            if (binding.chatMessageEdittext.text.toString().isNotBlank()) {
+                msgRefUser.push().setValue(msg) { e,_ ->
+                    if (e != null) Toast.makeText(requireContext(), "error sending message" + e.message, Toast.LENGTH_SHORT).show()
+                }
+                msgRefPerson.push().setValue(msg)
             }
-            msgRefPerson.push().setValue(msg)
             binding.chatMessageEdittext.setText("")
         }
     }

@@ -7,13 +7,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.togutravelapp.R
-import com.example.togutravelapp.data.DummyTourGuideData
+import com.example.togutravelapp.data.TourguideItem
 import de.hdodenhof.circleimageview.CircleImageView
 
-class ListTourGuideAdapter(private val listTogu: List<DummyTourGuideData>) :RecyclerView.Adapter<ListTourGuideAdapter.ListViewHolder>() {
+class ListTourGuideAdapter(private val listTogu: List<TourguideItem>) :RecyclerView.Adapter<ListTourGuideAdapter.ListViewHolder>() {
     private lateinit var onItemClickCallback: OnItemClickCallback
     interface OnItemClickCallback{
-        fun onItemClicked(data:DummyTourGuideData)
+        fun onItemClicked(data:TourguideItem)
     }
     fun setOnItemClickCallback(onItemClickCallback: OnItemClickCallback) {
         this.onItemClickCallback = onItemClickCallback
@@ -37,14 +37,24 @@ class ListTourGuideAdapter(private val listTogu: List<DummyTourGuideData>) :Recy
         val tgGender = holder.tgGender
         val tgRating = holder.tgRating
         val tgPrice = holder.tgPrice
+        var price = 0
+        var rating = 0
 
-        tgName.text = listTogu[position].tgName
-        tgGender.text = listTogu[position].tgGender
-        tgRating.text = listTogu[position].tgRating
-        tgPrice.text = listTogu[position].tgPrice
+        if (listTogu[position].rating == null) {
+            rating = 0
+        }
+        if (listTogu[position].harga == null || listTogu[position].harga == 0) {
+            price = 15000
+        }
+
+        tgName.text = listTogu[position].nama
+        tgGender.text = listTogu[position].gender
+        tgRating.text = rating.toString()
+        tgPrice.text = price.toString()
 
         Glide.with(holder.itemView)
-            .load(listTogu[position].tgUrl)
+            .load(listTogu[position].urlImage)
+            .placeholder(R.drawable.propict)
             .centerCrop()
             .into(tgImg)
 

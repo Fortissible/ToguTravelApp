@@ -16,6 +16,7 @@ class ViewModelFactory private constructor(
             LoginRegisterViewModel::class.java -> LoginRegisterViewModel(userRepository)
             LocationListViewModel::class.java -> LocationListViewModel()
             ObjectListViewModel::class.java -> ObjectListViewModel()
+            TourGuidesViewModel::class.java -> TourGuidesViewModel()
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         } as T
 

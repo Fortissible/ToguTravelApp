@@ -91,14 +91,14 @@ class LoginActivity : AppCompatActivity() {
 
         loginViewModel.tokenSession.observe(this){
             Log.d(TAG, "UPDATE UI FROM API ACCOUNT OBSERVED")
-            updateUIWithAPIAccount(it)
             val repo = UserRepository(this)
+            updateUIWithAPIAccount(it)
             val usersLogin = DummyTourGuideData(
                 tgName = repo.getUserLoginInfoSession().nama,
                 tgUrl = repo.getUserProfileImage().toString(),
                 tgEmail = repo.getUserLoginInfoSession().email
             )
-            if (!it.isNullOrEmpty() && it != "")
+            if (!it.isNullOrEmpty() || it.toString() != "")
                 pushToFirebaseRealtimeDatabase(null, usersLogin, pushType = 1)
         }
     }
@@ -179,7 +179,7 @@ class LoginActivity : AppCompatActivity() {
             startActivity(intent)
             finish()
         } else {
-            Log.d(TAG, "TOKEN IS NULL")
+            Log.d(TAG, "EMAIL IS NULL")
         }
     }
 
