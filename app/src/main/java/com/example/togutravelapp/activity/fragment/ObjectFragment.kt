@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,6 +23,7 @@ class ObjectFragment : Fragment() {
     private var _binding: FragmentObjectBinding? = null
     private val binding get() = _binding!!
     private lateinit var objectRv : RecyclerView
+    private lateinit var progressBar : ProgressBar
     private val listObjectViewModel : ObjectListViewModel by viewModels {
         ViewModelFactory.getInstance(requireContext())
     }
@@ -40,6 +42,11 @@ class ObjectFragment : Fragment() {
         objectRv = binding.locationDetailObjectRv
         objectRv.setHasFixedSize(true)
 
+        progressBar = binding.loadingListobject
+        listObjectViewModel.loadingScreen.observe(requireActivity()){
+            if (it == true) progressBar.visibility = View.VISIBLE
+            else progressBar.visibility = View.INVISIBLE
+        }
         listObjectViewModel.getObjetWisata()
         listObjectViewModel.objectWisata.observe(requireActivity()){
             setObjectData(it)

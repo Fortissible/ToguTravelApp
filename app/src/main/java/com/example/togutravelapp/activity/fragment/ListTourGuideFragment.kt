@@ -2,11 +2,16 @@ package com.example.togutravelapp.activity.fragment
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.drawable.BitmapDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.appcompat.widget.SearchView
+import androidx.core.content.ContextCompat
+import androidx.core.graphics.drawable.toBitmap
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
@@ -33,6 +38,7 @@ class ListTourGuideFragment : Fragment() {
     private lateinit var profile : CircleImageView
     private lateinit var searchBar : SearchView
     private lateinit var auth : FirebaseAuth
+    private lateinit var progressBar : ProgressBar
     private lateinit var msgButton : FloatingActionButton
     private val tourGuidesViewModel : TourGuidesViewModel by viewModels {
         ViewModelFactory.getInstance(requireContext())
@@ -57,6 +63,12 @@ class ListTourGuideFragment : Fragment() {
         } else {
             val imageUri = repo.getUserProfileImage().toString()
             setUserProfileImage(imageUri)
+        }
+
+        progressBar = binding.loadingListTogu
+        tourGuidesViewModel.loadingScreen.observe(requireActivity()){
+            if (it == true) progressBar.visibility = View.VISIBLE
+            else progressBar.visibility = View.INVISIBLE
         }
 
         msgButton = binding.chatListButton
@@ -100,6 +112,7 @@ class ListTourGuideFragment : Fragment() {
         super.onDestroyView()
         _binding = null
     }
+
 
     @Suppress("DEPRECATION")
     @SuppressLint("UseCompatLoadingForDrawables")

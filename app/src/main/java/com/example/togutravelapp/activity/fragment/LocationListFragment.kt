@@ -10,6 +10,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
 import android.widget.ImageView
+import android.widget.ProgressBar
 
 import android.widget.Toast
 import androidx.appcompat.widget.SearchView
@@ -45,6 +46,7 @@ class LocationListFragment : Fragment(), OnMapReadyCallback {
     private val binding get() = _binding!!
     private lateinit var locationRv : RecyclerView
     private lateinit var profilePic : ImageView
+    private lateinit var progressBar : ProgressBar
     private lateinit var locationSearch : SearchView
     private lateinit var mMap: GoogleMap
     private lateinit var auth : FirebaseAuth
@@ -108,6 +110,12 @@ class LocationListFragment : Fragment(), OnMapReadyCallback {
                     .addToBackStack(null)
                     .commit()
             }
+        }
+
+        progressBar = binding.loadingListLocation
+        locationListViewModel.loadingScreen.observe(requireActivity()){
+            if (it == true) progressBar.visibility = View.VISIBLE
+            else progressBar.visibility = View.INVISIBLE
         }
 
         val listWisata = mutableListOf<ListWisataResponseItem>()
