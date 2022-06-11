@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ProgressBar
 import androidx.appcompat.widget.SearchView
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.drawable.toBitmap
@@ -36,6 +37,7 @@ class ListTourGuideFragment : Fragment() {
     private lateinit var profile : CircleImageView
     private lateinit var searchBar : SearchView
     private lateinit var auth : FirebaseAuth
+    private lateinit var progressBar : ProgressBar
     private lateinit var msgButton : FloatingActionButton
     private val tourGuidesViewModel : TourGuidesViewModel by viewModels {
         ViewModelFactory.getInstance(requireContext())
@@ -60,6 +62,12 @@ class ListTourGuideFragment : Fragment() {
         } else {
             val imageUri = repo.getUserProfileImage().toString()
             setUserProfileImage(imageUri)
+        }
+
+        progressBar = binding.loadingListTogu
+        tourGuidesViewModel.loadingScreen.observe(requireActivity()){
+            if (it == true) progressBar.visibility = View.VISIBLE
+            else progressBar.visibility = View.INVISIBLE
         }
 
         msgButton = binding.chatListButton

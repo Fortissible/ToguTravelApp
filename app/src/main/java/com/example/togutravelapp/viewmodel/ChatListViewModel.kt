@@ -16,6 +16,7 @@ class ChatListViewModel: ViewModel(){
     val loadingScreen : LiveData<Boolean> = _loadingScreen
     val userData : LiveData<MutableList<MessageData>> = _userData
 
+
     fun getChatListFromFbDb(email : String, fbDatabase: FirebaseDatabase){
         _loadingScreen.value = true
         fbDatabase.reference.child(email).child("users").get().addOnCompleteListener {
