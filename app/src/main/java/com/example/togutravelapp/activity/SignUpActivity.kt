@@ -122,7 +122,8 @@ class SignUpActivity : AppCompatActivity() {
             notelp = telpEditText.text.toString(),
             email = emailEditText.text.toString(),
             password = passEditText.text.toString(),
-            role = "user"
+            role = "user",
+            gender =  genderSelected.text.toString().lowercase()
         )
         val storageFB = FirebaseStorage.getInstance().getReference("profile_images/$filename")
         if (imageUri != null)

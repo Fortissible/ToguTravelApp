@@ -75,18 +75,14 @@ class ProfileFragment : Fragment() {
     }
 
     private fun signOut(repo : UserRepository){
-        if (auth.currentUser != null) {
-            auth.signOut()
-            val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-                .requestIdToken("628388227660-f6smkp93dr5bn1ud9bh0neh58nn9n12h.apps.googleusercontent.com")
-                .requestEmail()
-                .build()
-
-            val googleSignInClient = GoogleSignIn.getClient(requireContext(), gso)
-            googleSignInClient.signOut()
-        } else {
-            repo.clearInfoSession()
-        }
+        auth.signOut()
+        val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+            .requestIdToken("628388227660-f6smkp93dr5bn1ud9bh0neh58nn9n12h.apps.googleusercontent.com")
+            .requestEmail()
+            .build()
+        val googleSignInClient = GoogleSignIn.getClient(requireContext(), gso)
+        googleSignInClient.signOut()
+        repo.clearInfoSession()
         startActivity(Intent(requireContext(), LoginActivity::class.java))
     }
 
@@ -95,7 +91,7 @@ class ProfileFragment : Fragment() {
         binding.emailProfile.text = email
         Glide.with(this)
             .load(photoUrl)
-            .placeholder(R.drawable.ic_baseline_person_24)
+            .placeholder(R.drawable.propict)
             .centerCrop()
             .into(binding.chatAva)
     }

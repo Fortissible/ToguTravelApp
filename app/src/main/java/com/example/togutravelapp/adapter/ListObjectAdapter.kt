@@ -39,6 +39,7 @@ class ListObjectAdapter(private val listObject: List<ObjectWisataResponseItem>):
         objectTitle.text = listObject[position].nama
         Glide.with(holder.itemView)
             .load(listObject[position].urlFotoObjek)
+            .placeholder(R.drawable.ios_android_free)
             .centerCrop()
             .into(objectPic)
 
