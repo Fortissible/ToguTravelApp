@@ -70,25 +70,30 @@ class QrScanFragment : Fragment() {
                     val delimiter = "-"
                     val text = it.text.split(delimiter)
                     val lokasi = text[0]
-                    val id = text[1]
-                    val nama = text[2]
-                    if (singleEvent < 1 && lokasi.isNotEmpty() && lokasi != ""){
-                        Toast.makeText(requireContext(), "Object scan result : $nama", Toast.LENGTH_SHORT).show()
-                        singleEvent+=1
-                        val qrViewModel = ViewModelProvider(this@QrScanFragment,ViewModelProvider.NewInstanceFactory())[QRCodeViewModel::class.java]
-                        qrViewModel.getObjetWisata(lokasi,id)
-                        qrViewModel.objectWisata.observe(requireActivity()){ item ->
-                            if(!item.nama.isNullOrEmpty() || item.nama != ""){
-                                val intent = Intent(requireActivity(), DetailObjectActivity::class.java)
-                                Log.d("ITEM OBJEKK", "codeScanner: $item")
-                                intent.putExtra(DetailObjectActivity.EXTRA_DETAIL_OBJECT,item)
-                                intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-                                startActivity(intent)
-                            }else{
-                                val scanningPros : TextView = binding.scanning
-                                scanningPros.text = getString(R.string.scanningPros)
+                    if(text.size > 1){
+                        val id = text[1]
+                        val nama = text[2]
+                        if (singleEvent < 1 && lokasi.isNotEmpty() && lokasi != ""){
+                            Toast.makeText(requireContext(), "Object scan result : $nama", Toast.LENGTH_SHORT).show()
+                            singleEvent+=1
+                            val qrViewModel = ViewModelProvider(this@QrScanFragment,ViewModelProvider.NewInstanceFactory())[QRCodeViewModel::class.java]
+                            qrViewModel.getObjetWisata(lokasi,id)
+                            qrViewModel.objectWisata.observe(requireActivity()){ item ->
+                                if(!item.nama.isNullOrEmpty() || item.nama != ""){
+                                    val intent = Intent(requireActivity(), DetailObjectActivity::class.java)
+                                    Log.d("ITEM OBJEKK", "codeScanner: $item")
+                                    intent.putExtra(DetailObjectActivity.EXTRA_DETAIL_OBJECT,item)
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
+                                    startActivity(intent)
+                                }else{
+                                    val scanningPros : TextView = binding.scanning
+                                    scanningPros.text = getString(R.string.scanningPros)
+                                }
                             }
                         }
+                    }else{
+                        val scanningPros : TextView = binding.scanning
+                        scanningPros.text = getString(R.string.scanningPros)
                     }
                 }
             }
