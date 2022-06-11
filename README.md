@@ -10,8 +10,5 @@ The expected end result is the Minimum Viable Product of this Travel App.
 </p>
 <p align="center"><b>Togu Travel App</b></p>
 
-## Project Planning
-Google Spreadsheets : https://docs.google.com/spreadsheets/d/1oh9I-tenJ-IwKGooSWSqf8UOSzkjLpe6Aa_RlFKvJUw/edit?usp=sharing
-
-## User Interface Design Concept
-Figma : https://www.figma.com/file/gt3PskSfMNFUNxDiLOgGui/Togu-Travel-App?node-id=4%3A6
+## Application Development Repository
+Welcome to Togu Travel App development repository

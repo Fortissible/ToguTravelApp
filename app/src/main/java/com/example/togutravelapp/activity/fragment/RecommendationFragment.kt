@@ -89,6 +89,7 @@ class RecommendationFragment : Fragment() {
             }
         })
     }
+
     private fun reverseGeocoder(lat : Double?, lon : Double?) : String {
         val revGeocoder = Geocoder(context, Locale.getDefault())
         if (lat != null && lon != null) {

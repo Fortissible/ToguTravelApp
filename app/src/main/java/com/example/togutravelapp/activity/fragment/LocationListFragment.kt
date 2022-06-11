@@ -45,7 +45,7 @@ class LocationListFragment : Fragment(), OnMapReadyCallback {
     private val binding get() = _binding!!
     private lateinit var locationRv : RecyclerView
     private lateinit var profilePic : ImageView
-    private lateinit var locationSearch : androidx.appcompat.widget.SearchView
+    private lateinit var locationSearch : SearchView
     private lateinit var mMap: GoogleMap
     private lateinit var auth : FirebaseAuth
     private val locationListViewModel : LocationListViewModel by viewModels {

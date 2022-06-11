@@ -72,6 +72,7 @@ class DetailObjectActivity : AppCompatActivity(), OnMapReadyCallback{
         mMap.uiSettings.isMapToolbarEnabled = true
         setMaplocation(result!!)
     }
+
     private fun setMaplocation(objectDetail: ObjectWisataResponseItem){
         val sydney = LatLng(objectDetail.latitude!!.toDouble(), objectDetail.longtitude!!.toDouble())
         mMap.addMarker(MarkerOptions().position(sydney).title(objectDetail.nama).snippet(objectDetail.lokasi))
@@ -102,7 +103,6 @@ class DetailObjectActivity : AppCompatActivity(), OnMapReadyCallback{
 
 
     }
-
 
   companion object {
         const val EXTRA_DETAIL_OBJECT = "object"
