@@ -11,7 +11,7 @@ import com.example.togutravelapp.R
 import com.example.togutravelapp.data.TourguideItem
 import de.hdodenhof.circleimageview.CircleImageView
 
-class ListTourGuideAdapter(private val listTogu: List<TourguideItem>, private val profileDrawable: Drawable) :RecyclerView.Adapter<ListTourGuideAdapter.ListViewHolder>() {
+class ListTourGuideAdapter(private val listTogu: List<TourguideItem>) :RecyclerView.Adapter<ListTourGuideAdapter.ListViewHolder>() {
     private lateinit var onItemClickCallback: OnItemClickCallback
     interface OnItemClickCallback{
         fun onItemClicked(data:TourguideItem)
@@ -54,7 +54,7 @@ class ListTourGuideAdapter(private val listTogu: List<TourguideItem>, private va
 
         Glide.with(holder.itemView)
             .load(listTogu[position].urlImage)
-            .placeholder(profileDrawable)
+            .placeholder(R.drawable.propict)
             .centerCrop()
             .into(tgImg)
 

@@ -6,34 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".activity.DetailObjectActivity">
 
-    <ImageButton
-        android:id="@+id/btn_play"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="310dp"
-        android:layout_marginTop="210dp"
-        android:contentDescription="@string/button_play"
-        android:elevation="30dp"
-        android:foreground="@drawable/ic_play"
-        android:background="@drawable/ic_circle"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"/>
-
-    <ImageButton
-        android:id="@+id/btn_back"
-        android:layout_width="35dp"
-        android:layout_height="35dp"
-        android:layout_marginStart="-340dp"
-        android:layout_marginTop="5dp"
-        android:background="@drawable/ic_circle"
-        android:contentDescription="@string/button_back"
-        android:elevation="30dp"
-        android:foreground="@drawable/ic_back"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/img_object"
@@ -63,8 +35,9 @@
 
             <TextView
                 android:id="@+id/tv_title"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="32dp"
                 android:text="@string/title"
                 android:fontFamily="@font/poppins_bold"
@@ -72,7 +45,6 @@
                 android:textSize="12sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.042"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -81,12 +53,12 @@
                 android:layout_width="377dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="12dp"
+                android:layout_marginEnd="16dp"
                 android:fontFamily="@font/poppins_regular"
                 android:text=""
                 android:textColor="@color/black"
                 android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@id/tv_title"
                 app:layout_constraintTop_toBottomOf="@+id/tv_title" />
 
             <TextView
@@ -99,9 +71,7 @@
                 android:textColor="@color/black"
                 android:textSize="12sp"
                 android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.042"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@id/tv_desc"
                 app:layout_constraintTop_toBottomOf="@+id/tv_desc" />
 
             <TextView
@@ -109,12 +79,12 @@
                 android:layout_width="377dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
                 android:fontFamily="@font/poppins_regular"
                 android:text=""
                 android:textColor="@color/black"
                 android:textSize="12sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintStart_toStartOf="@id/location_title"
                 app:layout_constraintTop_toBottomOf="@+id/location_title" />
 
             <androidx.fragment.app.FragmentContainerView
@@ -139,9 +109,9 @@
                 android:id="@+id/transparent_image"
                 android:layout_width="match_parent"
                 android:layout_height="280dp"
-                android:layout_marginLeft="20dp"
+                android:layout_marginLeft="16dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginRight="20dp"
+                android:layout_marginRight="16dp"
                 android:layout_marginBottom="20dp"
                 android:background="#00B89292"
                 android:elevation="10dp"

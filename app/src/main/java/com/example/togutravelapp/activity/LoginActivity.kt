@@ -162,7 +162,6 @@ class LoginActivity : AppCompatActivity() {
             loadingBar.visibility = View.INVISIBLE
             gmailLoginButton.visibility = View.VISIBLE
             val intent = Intent(this@LoginActivity, MainActivity::class.java)
-            intent.putExtra(TYPE,2)
             startActivity(intent)
             finish()
         } else {
@@ -175,7 +174,6 @@ class LoginActivity : AppCompatActivity() {
             loadingBar.visibility = View.INVISIBLE
             gmailLoginButton.visibility = View.VISIBLE
             val intent = Intent(this@LoginActivity, MainActivity::class.java)
-            intent.putExtra(TYPE,1)
             startActivity(intent)
             finish()
         } else {
@@ -231,6 +229,5 @@ class LoginActivity : AppCompatActivity() {
 
     companion object {
         private const val TAG = "LoginActivity"
-        const val TYPE = "LoginType"
     }
 }

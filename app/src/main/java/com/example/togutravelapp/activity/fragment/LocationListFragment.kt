@@ -64,13 +64,13 @@ class LocationListFragment : Fragment(), OnMapReadyCallback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val type = requireActivity().intent.getIntExtra(LoginActivity.TYPE,1) //1 -> api ; 2 -> google
         profilePic = binding.locationListProfilepic
 
         val repo = UserRepository(requireContext())
         val imageUri = repo.getUserProfileImage()
+        auth = Firebase.auth
 
-        if (type == 1) {
+        if (auth.currentUser == null) {
             Glide.with(this)
                 .load(imageUri)
                 .placeholder(R.drawable.propict)
@@ -78,8 +78,6 @@ class LocationListFragment : Fragment(), OnMapReadyCallback {
                 .into(profilePic)
 
         } else {
-            auth = Firebase.auth
-
             Glide.with(this)
                 .load(auth.currentUser!!.photoUrl)
                 .placeholder(R.drawable.propict)

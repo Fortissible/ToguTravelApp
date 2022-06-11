@@ -1,7 +1,9 @@
 package com.example.togutravelapp.activity
 
 import android.annotation.SuppressLint
+import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.MotionEvent
 import android.widget.ImageButton
 import android.widget.ImageView
@@ -23,7 +25,6 @@ class DetailObjectActivity : AppCompatActivity(), OnMapReadyCallback{
     private lateinit var binding: ActivityDetailObjectBinding
     private lateinit var scrollView : ScrollView
     private lateinit var transparentImageView : ImageView
-    private lateinit var btnBack : ImageButton
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -34,10 +35,6 @@ class DetailObjectActivity : AppCompatActivity(), OnMapReadyCallback{
 
 
         val objectDetail = intent.getParcelableExtra<ObjectWisataResponseItem>(EXTRA_DETAIL_OBJECT) as ObjectWisataResponseItem
-        btnBack = binding.btnBack
-        btnBack.setOnClickListener {
-            onBackPressed()
-        }
         scrollView = binding.objectActivityScrollview
         transparentImageView = binding.transparentImage
         transparentImageView.setOnTouchListener { _, event ->
@@ -99,9 +96,6 @@ class DetailObjectActivity : AppCompatActivity(), OnMapReadyCallback{
                 .placeholder(R.drawable.ic_baseline_error_24)
                 .centerCrop()
                 .into(binding.imgObject)
-
-
-
     }
 
   companion object {
