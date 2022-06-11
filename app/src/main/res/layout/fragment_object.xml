@@ -13,4 +13,13 @@
         android:layout_marginEnd="16dp"
         android:layout_marginStart="16dp"/>
 
+    <ProgressBar
+        android:id="@+id/loadingListobject"
+        android:layout_width="68dp"
+        android:layout_height="77dp"
+        android:visibility="invisible"
+        tools:visibility="visible"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="20dp"/>
+
 </FrameLayout>

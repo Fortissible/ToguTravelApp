@@ -160,6 +160,18 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/dropdown_button_container1"/>
 
+        <ProgressBar
+            android:id="@+id/loadingListLocation"
+            android:layout_width="68dp"
+            android:layout_height="77dp"
+            android:visibility="invisible"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.498"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.241"
+            tools:visibility="visible" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 
 </RelativeLayout>
