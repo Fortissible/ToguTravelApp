@@ -41,16 +41,17 @@ class ListTourGuideAdapter(private val listTogu: List<TourguideItem>) :RecyclerV
         var price = 0
         var rating = 0
         if (listTogu[position].rating == null) {
-            rating = 0
+            rating = 10
         }
-        if (listTogu[position].harga == null || listTogu[position].harga == 0) {
+        else if (listTogu[position].rating.toString() == "0") rating = 10
+        if (listTogu[position].harga == null) {
             price = 15000
-        }
+        } else if (listTogu[position].harga.toString() == "0") price = 15000
 
         tgName.text = listTogu[position].nama
         tgGender.text = listTogu[position].gender
         tgRating.text = rating.toString()
-        tgPrice.text = price.toString()
+        tgPrice.text = "Rp 15.000"
 
         Glide.with(holder.itemView)
             .load(listTogu[position].urlImage)
