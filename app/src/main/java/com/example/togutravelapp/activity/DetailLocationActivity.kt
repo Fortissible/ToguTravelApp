@@ -80,7 +80,7 @@ class DetailLocationActivity : AppCompatActivity() {
     }
 
     private fun setDummyImageURL() : List<DummyURL>{
-        val listURL = arrayOf("https://images.bisnis-cdn.com/posts/2022/05/05/1530199/orchid-forest-cikole-lembang-1.jpg","https://asset.kompas.com/crops/TKZHoKAYpzkYIa2q6xzqwggpaNU=/0x0:0x0/750x500/data/photo/2021/09/16/614317f8e6e89.jpg","https://pingpoint.co.id/media/images/Slide8_ABg9OQH.original.jpg")
+        val listURL = arrayOf("https://www.wisataidn.com/wp-content/uploads/2020/07/Lokasi-Museum-Geologi-Bandung-750x450.jpg","https://asset.kompas.com/crops/xvwpNYGNMTf2ElXn75uyz22fBQk=/0x0:0x0/750x500/data/photo/2014/08/18/1824308MuseumGeologi031408360918-previewp.jpg","https://cdn.nativeindonesia.com/foto/museum-geologi-bandung/Koleksi-Mineral-Di-Museum-Geologi-Bandung.jpg")
         val listURLDummy = mutableListOf<DummyURL>()
         for (i in listURL){
             listURLDummy.add(

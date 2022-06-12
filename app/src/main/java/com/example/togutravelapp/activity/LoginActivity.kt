@@ -11,6 +11,8 @@ import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
+import com.bumptech.glide.Glide
+import com.example.togutravelapp.R
 import com.example.togutravelapp.data.CustomPassword
 import com.example.togutravelapp.data.DummyTourGuideData
 import com.example.togutravelapp.data.LoginForm
@@ -57,6 +59,11 @@ class LoginActivity : AppCompatActivity() {
             .requestIdToken("628388227660-f6smkp93dr5bn1ud9bh0neh58nn9n12h.apps.googleusercontent.com")
             .requestEmail()
             .build()
+
+        Glide.with(this)
+            .load(R.drawable.logo)
+            .centerCrop()
+            .into(binding.locationDetailImage)
 
         googleSignInClient = GoogleSignIn.getClient(this, gso)
 
